@@ -1,0 +1,22 @@
+<template name="9d1dafd2">
+  <view class="_view data-v-29d4501d userDefined">
+    <view class="_view data-v-29d4501d nav-bar-userset">
+      <image src="/static/back-arrow.png" class="_image data-v-29d4501d nav-bar-userset-back" bindtap="handleProxy" data-eventid="{{'ZNv-0'}}" data-comkey="{{$k}}"></image>
+      <image src="/static/sub-logo.png" class="_image data-v-29d4501d nav-bar-userset-sublogo"></image>
+      <view class="_view data-v-29d4501d nav-bar-userset-add"></view>
+    </view>
+    <view class="_view data-v-29d4501d inputFrame">
+      <view class="_view data-v-29d4501d">
+        <input class="_input data-v-29d4501d inputForm" placeholder="输入TP名称" placeholder-class="placeHolder" maxlength="6" confirm-type="done" />
+      </view>
+      <view class="_view data-v-29d4501d time-picker">
+        <picker mode="date" value="{{date}}" start="{{startDate}}" end="{{endDate}}" bindchange="handleProxy" data-eventid="{{'xSJ-1'}}" data-comkey="{{$k}}" class="_picker data-v-29d4501d">
+          <view class="_view data-v-29d4501d time-picker-view">{{Sdate}}</view>
+        </picker>
+        <picker mode="date" value="{{date}}" start="{{Sdate}}" end="{{endDate}}" bindchange="handleProxy" disabled="{{isDisabled}}" data-eventid="{{'5lQ-2'}}" data-comkey="{{$k}}" class="_picker data-v-29d4501d">
+          <view class="_view data-v-29d4501d time-picker-view">{{Edate}}</view>
+        </picker>
+      </view>
+    </view>
+  </view>
+</template>

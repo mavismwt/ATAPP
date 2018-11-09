@@ -1,0 +1,6 @@
+<template name="670376dd">
+  <view id="app" class="_div data-v-193b00ee">
+    <nav-bar class="_nav-bar data-v-193b00ee"></nav-bar>
+    <router-view class="_router-view data-v-193b00ee"></router-view>
+  </view>
+</template>

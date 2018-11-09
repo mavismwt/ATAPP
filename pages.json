@@ -1,0 +1,74 @@
+{
+    "pages" : [
+        //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path" : "pages/newdetail/countDown",
+			"style" : {
+				"navigationBarTitleText" : "",
+				"app-plus" : {
+					"titleNView" : false
+				}
+			}
+		},
+        {
+            "path" : "pages/index/index",
+            "style" : {
+                "navigationBarTitleText" : "",
+                "app-plus" : {
+                    "titleNView" : false
+                }
+            }
+        },
+		{
+			"path" : "pages/newschedule/newschedule",
+			"style" : {
+				"navigationBarTitleText" : "",
+				"app-plus" : {
+					"titleNView" : false
+				}
+			}
+		},
+		{
+			"path" : "pages/newdetail/examPlan",
+			"style" : {
+				"navigationBarTitleText" : "",
+				"app-plus" : {
+					"titleNView" : false
+				}
+			}
+		},
+		{
+			"path" : "pages/newdetail/shortTimePlan",
+			"style" : {
+				"navigationBarTitleText" : "",
+				"app-plus" : {
+					"titleNView" : false
+				}
+			}
+		},
+		{
+			"path" : "pages/newdetail/userDefined",
+			"style" : {
+				"navigationBarTitleText" : "",
+				"app-plus" : {
+					"titleNView" : false
+				}
+			}
+		},
+		{
+			"path" : "pages/newdetail/memo",
+			"style" : {
+				"navigationBarTitleText" : "组件",
+				"app-plus" : {
+					"titleNView" : false
+				}
+			}
+		}
+    ],
+    "globalStyle" : {
+        "navigationBarTextStyle" : "black",
+        "navigationBarTitleText" : "uni-app",
+        "navigationBarBackgroundColor" : "#F8F8F8",
+        "backgroundColor" : "#F8F8F8"
+    }
+}

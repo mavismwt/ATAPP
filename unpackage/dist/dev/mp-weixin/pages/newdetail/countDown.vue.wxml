@@ -1,0 +1,9 @@
+<template name="12016d6a">
+  <view class="_view data-v-3a0a4220 countDown">
+    <view class="_view data-v-3a0a4220 nav-bar-userset">
+      <image src="/static/back-arrow.png" class="_image data-v-3a0a4220 nav-bar-userset-back" bindtap="handleProxy" data-eventid="{{'uOG-0'}}" data-comkey="{{$k}}"></image>
+      <image src="/static/sub-logo.png" class="_image data-v-3a0a4220 nav-bar-userset-sublogo"></image>
+      <view class="_view data-v-3a0a4220 nav-bar-userset-add"></view>
+    </view>
+  </view>
+</template>

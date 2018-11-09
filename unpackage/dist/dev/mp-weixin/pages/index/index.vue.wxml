@@ -1,0 +1,62 @@
+<import src="/components/memo.vue.wxml" />
+<template name="237888e8">
+  <view class="_view data-v-e8d976dc index">
+    <view class="_view data-v-e8d976dc nav-bar-userset">
+      <view class="_view data-v-e8d976dc nav-bar-userset-add"></view>
+      <image src="/static/logo.png" class="_image data-v-e8d976dc nav-bar-userset-logo"></image>
+      <image src="/static/add.png" class="_image data-v-e8d976dc nav-bar-userset-add" bindtap="handleProxy" data-eventid="{{'Ywv-0'}}" data-comkey="{{$k}}"></image>
+    </view>
+    <swiper indicator-dots="{{swiper.indicatorDots}}" duration="{{swiper.duration}}" class="_swiper data-v-e8d976dc" style=" {{('height:' + scrollHeight + ';')}}">
+      <swiper-item class="_swiper-item data-v-e8d976dc">
+        <scroll-view class="_scroll-view data-v-e8d976dc main-view" scroll-y="true" style=" {{('height:' + scrollHeight + ';')}}">
+          <view class="_view data-v-e8d976dc date-view" wx:key="index" key="{{index}}" wx:for="{{itemProperty}}" wx:for-index="index" wx:for-item="item">
+            <view class="_view data-v-e8d976dc time-process-block" style=" {{('background-color:' + item.backgroundColor + ';')}}">
+              <view class="_view data-v-e8d976dc top-line" bindtap="handleProxy" data-id="{{index}}" data-eventid="{{'nM9-1-'+index}}" data-comkey="{{$k}}">
+                <view class="_view data-v-e8d976dc red-point"></view>
+                <view class="_view data-v-e8d976dc time-name">{{item.title}}</view>
+                <view class="_view data-v-e8d976dc precess-percent">{{ item.process }}%</view>
+              </view>
+              <view class="_view data-v-e8d976dc all-process" bindtap="handleProxy" data-id="{{index}}" data-eventid="{{'64U-2-'+index}}" data-comkey="{{$k}}">
+                <view class="_view data-v-e8d976dc little-person" animation="{{item.animationDataPerson}}">
+                  <view class="_view data-v-e8d976dc chat-frame">
+                    <view class="_view data-v-e8d976dc .chat-frame-content">{{item.now}}</view>
+                    <image src="/static/chat-frame.png" class="_image data-v-e8d976dc chat-frame-image"></image>
+                  </view>
+                  <image src="/static/little-person.png" class="_image data-v-e8d976dc little-person-image"></image>
+                </view>
+                <view class="_view data-v-e8d976dc process-bar">
+                  <view class="_view data-v-e8d976dc start-text">{{item.start}}</view>
+                  <view class="_view data-v-e8d976dc blank-bar"></view>
+                  <view class="_view data-v-e8d976dc end-text">{{item.end}}</view>
+                  <view class="_view data-v-e8d976dc finish-bar" animation="{{item.animationDataProcess}}"></view>
+                </view>
+              </view>
+            </view>
+            <view ref="scheduleDetail" scroll-y="true" class="_view data-v-e8d976dc {{[  item.itemDetail ? 'schedule-detail-show' : '',  !item.itemDetail ? 'schedule-detail-hidden' : '']}}" style=" {{(  'background-color:' +  item.backgroundColor +  ';' +  'animation:' +  item.showAnimation +  ';')}}">
+              <view class="_view data-v-e8d976dc detail-contain">
+                <scroll-view scroll-y="true" class="_scroll-view data-v-e8d976dc all-tag-view">
+                  <view class="_view data-v-e8d976dc tag-view-up">
+                    <view class="_view data-v-e8d976dc detail-title-item">
+                      <view class="_view data-v-e8d976dc detail-title-item-text">小任务</view>
+                    </view>
+                    <view class="_view data-v-e8d976dc tag-view" bindtap="handleProxy" data-id="{{index}}" data-tagid="{{tagIndex}}" wx:key="tagIndex" key="{{tagIndex}}" data-eventid="{{'0SF-3-'+index+'-'+tagIndex}}" data-comkey="{{$k}}" wx:for="{{item.tagItems}}"
+                      wx:for-index="tagIndex" wx:for-item="tag" style=" {{('background-color:' + tag.nowTagColor + ';' + 'color:' + tag.fontColor + ';')}}"> {{ tag.name }} </view>
+                  </view>
+                </scroll-view>
+                <scroll-view scroll-y="true" class="_scroll-view data-v-e8d976dc detail-note">
+                  <view class="_view data-v-e8d976dc detail-title-item">
+                    <view class="_view data-v-e8d976dc detail-title-item-text">备忘录</view>
+                  </view>
+                  <view class="_view data-v-e8d976dc detail-note-text" style=" {{('background-color:' + item.tagColor + ';')}}"> {{item.detailNote}} </view>
+                </scroll-view>
+              </view>
+            </view>
+          </view>
+        </scroll-view>
+      </swiper-item>
+      <swiper-item class="_swiper-item data-v-e8d976dc">
+        <template data="{{...$root['0'], ...$root[$kk+'YkD-1'],$root}}" is="0bafb99c"></template>
+      </swiper-item>
+    </swiper>
+  </view>
+</template>
