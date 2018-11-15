@@ -1,1 +1,1 @@
-<import src="/pages/newschedule/newschedule.vue.wxml" /><template is="17df6b56" data="{{ ...$root['0'], $root }}"/>
+<import src="/pages/newschedule/newschedule.vue.wxml" /><template is="50d6c0ea" data="{{ ...$root['0'], $root }}"/>

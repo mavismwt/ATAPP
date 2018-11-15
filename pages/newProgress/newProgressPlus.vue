@@ -10,22 +10,26 @@
 		</view>
 		<view class="sectionView">
 			<view class="addASection" @tap="add">添加阶段+</view>
-			<view v-for="item in sectionData"
+			<view class="sectionCell" v-for="item in sectionData"
 				:key="item.index">
-				<input class="sectionCell"
+				<input class="inputSectionName"
 					placeholder="输入阶段名称"
 					placeholder-style="placeHolder"
 					confirm-type="Next"
 					v-model="item.name"
 					@keyup.enter = "add"
 				/>
+				<button class="setStatus"
+					@tap="item.isFinished=!item.isFinished"
+					v-model="item.isFinished"
+				>{{item.isFinished}}</button>
 			</view>
 			
 		</view>
 		<view class="addNotes">
 			<view class="addButton" 
 				v-on:click="showNote=!showNote"
-				>
+			>
 				备注信息
 			</view>
 			<view>
@@ -100,13 +104,29 @@
 		padding-bottom: 20upx;
 	}
 	.sectionCell{
+		flex-direction: row;
+	}
+	.setStatus{
+		text-align: center;
+		justify-content: center;
+		width: 60upx;
+		height: 80upx;
+		margin-left: 15upx;
+		padding-top: 15upx;
+		padding-left: 10upx;
+		background-color: #FFFFFF;
+		font-size: 20upx;
+	}
+	.inputSectionName{
 		text-align: left;
 		justify-content: center;
 		color: #000000;
-		width: 680upx;
-		padding: 20upx;
+		width: 560upx;
+		padding-left: 60upx;
+		padding-right: 20upx;
+		padding-bottom: 20upx;
+		padding-top: 20upx;
 		margin: 0upx 15upx;
-		border: 1upx solid gray;
 	}
 	.addNotes{
 		width: 100%;
