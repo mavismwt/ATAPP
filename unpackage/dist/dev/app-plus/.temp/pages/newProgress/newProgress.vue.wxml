@@ -1,0 +1,34 @@
+<template name="0be6cff7">
+  <view class="_view data-v-1a52c274 newProgress">
+    <view class="_view data-v-1a52c274 nav-bar-userset">
+      <image src="/static/back-arrow.png" class="_image data-v-1a52c274 nav-bar-userset-back" bindtap="handleProxy" data-eventid="{{'quk-0'}}" data-comkey="{{$k}}"></image>
+      <image src="/static/sub-logo.png" class="_image data-v-1a52c274 nav-bar-userset-sublogo"></image>
+      <view class="_view data-v-1a52c274 nav-bar-userset-add"></view>
+    </view>
+    <view class="_view data-v-1a52c274 inputTitle">
+      <input class="_input data-v-1a52c274 inputForm" placeholder="输入TP名称" placeholder-class="placeHolder" maxlength="6" confirm-type="backToIndex" />
+    </view>
+    <view class="_view data-v-1a52c274 inputProgress">
+      <input class="_input data-v-1a52c274 start" value="{{pro.start}}" bindinput="handleProxy" type="number" placeholder="开始" placeholder-class="placeHolder" data-eventid="{{'5UT-1'}}" data-comkey="{{$k}}" />
+      <input class="_input data-v-1a52c274 now" value="{{pro.now}}" bindinput="handleProxy" type="number" placeholder="现在" placeholder-class="placeHolder" data-eventid="{{'PBe-2'}}" data-comkey="{{$k}}" />
+      <input class="_input data-v-1a52c274 end" value="{{pro.end}}" bindinput="handleProxy" type="number" placeholder="结束" placeholder-class="placeHolder" data-eventid="{{'sgs-3'}}" data-comkey="{{$k}}" />
+    </view>
+    <view class="_view data-v-1a52c274 inputUnit">
+      <input class="_input data-v-1a52c274 unit" placeholder="单位" placeholder-class="placeHolder" />
+    </view>
+    <view class="_view data-v-1a52c274 editProgress">
+      <button class="_button data-v-1a52c274 editProgressButton" wx:if="{{pro.end>pro.start}}" bindtap="handleProxy" data-eventid="{{'4OA-4'}}" data-comkey="{{$k}}">打卡</button>
+      <button class="_button data-v-1a52c274 editProgressButton" wx:if="{{pro.end<pro.start}}" bindtap="handleProxy" data-eventid="{{'GDA-5'}}" data-comkey="{{$k}}">打卡</button>
+    </view>
+    <view class="_view data-v-1a52c274 addNotes">
+      <view class="_view data-v-1a52c274 addButton" wx:if="{{!showNote}}" bindtap="handleProxy" data-eventid="{{'Fwf-6'}}" data-comkey="{{$k}}"> 显示备注 </view>
+      <view class="_view data-v-1a52c274 addButton" wx:if="{{showNote}}" bindtap="handleProxy" data-eventid="{{'Qrt-7'}}" data-comkey="{{$k}}"> 收起备注 </view>
+      <view class="_view data-v-1a52c274">
+        <textarea class="_textarea data-v-1a52c274 Note" wx:if="{{showNote}}" placeholder="此处输入备注" />
+      </view>
+    </view>
+    <view class="_view data-v-1a52c274 confirm">
+      <button class="_button data-v-1a52c274 confirmButton" bindtap="handleProxy" data-eventid="{{'v9z-8'}}" data-comkey="{{$k}}">完成</button>
+    </view>
+  </view>
+</template>

@@ -1,12 +1,12 @@
 <template name="50d6c0ea">
   <view class="_view data-v-82f7234c newschedule">
     <view class="_view data-v-82f7234c nav-bar-userset">
-      <image src="/static/back-arrow.png" class="_image data-v-82f7234c nav-bar-userset-back" bindtap="handleProxy" data-eventid="{{'QeU-0'}}" data-comkey="{{$k}}"></image>
+      <image src="/static/back-arrow.png" class="_image data-v-82f7234c nav-bar-userset-back" bindtap="handleProxy" data-eventid="{{'1tl-0'}}" data-comkey="{{$k}}"></image>
       <image src="/static/sub-logo.png" class="_image data-v-82f7234c nav-bar-userset-sublogo"></image>
       <view class="_view data-v-82f7234c nav-bar-userset-add"></view>
     </view>
     <scroll-view class="_scroll-view data-v-82f7234c main-view" scroll-y="true" style=" {{('height:' + scrollHeight + ';')}}">
-      <view class="_view data-v-82f7234c date-view" data-id="{{item.id}}" wx:key="item" key="{{item}}" bindtap="handleProxy" data-eventid="{{'LLH-1-'+index}}" data-comkey="{{$k}}" wx:for="{{itemProperty}}" wx:for-index="index" wx:for-item="item" style=" {{('background-color:' + item.backgroundColor + ';')}}">
+      <view class="_view data-v-82f7234c date-view" data-id="{{item.id}}" wx:key="item" key="{{item}}" bindtap="handleProxy" data-eventid="{{'NTW-1-'+index}}" data-comkey="{{$k}}" wx:for="{{itemProperty}}" wx:for-index="index" wx:for-item="item" style=" {{('background-color:' + item.backgroundColor + ';')}}">
         <view class="_view data-v-82f7234c typename">{{item.title}}</view>
         <view class="_view data-v-82f7234c typedescribe" style=" {{('color:' + item.fontColor + ';')}}">{{item.describe}}</view>
       </view>

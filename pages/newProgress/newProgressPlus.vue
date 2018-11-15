@@ -1,5 +1,10 @@
 <template>
 	<view class="newProgressPlus">
+		<view class="nav-bar-userset">
+			<image src="/static/back-arrow.png" class="nav-bar-userset-back" @tap="backToIndex"></image>
+			<image src="/static/sub-logo.png" class="nav-bar-userset-sublogo"></image>
+			<view class="nav-bar-userset-add"></view>
+		</view>
 		<view class="inputTitle">
 			<input class="inputForm" 
 				placeholder="输入TP名称" 
@@ -28,9 +33,16 @@
 		</view>
 		<view class="addNotes">
 			<view class="addButton" 
+				v-if="!showNote" 
 				v-on:click="showNote=!showNote"
 			>
-				备注信息
+				显示备注
+			</view>
+			<view class="addButton" 
+				v-if="showNote"
+				v-on:click="showNote=!showNote"
+			>
+				收起备注
 			</view>
 			<view>
 				<textarea class="Note" 
@@ -79,6 +91,30 @@
 	.newProgressPlus{
 		flex-direction: column;
 	}
+	.nav-bar-userset{
+		justify-content: space-between;
+		display: flex;
+		background-color: rgb(255,230,206);
+		width: 750upx;
+		height: 150upx;
+	}
+	.nav-bar-userset-sublogo{
+		margin-top: 55upx;
+		width: 100upx;
+		height: 45upx;
+	}
+	.nav-bar-userset-back{
+		margin-top: 55upx;
+		margin-left: 50upx;
+		width: 25upx;
+		height: 40upx;
+	}
+	.nav-bar-userset-add{
+		margin-top: 55upx;
+		margin-right: 50upx;
+		width: 30upx;
+		height: 40upx;
+	}
 	.inputTitle{
 		width: 100%;
 		flex-direction: column;
@@ -121,11 +157,8 @@
 		text-align: left;
 		justify-content: center;
 		color: #000000;
-		width: 560upx;
-		padding-left: 60upx;
-		padding-right: 20upx;
-		padding-bottom: 20upx;
-		padding-top: 20upx;
+		width: 580upx;
+		padding: 20upx;
 		margin: 0upx 15upx;
 	}
 	.addNotes{

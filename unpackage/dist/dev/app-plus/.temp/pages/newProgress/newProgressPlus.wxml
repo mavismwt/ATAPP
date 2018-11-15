@@ -1,0 +1,1 @@
+<import src="/pages/newProgress/newProgressPlus.vue.wxml" /><template is="5174c59e" data="{{ ...$root['0'], $root }}"/>
