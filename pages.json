@@ -1,16 +1,6 @@
 {
     "pages" : [
         //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		
-		{
-			"path" : "pages/newProgress/newProgress",
-			"style" : {
-				"navigationBarTitleText" : "",
-				"app-plus" : {
-					"titleNView" : false
-				}
-			}
-		},
 		{
 			"path" : "pages/index/index",
 			"style" : {
@@ -69,6 +59,15 @@
 			"path" : "pages/newdetail/memo",
 			"style" : {
 				"navigationBarTitleText" : "组件",
+				"app-plus" : {
+					"titleNView" : false
+				}
+			}
+		},
+		{
+			"path" : "pages/newProgress/newProgress",
+			"style" : {
+				"navigationBarTitleText" : "",
 				"app-plus" : {
 					"titleNView" : false
 				}
