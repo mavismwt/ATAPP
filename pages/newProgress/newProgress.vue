@@ -10,24 +10,24 @@
 				placeholder="输入TP名称" 
 				placeholder-class="placeHolder" 
 				maxlength="6"
-				confirm-type="backToIndex"
+				confirm-type="done"
 			/>
 		</view>
 		<view class="inputProgress">
 			<input class="start" 
-				v-model="pro.start" 
+				v-model="time.start" 
 				type="number"
 				placeholder="开始"
 				placeholder-class="placeHolder"
 			/>
 			<input class="now" 
-				v-model="pro.now" 
+				v-model="time.now" 
 				type="number"
 				placeholder="现在"
 				placeholder-class="placeHolder"
 			/>
 			<input class="end"
-				v-model="pro.end" 
+				v-model="time.end" 
 				type="number"
 				placeholder="结束"
 				placeholder-class="placeHolder"
@@ -40,8 +40,8 @@
 			/>
 		</view>
 		<view class="editProgress">
-			<button class="editProgressButton" v-if="pro.end>pro.start" v-on:click="pro.now<pro.end?pro.now=pro.now+1:pro.now=pro.now">打卡</button>
-			<button class="editProgressButton" v-if="pro.end<pro.start" v-on:click="pro.now<pro.start?pro.now=pro.now-1:pro.now=pro.now">打卡</button>
+			<button class="editProgressButton" v-if="time.end>time.start" v-on:click="time.now<time.end?time.now=time.now+1:time.now=time.now">打卡</button>
+			<button class="editProgressButton" v-if="time.end<time.start" v-on:click="time.now<time.start?time.now=time.now-1:time.now=time.now">打卡</button>
 		</view>
 		<view class="addNotes">
 			<view class="addButton" 
@@ -65,7 +65,7 @@
 			</view>
 		</view>
 		<view class="confirm">
-			<button class="confirmButton" v-on:click="done" >完成</button>
+			<button class="confirmButton" v-on:click="backToIndex" >完成</button>
 		</view>
 		
 	</view>
@@ -78,7 +78,7 @@
 				height:0,
 				showNote:false,
 				title:"备注",
-				pro:{
+				time:{
 					start:0,
 					now:0,
 					end:0,

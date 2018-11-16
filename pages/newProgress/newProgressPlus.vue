@@ -96,7 +96,7 @@
 		display: flex;
 		background-color: rgb(255,230,206);
 		width: 750upx;
-		height: 150upx;
+		height: 120upx;
 	}
 	.nav-bar-userset-sublogo{
 		margin-top: 55upx;
@@ -193,6 +193,9 @@
 		align-content: center;
 		width: 100%;
 		height: 80upx;
+		color: #DD524D;
+		background-color: rgb(255,230,206);
+		border: hidden;
 	}
 	.placeHolder{
 		font-size: 36upx;
