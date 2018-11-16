@@ -1,7 +1,7 @@
 <template name="418f5368">
   <view class="_view data-v-1bc8e64a userDefined">
     <view class="_view data-v-1bc8e64a nav-bar-userset">
-      <image src="/static/back-arrow.png" class="_image data-v-1bc8e64a nav-bar-userset-back" bindtap="handleProxy" data-eventid="{{'TyY-0'}}" data-comkey="{{$k}}"></image>
+      <image src="/static/back-arrow.png" class="_image data-v-1bc8e64a nav-bar-userset-back" bindtap="handleProxy" data-eventid="{{'qtA-0'}}" data-comkey="{{$k}}"></image>
       <image src="/static/sub-logo.png" class="_image data-v-1bc8e64a nav-bar-userset-sublogo"></image>
       <view class="_view data-v-1bc8e64a nav-bar-userset-add"></view>
     </view>
@@ -10,10 +10,10 @@
         <input class="_input data-v-1bc8e64a inputForm" placeholder="输入TP名称" placeholder-class="placeHolder" maxlength="6" confirm-type="done" />
       </view>
       <view class="_view data-v-1bc8e64a time-picker">
-        <picker mode="date" value="{{date}}" start="{{startDate}}" end="{{endDate}}" bindchange="handleProxy" data-eventid="{{'mia-1'}}" data-comkey="{{$k}}" class="_picker data-v-1bc8e64a">
+        <picker mode="date" value="{{date}}" start="{{startDate}}" end="{{endDate}}" bindchange="handleProxy" data-eventid="{{'ZEf-1'}}" data-comkey="{{$k}}" class="_picker data-v-1bc8e64a">
           <view class="_view data-v-1bc8e64a time-picker-view">{{Sdate}}</view>
         </picker>
-        <picker mode="date" value="{{date}}" start="{{Sdate}}" end="{{endDate}}" bindchange="handleProxy" disabled="{{isDisabled}}" data-eventid="{{'Vwc-2'}}" data-comkey="{{$k}}" class="_picker data-v-1bc8e64a">
+        <picker mode="date" value="{{date}}" start="{{Sdate}}" end="{{endDate}}" bindchange="handleProxy" disabled="{{isDisabled}}" data-eventid="{{'slO-2'}}" data-comkey="{{$k}}" class="_picker data-v-1bc8e64a">
           <view class="_view data-v-1bc8e64a time-picker-view">{{Edate}}</view>
         </picker>
       </view>
