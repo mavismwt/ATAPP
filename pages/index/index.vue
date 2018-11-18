@@ -40,7 +40,7 @@
 							ref="scheduleDetail"
 							scroll-y="true">
 							<view class="detail-contain">
-							<scroll-view scroll-y="true" class="all-tag-view">
+						<!-- 	<scroll-view scroll-y="true" class="all-tag-view">
 								<view class="tag-view-up">
 									<view class="detail-title-item">
 										<view class='detail-title-item-text'>小任务</view>
@@ -63,7 +63,7 @@
 								<view class="detail-note-text" :style="{backgroundColor: item.tagColor}">
 									{{item.detailNote}}
 								</view>
-							</scroll-view>
+							</scroll-view> -->
 							</view>
 						</view>
 					</view>
@@ -78,6 +78,7 @@
 
 <script>
 	import memo from "@/components/memo.vue"
+	import {addSchedule,changeSchedule,deleteSchedule,getAllSchedule,getOneSchedule} from "../../js/schedule.js"
 	export default {
 		components:{
 			memo
@@ -93,374 +94,74 @@
 				unit: "upx",
 				scrollHeight: "",
 				itemProperty:[
-					{
-						index: 0,
-						title: "今天",
-						process: 60,
-						start: "00",
-						end: "24",
-						now: "16:30",
-						backgroundColor: "rgb(171,216,200)",
-						animationDataProcess: "",
-						animationDataPerson: "",
-						tagColor: "rgb(151,196,180)",
-						itemDetail: false,
-						tagAnimation: "",
-						showAnimation: "",
-						detailNote: "暂无备忘内容",
-						tagItems:[
-							{
-								name: "大学物理学",
-								weight: 10,
-								nowTagColor: "",
-								fontColor: ""
-							},
-							{
-								name: "大学英语",
-								weight: 15,
-								nowTagColor: "",
-								fontColor: ""
-							},
-							{
-								name: "计算机引论",
-								weight: 18,
-								nowTagColor: "",
-								fontColor: ""
-							},
-							{
-								name: "计算机引论",
-								weight: 18,
-								nowTagColor: "",
-								fontColor: ""
-							},
-							{
-								name: "计算机引论",
-								weight: 18,
-								nowTagColor: "",
-								fontColor: ""
-							},
-							{
-								name: "模拟电路",
-								weight: 20,
-								nowTagColor: "",
-								fontColor: ""
-							},
-							{
-								name: "数字电路",
-								weight: 18,
-								nowTagColor: "",
-								fontColor: ""
-							},
-						]
-					},
-					{
-						index: 1,
-						title: "减肥",
-						process: 85,
-						start: "00",
-						end: "24",
-						now: "16:30",
-						backgroundColor: "rgb(200,220,200)",
-						animationDataProcess: "",
-						animationDataPerson: "",
-						tagColor: "rgb(180,200,180)",
-						itemDetail: false,
-						tagAnimation: "",
-						showAnimation: "",
-						detailNote: "暂无备忘内容",
-						tagItems:[
-							{
-								name: "大学物理学",
-								weight: 10,
-								nowTagColor: ""
-							},
-							{
-								name: "大学英语",
-								weight: 15,
-								nowTagColor: ""
-							},
-							{
-								name: "计算机引论",
-								weight: 18,
-								nowTagColor: ""
-							},
-							{
-								name: "模拟电路",
-								weight: 20,
-								nowTagColor: ""
-							},
-							{
-								name: "数字电路",
-								weight: 18,
-								nowTagColor: ""
-							},
-						]
-					},
-					{
-						index: 2,
-						title: "今年",
-						process: 42,
-						start: "00",
-						end: "24",
-						now: "16:30",
-						backgroundColor: "rgb(235,235,190)",
-						animationDataProcess: "",
-						animationDataPerson: "",
-						tagColor: "rgb(215,215,170)",
-						itemDetail: false,
-						tagAnimation: "",
-						showAnimation: "",
-						detailNote: "暂无备忘内容",
-						tagItems:[
-							{
-								name: "大学物理学",
-								weight: 10,
-								nowTagColor: ""
-							},
-							{
-								name: "大学英语",
-								weight: 15,
-								nowTagColor: ""
-							},
-							{
-								name: "计算机引论",
-								weight: 18,
-								nowTagColor: ""
-							},
-							{
-								name: "模拟电路",
-								weight: 20,
-								nowTagColor: ""
-							},
-							{
-								name: "数字电路",
-								weight: 18,
-								nowTagColor: ""
-							},
-						]
-					},
-					{
-						index: 3,
-						title: "本周",
-						process: 5,
-						start: "00",
-						end: "24",
-						now: "16:30",
-						backgroundColor: "rgb(254,225,160)",
-						animationDataProcess: "",
-						animationDataPerson: "",
-						tagColor: "rgb(234,205,140)",
-						itemDetail: false,
-						tagAnimation: "",
-						showAnimation: "",
-						detailNote: "暂无备忘内容",
-						tagItems:[
-							{
-								name: "大学物理学",
-								weight: 10,
-								nowTagColor: ""
-							},
-							{
-								name: "大学英语",
-								weight: 15,
-								nowTagColor: ""
-							},
-							{
-								name: "计算机引论",
-								weight: 18,
-								nowTagColor: ""
-							},
-							{
-								name: "模拟电路",
-								weight: 20,
-								nowTagColor: ""
-							},
-							{
-								name: "数字电路",
-								weight: 18,
-								nowTagColor: ""
-							},
-						]
-					},
-					{
-						index: 4,
-						title: "英语",
-						process: 18,
-						start: "00",
-						end: "24",
-						now: "16:30",
-						backgroundColor: "rgb(247,211,126)",
-						animationDataProcess: "",
-						animationDataPerson: "",
-						tagColor: "rgb(227,191,106)",
-						itemDetail: false,
-						tagAnimation: "",
-						showAnimation: "",
-						detailNote: "暂无备忘内容",
-						tagItems:[
-							{
-								name: "大学物理学",
-								weight: 10,
-								nowTagColor: ""
-							},
-							{
-								name: "大学英语",
-								weight: 15,
-								tagColor: "rgb(246,215,32)",
-								nowTagColor: ""
-							},
-							{
-								name: "计算机引论",
-								weight: 18,
-								nowTagColor: ""
-							},
-							{
-								name: "模拟电路",
-								weight: 20,
-								nowTagColor: ""
-							},
-							{
-								name: "数字电路",
-								weight: 18,
-								nowTagColor: ""
-							},
-						]
-					},
-					{
-						index: 5,
-						title: "追剧",
-						process: 91,
-						start: "00",
-						end: "24",
-						now: "16:30",
-						backgroundColor: "rgb(243,243,173)",
-						animationDataProcess: "",
-						animationDataPerson: "",
-						tagColor: "rgb(223,223,153)",
-						itemDetail: false,
-						tagAnimation: "",
-						showAnimation: "",
-						detailNote: "暂无备忘内容",
-						tagItems:[
-							{
-								name: "大学物理学",
-								weight: 10,
-								nowTagColor: ""
-							},
-							{
-								name: "大学英语",
-								weight: 15,
-								nowTagColor: ""
-							},
-							{
-								name: "计算机引论",
-								weight: 18,
-								nowTagColor: ""
-							},
-							{
-								name: "模拟电路",
-								weight: 20,
-								nowTagColor: ""
-							},
-							{
-								name: "数字电路",
-								weight: 18,
-								nowTagColor: ""
-							},
-						]
-					},
-					{
-						index: 6,
-						title: "大物",
-						process: 99,
-						start: "00",
-						end: "24",
-						now: "16:30",
-						backgroundColor: "rgb(186,233,220)",
-						animationDataProcess: "",
-						animationDataPerson: "",
-						tagColor: "rgb(166,213,200)",
-						itemDetail: false,
-						tagAnimation: "",
-						showAnimation: "",
-						detailNote: "暂无备忘内容",
-						tagItems:[
-							{
-								name: "大学物理学",
-								weight: 10,
-								nowTagColor: ""
-							},
-							{
-								name: "大学英语",
-								weight: 15,
-								nowTagColor: ""
-							},
-							{
-								name: "计算机引论",
-								weight: 18,
-								nowTagColor: ""
-							},
-							{
-								name: "模拟电路",
-								weight: 20,
-								nowTagColor: ""
-							},
-							{
-								name: "数字电路",
-								weight: 18,
-								nowTagColor: ""
-							},
-						]
-					},
-					{
-						index: 7,
-						title: "弹琴",
-						process: 86,
-						start: "00",
-						end: "24",
-						now: "16:30",
-						backgroundColor: "rgb(174,187,234)",
-						animationDataProcess: "",
-						animationDataPerson: "",
-						tagColor: "rgb(154,167,214)",
-						itemDetail: false,
-						tagAnimation: "",
-						showAnimation: "",
-						detailNote: "暂无备忘内容",
-						tagItems:[
-							{
-								name: "大学物理学",
-								weight: 10,
-								nowTagColor: ""
-							},
-							{
-								name: "大学英语",
-								weight: 15,
-								nowTagColor: ""
-							},
-							{
-								name: "计算机引论",
-								weight: 18,
-								nowTagColor: ""
-							},
-							{
-								name: "模拟电路",
-								weight: 20,
-								nowTagColor: ""
-							},
-							{
-								name: "数字电路",
-								weight: 18,
-								nowTagColor: ""
-							},
-						]
-					}
+// 					{
+// 						index: 0,
+// 						title: "今天",
+// 						process: 60,
+// 						start: "00",
+// 						end: "24",
+// 						now: "16:30",
+// 						backgroundColor: "rgb(171,216,200)",
+// 						animationDataProcess: "",
+// 						animationDataPerson: "",
+// 						tagColor: "rgb(151,196,180)",
+// // 						itemDetail: false,
+// // 						tagAnimation: "",
+// // 						showAnimation: "",
+// 						detailNote: "暂无备忘内容",
+// // 						tagItems:[
+// // 							{
+// // 								name: "大学物理学",
+// // 								weight: 10,
+// // 								nowTagColor: "",
+// // 								fontColor: ""
+// // 							},
+// // 							
+// // 						]
+// 					},
+					
 				]
 			};
 		},
 		onLoad() {
 			this.scrollHeight = uni.getSystemInfoSync().windowHeight + 10 + "px";
 			this.pixelRatio = uni.getSystemInfoSync().pixelRatio;
+			let data = this.get();
+			//console.log(JSON.stringify(data))
+			let temp = {
+				backgroundColor: "rgb(171,216,200)",
+				animationDataProcess: "",
+				animationDataPerson: "",
+				tagColor: "rgb(151,196,180)",
+// 				itemDetail: false,
+// 				tagAnimation: "",
+// 				showAnimation: "",
+// 				detailNote: "暂无备忘内容",
+// 				tagItems:[
+// 					{
+// 						name: "大学物理学",
+// 						weight: 10,
+// 						nowTagColor: "",
+// 						fontColor: ""
+// 					},
+// 					
+// 				]
+			}
+			let _index = 0;
+			for (var item in data) {
+				this.itemProperty[_index] = {};
+				this.itemProperty[_index].title = data[item].title;
+				this.itemProperty[_index].process = data[item].status.status;
+				this.itemProperty[_index].start = data[item].time.start;
+				this.itemProperty[_index].end = data[item].time.end;
+				this.itemProperty[_index].now = data[item].time.now;
+				this.itemProperty[_index].backgroundColor = "rgb(171,216,200)";
+				this.itemProperty[_index].animationDataProcess = "";
+				this.itemProperty[_index].animationDataPerson = "";
+				this.itemProperty[_index].tagColor = "rgb(151,196,180)";
+				_index += 1;
+			}
+			
 		},
 		onReady() {
 			var animation = uni.createAnimation({
@@ -492,6 +193,12 @@
 			}
 		},
 		methods:{
+			get: function(){
+				let data = getAllSchedule()
+				//console.log("kkk",JSON.stringify(data))
+				return data;
+				
+			},
 			addNewSchedule: function(){
 				uni.navigateTo({
 					url: '/pages/newschedule/newschedule'

@@ -1,58 +1,4 @@
 
-.inputFrame {
-  width: 100%;
-  background-color: rgb(253,205,223);
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-  flex-direction: column;
-}
-.inputForm {
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  text-align: center;
-  font-size: 36rpx;
-  color: #000000;
-  font-weight: 1000;
-  width: 680rpx;
-  padding: 20rpx;
-  padding-right: 60rpx;
-  margin: 20rpx 15rpx;
-  background-color: rgb(243,165,183);
-}
-.placeHolder {
-  font-size: 36rpx;
-  font-weight: 1000;
-  text-align: center;
-}
-.time-picker {
-  width: 750rpx;
-}
-.time-picker-view {
-  font-size: 36rpx;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  color: #000000;
-  font-weight: 1000;
-  width: 312rpx;
-  padding: 20rpx;
-  margin: 0rpx 15rpx 15rpx 15rpx;
-  background-color: rgb(243,165,183);
-}
-.userDefined {
-  position: fixed;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-  flex-direction: column;
-  top: var(--status-bar-height);
-  width: 100%;
-}
 .nav-bar-userset {
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
@@ -80,4 +26,149 @@
   margin-right: 50rpx;
   width: 30rpx;
   height: 40rpx;
+}
+.inputFrame {
+  width: 100%;
+  background-color: rgb(253,205,223);
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+.inputForm {
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 36rpx;
+  color: #000000;
+  font-weight: 1000;
+  width: 680rpx;
+  padding: 20rpx;
+  padding-right: 60rpx;
+  margin: 20rpx 15rpx;
+  background-color: rgb(243,165,183);
+}
+.sectionView {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  background-color: rgb(255,234,226);
+}
+.addASection {
+  text-align: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  width: 700rpx;
+  padding-top: 40rpx;
+  padding-bottom: 20rpx;
+  margin: 20rpx;
+  background-color: rgb(255,246,232);
+}
+.sectionCell {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+}
+.inputSectionName {
+  text-align: left;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  color: #000000;
+  width: 580rpx;
+  padding: 20rpx;
+  margin: 0rpx 15rpx;
+}
+.setStatus {
+  text-align: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  width: 60rpx;
+  height: 80rpx;
+  margin-left: 15rpx;
+  padding-top: 15rpx;
+  padding-left: 10rpx;
+  background-color: #FFFFFF;
+  font-size: 20rpx;
+}
+.addNotes {
+  width: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+.addButton {
+  text-align: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  width: 720rpx;
+  padding-top: 40rpx;
+  padding-bottom: 20rpx;
+}
+.Note {
+  text-align: left;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  color: #000000;
+  width: 680rpx;
+  height: 200rpx;
+  padding: 20rpx;
+  margin-top: 0rpx;
+  margin-left: 15rpx;
+  border: 1rpx solid gray;
+}
+.placeHolder {
+  font-size: 36rpx;
+  font-weight: 1000;
+  text-align: center;
+}
+.time-picker {
+  width: 750rpx;
+}
+.time-picker-view {
+  font-size: 36rpx;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  color: #000000;
+  font-weight: 1000;
+  width: 312rpx;
+  padding: 20rpx;
+  margin: 0rpx 15rpx 15rpx 15rpx;
+  background-color: rgb(243,165,183);
+}
+.confirm {
+  position: fixed;
+  bottom: 0rpx;
+}
+.confirmButton {
+  position: fixed;
+  bottom: 0rpx;
+  -webkit-align-content: center;
+  align-content: center;
+  width: 100%;
+  height: 80rpx;
+  color: #DD524D;
+  background-color: rgb(255,230,206);
+  border: hidden;
+}
+.userDefined {
+  position: fixed;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  top: var(--status-bar-height);
+  width: 100%;
 }

@@ -42,15 +42,14 @@
 		</view>
 		<view class="editProgress">
 			<view class="editProgressButton" 
-				v-if="schedule.time.end>schedule.time.start" 
-				v-on:click="addProgress">
+				v-on:click="editProgress">
 				打卡
 			</view>
-			<view class="editProgressButton" 
+			<!-- <view class="editProgressButton" 
 				v-if="schedule.time.end<schedule.time.start" 
 				v-on:click="minusProgress">
 				打卡
-			</view>
+			</view> -->
 		</view>
 		<view class="addNotes">
 			<view class="addButton" 
@@ -87,13 +86,13 @@
 		data() {
 			return {
 				title:"",
-				showNote:false,
+				showNote:true,
 				schedule:{
 					type:2,
 					time:{
-						start:0,
-						now:4,
-						end:8,
+						start:10,
+						now:9,
+						end:5,
 					},
 					unit:"",
 					note:"",
@@ -101,14 +100,19 @@
 			};
 		},
 		methods:{
-			addProgress: function(){
-				this.schedule.time=this.schedule.time+1
+			editProgress: function(){
+				let data = this.schedule.time
+				if (data.end>data.start&&data.now<data.end) {
+					data.now=data.now+1
+				} else if (data.end<data.start&&data.now>data.end){
+					data.now=data.now-1
+				}
 				//schedule.time.now<schedule.time.end?schedule.time.now=schedule.time.now+1:schedule.time.now=schedule.time.now
 				//let code = changeSchedule(,this.schedule)
-				console.log(JSON.stringify(code))
+				//console.log(JSON.stringify(code))
 			},
 			minusProgress: function(){
-				schedule.time.now>schedule.time.end?schedule.time.now=schedule.time.now-1:schedule.time.now=schedule.time.now
+				this.schedule.time.now=this.schedule.time.now-1
 			},
 			backToIndex: function(){
 // 				uni.showModal({
@@ -125,7 +129,7 @@
 				uni.navigateBack()
 			},
 			done:function(){
-				uni.clearStorage();
+				//uni.clearStorage();
 				let code = addSchedule(this.schedule);
 				console.log(JSON.stringify(code));
 				let data = getAllSchedule();
