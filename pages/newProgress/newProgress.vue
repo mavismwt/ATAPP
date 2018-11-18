@@ -11,24 +11,23 @@
 				placeholder-class="placeHolder" 
 				maxlength="6"
 				confirm-type="backToIndex"
-				v-model="title"
 			/>
 		</view>
 		<view class="inputProgress">
 			<input class="start" 
-				v-model="schedule.time.start" 
+				v-model="pro.start" 
 				type="number"
 				placeholder="开始"
 				placeholder-class="placeHolder"
 			/>
 			<input class="now" 
-				v-model="schedule.time.now" 
+				v-model="pro.now" 
 				type="number"
 				placeholder="现在"
 				placeholder-class="placeHolder"
 			/>
 			<input class="end"
-				v-model="schedule.time.end" 
+				v-model="pro.end" 
 				type="number"
 				placeholder="结束"
 				placeholder-class="placeHolder"
@@ -41,22 +40,13 @@
 			/>
 		</view>
 		<view class="editProgress">
-			<view class="editProgressButton" 
-				v-if="schedule.time.end>schedule.time.start" 
-				v-on:click="addProgress">
-				打卡
-			</view>
-			<view class="editProgressButton" 
-				v-if="schedule.time.end<schedule.time.start" 
-				v-on:click="minusProgress">
-				打卡
-			</view>
+			<button class="editProgressButton" v-if="pro.end>pro.start" v-on:click="pro.now<pro.end?pro.now=pro.now+1:pro.now=pro.now">打卡</button>
+			<button class="editProgressButton" v-if="pro.end<pro.start" v-on:click="pro.now<pro.start?pro.now=pro.now-1:pro.now=pro.now">打卡</button>
 		</view>
 		<view class="addNotes">
 			<view class="addButton" 
 				v-if="!showNote" 
 				v-on:click="showNote=!showNote"
-				v-model="schedule.note"
 			>
 				显示备注
 			</view>
@@ -74,65 +64,30 @@
 				</textarea>
 			</view>
 		</view>
-		<view></view>
 		<view class="confirm">
-			<button class="confirmButton" v-on:click="done">完成</button>
+			<button class="confirmButton" v-on:click="done" >完成</button>
 		</view>
+		
 	</view>
 </template>
 
 <script>
-	import {addSchedule,changeSchedule,deleteSchedule,getAllSchedule,getOneSchedule} from "../../js/schedule.js"
 	export default {
 		data() {
 			return {
-				title:"",
+				height:0,
 				showNote:false,
-				schedule:{
-					type:2,
-					time:{
-						start:0,
-						now:4,
-						end:8,
-					},
-					unit:"",
-					note:"",
+				title:"备注",
+				pro:{
+					start:0,
+					now:0,
+					end:0,
 				}
 			};
 		},
-		methods:{
-			addProgress: function(){
-				this.schedule.time=this.schedule.time+1
-				//schedule.time.now<schedule.time.end?schedule.time.now=schedule.time.now+1:schedule.time.now=schedule.time.now
-				//let code = changeSchedule(,this.schedule)
-				console.log(JSON.stringify(code))
-			},
-			minusProgress: function(){
-				schedule.time.now>schedule.time.end?schedule.time.now=schedule.time.now-1:schedule.time.now=schedule.time.now
-			},
+		method:{
 			backToIndex: function(){
-// 				uni.showModal({
-// 					title: '提示',
-// 					content: '您还未保存，确定要退出吗',
-// 					success: function (res) {
-// 						if (res.confirm) {
-// 							uni.navigateBack()
-// 						} else if (res.cancel) {
-// 							console.log('点击取消');
-// 						}
-// 					}
-// 				})
 				uni.navigateBack()
-			},
-			done:function(){
-				uni.clearStorage();
-				let code = addSchedule(this.schedule);
-				console.log(JSON.stringify(code));
-				let data = getAllSchedule();
-				console.log(JSON.stringify(data))
-				uni.navigateTo({
-					url:'/pages/index/index'
-				})
 			}
 		}
 }
@@ -145,7 +100,7 @@
 		display: flex;
 		background-color: rgb(255,230,206);
 		width: 750upx;
-		height: 150upx;
+		height: 120upx;
 	}
 	.nav-bar-userset-sublogo{
 		margin-top: 55upx;
@@ -242,11 +197,11 @@
 		flex-direction: column;
 	}
 	.editProgressButton{
-		text-align: center;
-		justify-content: center;
+		align-content: center;
 		width: 720upx;
-		padding-top: 40upx;
-		padding-bottom: 20upx;
+		height: 80upx;
+		margin-top: 40upx;
+		margin-left: 15upx;
 	}
 	.Note{
 		text-align: left;

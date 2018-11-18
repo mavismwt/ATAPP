@@ -8,7 +8,7 @@
   display: flex;
   background-color: rgb(255,230,206);
   width: 750rpx;
-  height: 150rpx;
+  height: 120rpx;
 }
 .nav-bar-userset-sublogo {
   margin-top: 55rpx;
@@ -135,13 +135,12 @@
   flex-direction: column;
 }
 .editProgressButton {
-  text-align: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
+  -webkit-align-content: center;
+  align-content: center;
   width: 720rpx;
-  padding-top: 40rpx;
-  padding-bottom: 20rpx;
+  height: 80rpx;
+  margin-top: 40rpx;
+  margin-left: 15rpx;
 }
 .Note {
   text-align: left;

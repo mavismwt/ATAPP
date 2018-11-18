@@ -1,7 +1,7 @@
 <template>
 	<view class="newschedule">
 		<view class="nav-bar-userset">
-		  <image src="/static/back-arrow.png" class="nav-bar-userset-back" @tap="backToIndex"></image>
+			<image src="/static/back-arrow.png" class="nav-bar-userset-back" @tap="backToIndex"></image>
 			<image src="/static/sub-logo.png" class="nav-bar-userset-sublogo"></image>
 			<view class="nav-bar-userset-add"></view>
 		</view>
@@ -11,7 +11,7 @@
 				:data-id="item.id" 
 				:key="item" 
 				:style="{ backgroundColor: item.backgroundColor }"
-				@tap="intoAddPage(item.id)">
+				@tap="intoAddPage">
 				<view class="typename">{{item.title}}</view>
 				<view class="typedescribe" v-bind:style="{ color: item.fontColor }">{{item.describe}}</view>
 			</view>
@@ -33,16 +33,16 @@
 						fontColor: "rgb(131,176,160)"
 					},
 					{
-						id: "progress",
-						title: "进度记录",
-						describe: "追剧、任务进度不遗忘！",
+						id: "shortTimePlan",
+						title: "近期计划",
+						describe: "日日计、周周计生活有条不紊",
 						backgroundColor: "rgb(254,225,168)",
 						fontColor: "rgb(214,185,128)"
 					},
 					{
-						id: "check",
-						title: "打卡计划",
-						describe: "来养成好习惯吧！",
+						id: "examPlan",
+						title: "考试计划",
+						describe: "备战考试就要规划的整整齐齐",
 						backgroundColor: "rgb(244,185,146)",
 						fontColor: "rgb(204,145,106)"
 					},
@@ -52,6 +52,13 @@
 						describe: "我的时间我做主",
 						backgroundColor: "rgb(246,196,115)",
 						fontColor: "rgb(206,156,75)"
+					},
+					{
+						id: "memo",
+						title: "备忘录",
+						describe: "重要的事情怕忘记？记下来！",
+						backgroundColor: "rgb(246,146,125)",
+						fontColor: "rgb(206,106,85)"
 					},
 				]
 			};
@@ -63,32 +70,10 @@
 			backToIndex: function(){
 				uni.navigateBack()
 			},
-			intoAddPage: function(id){
-				switch (id){
-					case 'countDown' :
-						uni.navigateTo({
-							url: '/pages/newdetail/countDown'
-						})
-						break;
-					case 'progress' :
-						uni.navigateTo({
-							url: '/pages/newProgress/newProgressPlus'
-						})
-						break;
-					case 'check' :
-						uni.navigateTo({
-							url: '/pages/newProgress/newProgress'
-						})
-						break;
-					case 'userDefined' :
-						uni.navigateTo({
-							url: '/pages/newdetail/userDefined'
-						})
-						break;
-					default:
-						break;
-				}
-				
+			intoAddPage: function(){
+				uni.navigateTo({
+					url: '/pages/newschedule/newschedule'
+				})
 			}
 		}
 	}

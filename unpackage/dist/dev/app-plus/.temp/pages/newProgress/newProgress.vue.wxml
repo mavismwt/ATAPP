@@ -1,35 +1,34 @@
-<template name="6ad50cfe">
-  <view class="_view data-v-18bfb90f newProgress">
-    <view class="_view data-v-18bfb90f nav-bar-userset">
-      <image src="/static/back-arrow.png" class="_image data-v-18bfb90f nav-bar-userset-back" bindtap="handleProxy" data-eventid="{{'jPc-0'}}" data-comkey="{{$k}}"></image>
-      <image src="/static/sub-logo.png" class="_image data-v-18bfb90f nav-bar-userset-sublogo"></image>
-      <view class="_view data-v-18bfb90f nav-bar-userset-add"></view>
+<template name="0be6cff7">
+  <view class="_view data-v-1a52c274 newProgress">
+    <view class="_view data-v-1a52c274 nav-bar-userset">
+      <image src="/static/back-arrow.png" class="_image data-v-1a52c274 nav-bar-userset-back" bindtap="handleProxy" data-eventid="{{'quk-0'}}" data-comkey="{{$k}}"></image>
+      <image src="/static/sub-logo.png" class="_image data-v-1a52c274 nav-bar-userset-sublogo"></image>
+      <view class="_view data-v-1a52c274 nav-bar-userset-add"></view>
     </view>
-    <view class="_view data-v-18bfb90f inputTitle">
-      <input class="_input data-v-18bfb90f inputForm" placeholder="输入TP名称" placeholder-class="placeHolder" maxlength="6" confirm-type="backToIndex" value="{{title}}" bindinput="handleProxy" data-eventid="{{'KHm-1'}}" data-comkey="{{$k}}" />
+    <view class="_view data-v-1a52c274 inputTitle">
+      <input class="_input data-v-1a52c274 inputForm" placeholder="输入TP名称" placeholder-class="placeHolder" maxlength="6" confirm-type="backToIndex" />
     </view>
-    <view class="_view data-v-18bfb90f inputProgress">
-      <input class="_input data-v-18bfb90f start" value="{{schedule.time.start}}" bindinput="handleProxy" type="number" placeholder="开始" placeholder-class="placeHolder" data-eventid="{{'Bi4-2'}}" data-comkey="{{$k}}" />
-      <input class="_input data-v-18bfb90f now" value="{{schedule.time.now}}" bindinput="handleProxy" type="number" placeholder="现在" placeholder-class="placeHolder" data-eventid="{{'UUl-3'}}" data-comkey="{{$k}}" />
-      <input class="_input data-v-18bfb90f end" value="{{schedule.time.end}}" bindinput="handleProxy" type="number" placeholder="结束" placeholder-class="placeHolder" data-eventid="{{'ptx-4'}}" data-comkey="{{$k}}" />
+    <view class="_view data-v-1a52c274 inputProgress">
+      <input class="_input data-v-1a52c274 start" value="{{pro.start}}" bindinput="handleProxy" type="number" placeholder="开始" placeholder-class="placeHolder" data-eventid="{{'5UT-1'}}" data-comkey="{{$k}}" />
+      <input class="_input data-v-1a52c274 now" value="{{pro.now}}" bindinput="handleProxy" type="number" placeholder="现在" placeholder-class="placeHolder" data-eventid="{{'PBe-2'}}" data-comkey="{{$k}}" />
+      <input class="_input data-v-1a52c274 end" value="{{pro.end}}" bindinput="handleProxy" type="number" placeholder="结束" placeholder-class="placeHolder" data-eventid="{{'sgs-3'}}" data-comkey="{{$k}}" />
     </view>
-    <view class="_view data-v-18bfb90f inputUnit">
-      <input class="_input data-v-18bfb90f unit" placeholder="单位" placeholder-class="placeHolder" />
+    <view class="_view data-v-1a52c274 inputUnit">
+      <input class="_input data-v-1a52c274 unit" placeholder="单位" placeholder-class="placeHolder" />
     </view>
-    <view class="_view data-v-18bfb90f editProgress">
-      <view class="_view data-v-18bfb90f editProgressButton" wx:if="{{schedule.time.end>schedule.time.start}}" bindtap="handleProxy" data-eventid="{{'2d5-5'}}" data-comkey="{{$k}}"> 打卡 </view>
-      <view class="_view data-v-18bfb90f editProgressButton" wx:if="{{schedule.time.end<schedule.time.start}}" bindtap="handleProxy" data-eventid="{{'0oH-6'}}" data-comkey="{{$k}}"> 打卡 </view>
+    <view class="_view data-v-1a52c274 editProgress">
+      <button class="_button data-v-1a52c274 editProgressButton" wx:if="{{pro.end>pro.start}}" bindtap="handleProxy" data-eventid="{{'4OA-4'}}" data-comkey="{{$k}}">打卡</button>
+      <button class="_button data-v-1a52c274 editProgressButton" wx:if="{{pro.end<pro.start}}" bindtap="handleProxy" data-eventid="{{'GDA-5'}}" data-comkey="{{$k}}">打卡</button>
     </view>
-    <view class="_view data-v-18bfb90f addNotes">
-      <view class="_view data-v-18bfb90f addButton" wx:if="{{!showNote}}" bindtap="handleProxy" value="{{schedule.note}}" bindchange="handleProxy" data-eventid="{{'7xq-7'}}" data-comkey="{{$k}}"> 显示备注 </view>
-      <view class="_view data-v-18bfb90f addButton" wx:if="{{showNote}}" bindtap="handleProxy" data-eventid="{{'QhQ-8'}}" data-comkey="{{$k}}"> 收起备注 </view>
-      <view class="_view data-v-18bfb90f">
-        <textarea class="_textarea data-v-18bfb90f Note" wx:if="{{showNote}}" placeholder="此处输入备注" />
+    <view class="_view data-v-1a52c274 addNotes">
+      <view class="_view data-v-1a52c274 addButton" wx:if="{{!showNote}}" bindtap="handleProxy" data-eventid="{{'Fwf-6'}}" data-comkey="{{$k}}"> 显示备注 </view>
+      <view class="_view data-v-1a52c274 addButton" wx:if="{{showNote}}" bindtap="handleProxy" data-eventid="{{'Qrt-7'}}" data-comkey="{{$k}}"> 收起备注 </view>
+      <view class="_view data-v-1a52c274">
+        <textarea class="_textarea data-v-1a52c274 Note" wx:if="{{showNote}}" placeholder="此处输入备注" />
       </view>
     </view>
-    <view class="_view data-v-18bfb90f"></view>
-    <view class="_view data-v-18bfb90f confirm">
-      <button class="_button data-v-18bfb90f confirmButton" bindtap="handleProxy" data-eventid="{{'vLZ-9'}}" data-comkey="{{$k}}">完成</button>
+    <view class="_view data-v-1a52c274 confirm">
+      <button class="_button data-v-1a52c274 confirmButton" bindtap="handleProxy" data-eventid="{{'v9z-8'}}" data-comkey="{{$k}}">完成</button>
     </view>
   </view>
 </template>

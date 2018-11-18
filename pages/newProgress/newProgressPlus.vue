@@ -15,7 +15,7 @@
 		</view>
 		<view class="sectionView">
 			<view class="addASection" @tap="add">添加阶段+</view>
-			<view class="sectionCell" v-for="item in schedule.sectionData"
+			<view class="sectionCell" v-for="item in sectionData"
 				:key="item.index">
 				<input class="inputSectionName"
 					placeholder="输入阶段名称"
@@ -25,7 +25,7 @@
 					@keyup.enter = "add"
 				/>
 				<button class="setStatus"
-				    @tap="item.isFinished=!item.isFinished"
+					@tap="item.isFinished=!item.isFinished"
 					v-model="item.isFinished"
 				>{{item.isFinished}}</button>
 			</view>
@@ -47,7 +47,7 @@
 			<view>
 				<textarea class="Note" 
 					v-if="showNote"
-					v-model="schedule.note"
+					v-model="note"
 					placeholder="此处输入备注"
 				>
 				</textarea>
@@ -60,57 +60,37 @@
 </template>
 
 <script>
-	import {addSchedule,changeSchedule,deleteSchedule,getAllSchedule,getOneSchedule} from "../../js/schedule.js"
-	export default {
-		data() {
-			return {
-				showNote:false,
-				schedule : {
-					title:"",
-					type:3,
-					time:{
-						start:0,
-						now:0,
-						end:0,
-					},
+		export default {
+			data() {
+				return {
+					note:"",
+					showNote:false,
 					sectionData:[
 						{
+							index:1,
 							name:"",
 							isFinished:false,
-						},
+						}
 					],
-					note:"",
+					
+				};
+			},
+			method:{
+				add: function(){
+					this.sectionData.push({index:item.index+1,name:"",isFinished:false})
+				},
+				done: function(){
+					uni.navigateBack()
 				}
-				
-			};
-		},
-		methods:{
-			add: function(){
-				this.schedule.time.end = this.schedule.time.end+1
-				this.schedule.sectionData.push({index:this.schedule.time.end,name:"",isFinished:false})
-				//console.log(JSON.stringify(this.sectionData))
-			},
-			changeStatus:function(){
-				
-			},
-			backToIndex: function(){
-				uni.navigateBack()
-			},
-			done: function(){
-				uni.clearStorage();
-				let code = addSchedule(this.schedule);
-				console.log(JSON.stringify(code));
-				let data = getAllSchedule();
-				console.log(JSON.stringify(data));
-				uni.navigateTo({
-					url:'/pages/index/index'
-				})
 			}
-		}
 	}
+	
 </script>
 
 <style>
+	.newProgressPlus{
+		flex-direction: column;
+	}
 	.nav-bar-userset{
 		justify-content: space-between;
 		display: flex;
@@ -134,9 +114,6 @@
 		margin-right: 50upx;
 		width: 30upx;
 		height: 40upx;
-	}
-	.newProgressPlus{
-		flex-direction: column;
 	}
 	.inputTitle{
 		width: 100%;
@@ -216,9 +193,6 @@
 		align-content: center;
 		width: 100%;
 		height: 80upx;
-		color: #DD524D;
-		background-color: rgb(255,230,206);
-		border: hidden;
 	}
 	.placeHolder{
 		font-size: 36upx;

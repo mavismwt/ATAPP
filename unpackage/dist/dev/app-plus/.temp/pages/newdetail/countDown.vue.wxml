@@ -1,29 +1,29 @@
-<template name="11e47d66">
-  <view class="_view data-v-243c4c12 countDown">
-    <view class="_view data-v-243c4c12 nav-bar-userset">
-      <image src="/static/back-arrow.png" class="_image data-v-243c4c12 nav-bar-userset-back" bindtap="handleProxy" data-eventid="{{'Nm5-0'}}" data-comkey="{{$k}}"></image>
-      <image src="/static/sub-logo.png" class="_image data-v-243c4c12 nav-bar-userset-sublogo"></image>
-      <view class="_view data-v-243c4c12 nav-bar-userset-add"></view>
+<template name="10b8a4df">
+  <view class="_view data-v-1e7399a4 countDown">
+    <view class="_view data-v-1e7399a4 nav-bar-userset">
+      <image src="/static/back-arrow.png" class="_image data-v-1e7399a4 nav-bar-userset-back" bindtap="handleProxy" data-eventid="{{'0LV-0'}}" data-comkey="{{$k}}"></image>
+      <image src="/static/sub-logo.png" class="_image data-v-1e7399a4 nav-bar-userset-sublogo"></image>
+      <view class="_view data-v-1e7399a4 nav-bar-userset-add"></view>
     </view>
-    <view class="_view data-v-243c4c12 titleView">预约倒计时</view>
-    <view class="_view data-v-243c4c12 inputFrame">
-      <view class="_view data-v-243c4c12">
-        <input class="_input data-v-243c4c12 inputForm" placeholder="输入TP名称" placeholder-class="placeHolder" maxlength="6" confirm-type="done" />
+    <view class="_view data-v-1e7399a4 titleView">预约倒计时</view>
+    <view class="_view data-v-1e7399a4 inputFrame">
+      <view class="_view data-v-1e7399a4">
+        <input class="_input data-v-1e7399a4 inputForm" placeholder="输入TP名称" placeholder-class="placeHolder" maxlength="6" confirm-type="done" />
       </view>
-      <view class="_view data-v-243c4c12 time-picker">
-        <picker mode="date" value="{{date}}" start="{{startDate}}" end="{{endDate}}" bindchange="handleProxy" data-eventid="{{'Pyf-1'}}" data-comkey="{{$k}}" class="_picker data-v-243c4c12">
-          <view class="_view data-v-243c4c12 time-picker-view">{{Edate}}</view>
+      <view class="_view data-v-1e7399a4 time-picker">
+        <picker mode="date" value="{{date}}" start="{{startDate}}" end="{{endDate}}" bindchange="handleProxy" data-eventid="{{'WfT-1'}}" data-comkey="{{$k}}" class="_picker data-v-1e7399a4">
+          <view class="_view data-v-1e7399a4 time-picker-view">{{Edate}}</view>
         </picker>
       </view>
-      <view class="_view data-v-243c4c12 page-section">
-        <movable-area class="_movable-area data-v-243c4c12">
-          <movable-view wx:key="bubbleIndex" key="{{bubbleIndex}}" x="{{bubbleItem.x}}" y="{{bubbleItem.y}}" direction="all" scale="true" out-of-bounds inertia wx:for="{{bubbleProperty}}" wx:for-index="bubbleIndex" wx:for-item="bubbleItem" class="_movable-view data-v-243c4c12"
+      <view class="_view data-v-1e7399a4 page-section">
+        <movable-area class="_movable-area data-v-1e7399a4">
+          <movable-view wx:key="bubbleIndex" key="{{bubbleIndex}}" x="{{bubbleItem.x}}" y="{{bubbleItem.y}}" direction="all" scale="true" out-of-bounds inertia wx:for="{{bubbleProperty}}" wx:for-index="bubbleIndex" wx:for-item="bubbleItem" class="_movable-view data-v-1e7399a4"
             style=" {{bubbleItem.style}}">
-            <view class="_view data-v-243c4c12 movableView" style=" {{bubbleItem.style}}"> text </view>
+            <view class="_view data-v-1e7399a4 movableView" style=" {{bubbleItem.style}}"> text </view>
           </movable-view>
         </movable-area>
       </view>
     </view>
-    <view class="_view data-v-243c4c12 submitBottom">提交</view>
+    <view class="_view data-v-1e7399a4 submitBottom">提交</view>
   </view>
 </template>
