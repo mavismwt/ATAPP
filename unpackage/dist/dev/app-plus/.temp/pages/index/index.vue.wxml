@@ -1,61 +1,45 @@
 <import src="/components/memo.vue.wxml" />
-<template name="685d2cfe">
-  <view class="_view data-v-bd449260 index">
-    <view class="_view data-v-bd449260 nav-bar-userset">
-      <view class="_view data-v-bd449260 nav-bar-userset-add"></view>
-      <image src="/static/logo.png" class="_image data-v-bd449260 nav-bar-userset-logo"></image>
-      <image src="/static/add.png" class="_image data-v-bd449260 nav-bar-userset-add" bindtap="handleProxy" data-eventid="{{'dpD-0'}}" data-comkey="{{$k}}"></image>
+<template name="dab48df0">
+  <view class="_view data-v-00ad3699 index">
+    <view class="_view data-v-00ad3699 nav-bar-userset">
+      <view class="_view data-v-00ad3699 nav-bar-userset-add"></view>
+      <image src="/static/logo.png" class="_image data-v-00ad3699 nav-bar-userset-logo"></image>
+      <image src="/static/add.png" class="_image data-v-00ad3699 nav-bar-userset-add" bindtap="handleProxy" data-eventid="{{'GVd-0'}}" data-comkey="{{$k}}"></image>
     </view>
-    <swiper indicator-dots="{{swiper.indicatorDots}}" duration="{{swiper.duration}}" class="_swiper data-v-bd449260" style=" {{('height:' + scrollHeight + ';')}}">
-      <swiper-item class="_swiper-item data-v-bd449260">
-        <scroll-view class="_scroll-view data-v-bd449260 main-view" scroll-y="true" style=" {{('height:' + scrollHeight + ';')}}">
-          <view class="_view data-v-bd449260 date-view" wx:key="index" key="{{index}}" wx:for="{{itemProperty}}" wx:for-index="index" wx:for-item="item">
-            <view class="_view data-v-bd449260 time-process-block" style=" {{('background-color:' + item.backgroundColor + ';')}}">
-              <view class="_view data-v-bd449260 top-line" bindtap="handleProxy" data-id="{{index}}" data-eventid="{{'Ht3-1-'+index}}" data-comkey="{{$k}}">
-                <view class="_view data-v-bd449260 red-point"></view>
-                <view class="_view data-v-bd449260 time-name">{{item.title}}</view>
-                <view class="_view data-v-bd449260 precess-percent">{{ item.process }}%</view>
+    <swiper indicator-dots="{{swiper.indicatorDots}}" duration="{{swiper.duration}}" class="_swiper data-v-00ad3699" style=" {{('height:' + scrollHeight + ';')}}">
+      <swiper-item class="_swiper-item data-v-00ad3699">
+        <scroll-view class="_scroll-view data-v-00ad3699 main-view" scroll-y="true" style=" {{('height:' + scrollHeight + ';')}}">
+          <view class="_view data-v-00ad3699 date-view" wx:key="index" key="{{index}}" wx:for="{{itemProperty}}" wx:for-index="index" wx:for-item="item">
+            <view class="_view data-v-00ad3699 time-process-block" style=" {{('background-color:' + item.backgroundColor + ';')}}">
+              <view class="_view data-v-00ad3699 top-line" bindtap="handleProxy" data-id="{{index}}" data-eventid="{{'L0m-1-'+index}}" data-comkey="{{$k}}">
+                <view class="_view data-v-00ad3699 red-point"></view>
+                <view class="_view data-v-00ad3699 time-name">{{item.title}}</view>
+                <view class="_view data-v-00ad3699 precess-percent">{{ item.process }}%</view>
               </view>
-              <view class="_view data-v-bd449260 all-process" bindtap="handleProxy" data-id="{{index}}" data-eventid="{{'lz9-2-'+index}}" data-comkey="{{$k}}">
-                <view class="_view data-v-bd449260 little-person" animation="{{item.animationDataPerson}}">
-                  <view class="_view data-v-bd449260 chat-frame">
-                    <view class="_view data-v-bd449260 .chat-frame-content">{{item.now}}</view>
-                    <image src="/static/chat-frame.png" class="_image data-v-bd449260 chat-frame-image"></image>
+              <view class="_view data-v-00ad3699 all-process" bindtap="handleProxy" data-id="{{index}}" data-eventid="{{'KKV-2-'+index}}" data-comkey="{{$k}}">
+                <view class="_view data-v-00ad3699 little-person" animation="{{item.animationDataPerson}}">
+                  <view class="_view data-v-00ad3699 chat-frame">
+                    <view class="_view data-v-00ad3699 .chat-frame-content">{{item.now}}</view>
+                    <image src="/static/chat-frame.png" class="_image data-v-00ad3699 chat-frame-image"></image>
                   </view>
-                  <image src="/static/little-person.png" class="_image data-v-bd449260 little-person-image"></image>
+                  <image src="/static/little-person.png" class="_image data-v-00ad3699 little-person-image"></image>
                 </view>
-                <view class="_view data-v-bd449260 process-bar">
-                  <view class="_view data-v-bd449260 start-text">{{item.start}}</view>
-                  <view class="_view data-v-bd449260 blank-bar"></view>
-                  <view class="_view data-v-bd449260 end-text">{{item.end}}</view>
-                  <view class="_view data-v-bd449260 finish-bar" animation="{{item.animationDataProcess}}"></view>
+                <view class="_view data-v-00ad3699 process-bar">
+                  <view class="_view data-v-00ad3699 start-text">{{item.start}}</view>
+                  <view class="_view data-v-00ad3699 blank-bar"></view>
+                  <view class="_view data-v-00ad3699 end-text">{{item.end}}</view>
+                  <view class="_view data-v-00ad3699 finish-bar" animation="{{item.animationDataProcess}}"></view>
                 </view>
               </view>
             </view>
-            <view ref="scheduleDetail" scroll-y="true" class="_view data-v-bd449260 {{[  item.itemDetail ? 'schedule-detail-show' : '',  !item.itemDetail ? 'schedule-detail-hidden' : '']}}" style=" {{(  'background-color:' +  item.backgroundColor +  ';' +  'animation:' +  item.showAnimation +  ';')}}">
-              <view class="_view data-v-bd449260 detail-contain">
-                <scroll-view scroll-y="true" class="_scroll-view data-v-bd449260 all-tag-view">
-                  <view class="_view data-v-bd449260 tag-view-up">
-                    <view class="_view data-v-bd449260 detail-title-item">
-                      <view class="_view data-v-bd449260 detail-title-item-text">小任务</view>
-                    </view>
-                    <view class="_view data-v-bd449260 tag-view" bindtap="handleProxy" data-id="{{index}}" data-tagid="{{tagIndex}}" wx:key="tagIndex" key="{{tagIndex}}" data-eventid="{{'rJC-3-'+index+'-'+tagIndex}}" data-comkey="{{$k}}" wx:for="{{item.tagItems}}"
-                      wx:for-index="tagIndex" wx:for-item="tag" style=" {{('background-color:' + tag.nowTagColor + ';' + 'color:' + tag.fontColor + ';')}}"> {{ tag.name }} </view>
-                  </view>
-                </scroll-view>
-                <scroll-view scroll-y="true" class="_scroll-view data-v-bd449260 detail-note">
-                  <view class="_view data-v-bd449260 detail-title-item">
-                    <view class="_view data-v-bd449260 detail-title-item-text">备忘录</view>
-                  </view>
-                  <view class="_view data-v-bd449260 detail-note-text" style=" {{('background-color:' + item.tagColor + ';')}}"> {{item.detailNote}} </view>
-                </scroll-view>
-              </view>
+            <view ref="scheduleDetail" scroll-y="true" class="_view data-v-00ad3699 {{[  item.itemDetail ? 'schedule-detail-show' : '',  !item.itemDetail ? 'schedule-detail-hidden' : '']}}" style=" {{(  'background-color:' +  item.backgroundColor +  ';' +  'animation:' +  item.showAnimation +  ';')}}">
+              <view class="_view data-v-00ad3699 detail-contain"></view>
             </view>
           </view>
         </scroll-view>
       </swiper-item>
-      <swiper-item class="_swiper-item data-v-bd449260">
-        <template data="{{...$root['0'], ...$root[$kk+'vTQ-1'],$root}}" is="68579c6c"></template>
+      <swiper-item class="_swiper-item data-v-00ad3699">
+        <template data="{{...$root['0'], ...$root[$kk+'lqH-1'],$root}}" is="48b4b711"></template>
       </swiper-item>
     </swiper>
   </view>

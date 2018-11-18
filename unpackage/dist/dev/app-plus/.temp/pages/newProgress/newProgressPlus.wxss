@@ -1,10 +1,4 @@
 
-.newProgressPlus {
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-  flex-direction: column;
-}
 .nav-bar-userset {
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
@@ -32,6 +26,12 @@
   margin-right: 50rpx;
   width: 30rpx;
   height: 40rpx;
+}
+.newProgressPlus {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  flex-direction: column;
 }
 .inputTitle {
   width: 100%;
@@ -136,6 +136,9 @@
   align-content: center;
   width: 100%;
   height: 80rpx;
+  color: #DD524D;
+  background-color: rgb(255,230,206);
+  border: hidden;
 }
 .placeHolder {
   font-size: 36rpx;
