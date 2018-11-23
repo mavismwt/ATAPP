@@ -171,7 +171,7 @@
 			})
 			for (var i = 0; i < this.itemProperty.length ;  i++) {
 				this.itemProperty[i].animationDataProcess = animation.translateX(this.itemProperty[i].process*1.5)
-														.scaleX(this.itemProperty[i].process*3)
+														.scaleX(this.itemProperty[i].process*4.5)
 														.step()
 														.export()
 			}
@@ -451,16 +451,16 @@
 	}
 	.process-bar .blank-bar{
 		display: inline-block;
-		margin: 0upx 20upx 0upx 20upx;
+		margin: 0upx 20upx 0upx 25upx;
 		height: 18upx;
-		width: 570upx;
+		width: 535upx;
 		background-color: rgb(255,255,255);
 	}
 	.process-bar .finish-bar{
 		flex-wrap: nowrap;
 		align-items: flex-start;
 		position: relative;
-		right: 642upx;
+		right: 615upx;
 		margin: 0upx 0upx 0upx 0upx;
 		height: 18upx;
 		width: 1upx;

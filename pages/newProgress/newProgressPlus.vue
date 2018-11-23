@@ -14,9 +14,11 @@
 			/>
 		</view>
 		<view class="sectionView">
-			<view class="addASection" @tap="add">添加阶段+</view>
-			<view class="sectionCell" v-for="item in schedule.sectionData"
-				:key="item.index">
+			<!-- <view class="addASection" @tap="add">添加阶段+</view> -->
+			<view class="sectionCell" 
+			v-for="item in schedule.sectionData"
+			:key="item.index"
+			@longpress="deleteSection" :data-id="item.index" >
 				<input class="inputSectionName"
 					placeholder="输入阶段名称"
 					placeholder-style="placeHolder"
@@ -24,10 +26,11 @@
 					v-model="item.name"
 					@keyup.enter = "add"
 				/>
-				<button class="setStatus"
+				<view class="addSection" @tap="add">+</view>
+				<!-- <button class="setStatus"
 				    @tap="item.isFinished=!item.isFinished"
 					v-model="item.isFinished"
-				>{{item.isFinished}}</button>
+				>{{item.isFinished}}</button> -->
 			</view>
 			
 		</view>
@@ -64,20 +67,28 @@
 	export default {
 		data() {
 			return {
+				id:0,
 				showNote:true,
 				schedule : {
-					title:"",
+					title:"尝试",
 					type:3,
 					time:{
 						start:0,
 						now:0,
-						end:0,
+						end:1,
 					},
 					sectionData:[
 						{
-							name:"",
+							index:0,
+							name:"阶段一",
+							isFinished:true,
+						},
+						{
+							index:1,
+							name:"阶段二",
 							isFinished:false,
 						},
+						
 					],
 					note:"",
 				}
@@ -90,21 +101,37 @@
 				this.schedule.sectionData.push({index:this.schedule.time.end,name:"",isFinished:false})
 				//console.log(JSON.stringify(this.sectionData))
 			},
-			changeStatus:function(){
-				
+			deleteSection: function(e){
+				let data = this.schedule.sectionData
+				uni.showModal({
+					title: '提示',
+					content: '确定要删除该阶段吗？',
+					success: function (res) {
+						if (res.confirm) {
+							data.splice(e.currentTarget.dataset.id,1)
+							//console.log('点击确定')
+						} else if (res.cancel) {
+							//console.log('点击取消');
+						}
+					},
+				})
+				this.schedule.sectionData = data
 			},
 			backToIndex: function(){
 				uni.navigateBack()
 			},
 			done: function(){
-				//uni.clearStorage();
+				uni.clearStorage();
 				let code = addSchedule(this.schedule);
 				console.log(JSON.stringify(code));
 				let data = getAllSchedule();
 				console.log(JSON.stringify(data));
-				uni.navigateTo({
-					url:'/pages/index/index'
-				})
+// 				for (var item in data) {
+// 					this.id = JSON.stringify(item)
+// 					console.log(JSON.stringify(item))
+// 					let data2 = getOneSchedule(JSON.stringify(item))
+// 					console.log(JSON.stringify(data2))
+// 				}
 			}
 		}
 	}
@@ -137,6 +164,8 @@
 	}
 	.newProgressPlus{
 		flex-direction: column;
+		width: 100%;
+		height: 100%;
 	}
 	.inputTitle{
 		width: 100%;
@@ -155,17 +184,28 @@
 	.sectionView{
 		flex-direction: column;
 	}
-	.addASection{
+/* 	.addASection{
 		text-align: center;
 		justify-content: center;
 		width: 720upx;
 		padding-top: 40upx;
 		padding-bottom: 20upx;
-	}
+	} */
 	.sectionCell{
 		flex-direction: row;
 	}
 	.setStatus{
+		text-align: center;
+		justify-content: center;
+		width: 60upx;
+		height: 80upx;
+		margin-left: 15upx;
+		padding-top: 15upx;
+		padding-left: 10upx;
+		background-color: #FFFFFF;
+		font-size: 20upx;
+	}
+	.addSection{
 		text-align: center;
 		justify-content: center;
 		width: 60upx;
