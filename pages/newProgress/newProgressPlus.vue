@@ -126,12 +126,6 @@
 				console.log(JSON.stringify(code));
 				let data = getAllSchedule();
 				console.log(JSON.stringify(data));
-// 				for (var item in data) {
-// 					this.id = JSON.stringify(item)
-// 					console.log(JSON.stringify(item))
-// 					let data2 = getOneSchedule(JSON.stringify(item))
-// 					console.log(JSON.stringify(data2))
-// 				}
 			}
 		}
 	}

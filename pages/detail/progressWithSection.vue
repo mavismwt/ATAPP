@@ -27,37 +27,35 @@
 			</view>
 		</view>
 		<view class="sectionView">
+			<view class="addASection" @tap="addSection">添加阶段</view>
 			<view class="sectionCell" 
 				v-for="item in schedule.sectionData"
 				:key="item.index"
 				@longpress="deleteSection" :data-id="item.index" >
 				<input class="inputSectionName"
-					placeholder="添加新的阶段"
+					placeholder="输入阶段名称"
 					placeholder-style="placeHolder"
 					confirm-type="Next"
 					v-model="item.name"
 					@keyup.enter = "addSection"
 				/>
-				<view class="setStatus"
-				    @tap="item.isFinished=!item.isFinished"
-					v-model="item.isFinished"
-				>{{item.isFinished}}</view>
+				<view class="setStatus">
+					<image class="showStatus1"
+						v-if="item.isFinished"
+						src="../../static/wancheng-copy.png"
+						@tap="item.isFinished=!item.isFinished"
+						v-model="item.isFinished"
+					></image>
+					<image class="showStatus0"
+						v-if="!item.isFinished"
+						src="../../static/yuanhuan.png"
+						@tap="item.isFinished=!item.isFinished"
+						v-model="item.isFinished"
+					></image>
+				</view>
 			</view>
-			<view class="addASection" @tap="addSection">添加阶段+</view>
 		</view>
 		<view class="addNotes">
-			<!-- <view class="addButton" 
-				v-if="!showNote" 
-				v-on:click="showNote=!showNote"
-			>
-				显示备注
-			</view>
-			<view class="addButton" 
-				v-if="showNote"
-				v-on:click="showNote=!showNote"
-			>
-				收起备注
-			</view> -->
 			<view>
 				<textarea class="Note" 
 					v-if="showNote"
@@ -69,7 +67,7 @@
 		</view>
 		</scroll-view>
 		<view class="confirm">
-			<button class="confirmButton" v-on:click="done">删除任务</button>
+			<button class="confirmButton" v-on:click="done">删除</button>
 		</view>
 	</view>
 </template>
@@ -82,7 +80,6 @@
 				id:0,
 				process:0,
 				animationDataProcess:"",
-				animationDataProcessLength:"",
 				animationDataPerson:"",
 				showNote:true,
 				schedule : {
@@ -111,11 +108,6 @@
 				this.id = item	
 				this.schedule = getOneSchedule(item)
 				this.process = this.schedule.status.status
-// 				for (var index in one.sectionData){
-// 					this.schedule.sectionData[index].name = one.sectionData[index].name
-// 					this.schedule.sectionData[index].isFinished = one.sectionData[index].isFinished
-// 					this.schedule.sectionData.push({name:"",isFinished:false,})
-// 				}
 			}
 			
 		},
@@ -166,14 +158,23 @@
 				uni.navigateBack()
 			},
 			done: function(){
-				//uni.clearStorage();
-				let data = getOneSchedule(this.id);
-				console.log(JSON.stringify(data));
-				let code = deleteSchedule(this.id);
-				console.log(JSON.stringify(code));
-				uni.navigateTo({
-					url:'/pages/index/index'
+				uni.showModal({
+					title: '提示',
+					content: '确定删除此任务吗？',
+					success: function (res) {
+						if (res.confirm) {
+							let code = deleteSchedule(this.id);
+							console.log(JSON.stringify(code));
+							uni.navigateTo({
+								url:'/pages/index/index'
+							})
+							//console.log('点击确定')
+						} else if (res.cancel) {
+							//console.log('点击取消');
+						}
+					},
 				})
+				//uni.clearStorage();
 			}
 		}
 	}
@@ -181,9 +182,9 @@
 
 <style>
 	.nav-bar-userset{
+		position: sticky;
 		justify-content: space-between;
 		display: flex;
-		/* background-color: rgb(255,230,206); */
 		background-color: rgb(255,255,255);
 		width: 750upx;
 		height: 150upx;
@@ -227,40 +228,32 @@
 		flex-direction: column;
 		align-items: center;
 		height: 36upx;
-		margin: 35upx 0upx 0upx 30upx;
+		margin: 30upx 0upx 0upx 30upx;
 	}
 	.top-line .red-point{
 		display: inline-block;
 		align-content: left;
 		text-align: left;
-		width: 600upx;
-		margin: 0upx 0upx 20upx 0upx;
+		font-size: 36upx;
+		width: 680upx;
+		margin-left: 0upx;
 		height: 80upx;
-		/* width: 10upx;
-		height: 10upx;
-		border-radius: 5upx; */
 	}
-	/* .top-line .time-name{
-		display: inline-block;
-		margin-left: 15upx;
-		color: rgb(255,255,255);
-		font-size:30upx;
-		font-weight: 1000;
-	} */
 	.top-line .precess-percent{
 		text-align: center;
 		width: 680upx;
 		color: rgb(10,10,10);
 		display: inline-block;
-		font-size:66upx;
-		margin: 40upx 0upx 40upx 0upx;
+		font-size: 80upx;
+		margin: 0upx 0upx 40upx 0upx;
 		font-weight: 1000;
+		color: #707070;
 	}
 	.all-process{
 		z-index: 10;
 		display: flex;
 		flex-direction: column;
-		margin: 150upx 0upx 0upx 0upx ;
+		margin: 155upx 0upx 0upx 0upx ;
 		border: 0;
 		padding: 0;
 		position: relative;
@@ -286,7 +279,6 @@
 		display: flex;
 		align-items: center;
 		flex-direction: column;
-		color: #707070;
 	}
 	.little-person .chat-frame-image{
 		display: inline-block;
@@ -307,24 +299,6 @@
 		align-items: center;
 		margin: 0upx 0upx 0upx 30upx;
 	}
-	/* .process-bar .start-text{
-		display: inline-block;
-		text-align: center;
-		margin: 0upx 0upx 0upx 0upx;
-		width: 50upx;
-		font-size:24upx;
-		font-weight: 1000;
-		color: rgb(255,255,255);
-	}
-	.process-bar .end-text{
-		display: inline-block;
-		text-align: center;
-		margin: 0upx 0upx 0upx 0upx;
-		width: 50upx;
-		font-size:24upx;
-		font-weight: 1000;
-		color: rgb(255,255,255);
-	} */
 	.process-bar .blank-bar{
 		display: inline-block;
 		margin: 36upx 20upx 0upx 20upx;
@@ -348,11 +322,8 @@
 		margin-top: 40upx;
 	}
 	.addASection{
-		text-align: center;
-		justify-content: center;
-		width: 720upx;
-		padding-top: 40upx;
-		padding-bottom: 20upx;
+		margin-left: 580upx;
+		margin-bottom: 40upx;
 	}
 	.sectionCell{
 		flex-direction: row;
@@ -360,21 +331,28 @@
 	.setStatus{
 		text-align: center;
 		justify-content: center;
-		width: 60upx;
+		width: 50upx;
 		height: 80upx;
-		margin-left: 15upx;
-		padding-top: 15upx;
-		padding-left: 10upx;
+		padding: 5upx;
+		margin-right: 0upx;
 		background-color: #FFFFFF;
 		font-size: 20upx;
+	}
+	.showStatus1{
+		width: 45upx;
+		height: 45upx;
+	}
+	.showStatus0{
+		width: 50upx;
+		height: 50upx;
 	}
 	.inputSectionName{
 		text-align: left;
 		justify-content: center;
 		color: #000000;
 		width: 580upx;
-		padding: 20upx;
-		margin: 0upx 15upx;
+		padding: 5upx;
+		margin-left: 40upx;
 	}
 	.addNotes{
 		width: 100%;
@@ -391,11 +369,10 @@
 		text-align: left;
 		justify-content: center;
 		color: #000000;
-		width: 680upx;
+		width: 640upx;
 		height: 200upx;
 		padding: 20upx;
-		margin-top: 0upx;
-		margin-left: 15upx;
+		margin: 40upx 40upx 40upx 40upx;
 		border: 1upx solid gray;
 	}
 	.confirm{
@@ -408,8 +385,10 @@
 		align-content: center;
 		width: 100%;
 		height: 80upx;
-		color: #DD524D;
-		background-color: rgb(255,230,206);
+		color: #FFFFFF;
+		background-color: #DD524D;
+		font-size: 36upx;
+		font-weight: 300;
 		border: hidden;
 	}
 	.placeHolder{

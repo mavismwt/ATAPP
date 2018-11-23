@@ -85,6 +85,10 @@
         {
             "path" : "pages/detail/progressWithSection",
             "style" : {}
+        },
+        {
+            "path" : "pages/detail/progress",
+            "style" : {}
         }
     ],
     "globalStyle" : {

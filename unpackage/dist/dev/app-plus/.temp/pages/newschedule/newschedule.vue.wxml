@@ -1,0 +1,15 @@
+<template name="3682dc92">
+  <view class="_view data-v-3724eeba newschedule">
+    <view class="_view data-v-3724eeba nav-bar-userset">
+      <image src="/static/back-arrow.png" class="_image data-v-3724eeba nav-bar-userset-back" bindtap="handleProxy" data-eventid="{{'2pA-0'}}" data-comkey="{{$k}}"></image>
+      <image src="/static/sub-logo.png" class="_image data-v-3724eeba nav-bar-userset-sublogo"></image>
+      <view class="_view data-v-3724eeba nav-bar-userset-add"></view>
+    </view>
+    <scroll-view class="_scroll-view data-v-3724eeba main-view" scroll-y="true" style=" {{('height:' + scrollHeight + ';')}}">
+      <view class="_view data-v-3724eeba date-view" data-id="{{item.id}}" wx:key="item" key="{{item}}" bindtap="handleProxy" data-eventid="{{'XWN-1-'+index}}" data-comkey="{{$k}}" wx:for="{{itemProperty}}" wx:for-index="index" wx:for-item="item" style=" {{('background-color:' + item.backgroundColor + ';')}}">
+        <view class="_view data-v-3724eeba typename">{{item.title}}</view>
+        <view class="_view data-v-3724eeba typedescribe" style=" {{('color:' + item.fontColor + ';')}}">{{item.describe}}</view>
+      </view>
+    </scroll-view>
+  </view>
+</template>

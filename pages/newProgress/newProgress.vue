@@ -40,19 +40,8 @@
 				placeholder-class="placeHolder"
 			/>
 		</view>
-		<view class="editProgress">
-			<view class="editProgressButton" 
-				v-on:click="editProgress">
-				打卡
-			</view>
-			<!-- <view class="editProgressButton" 
-				v-if="schedule.time.end<schedule.time.start" 
-				v-on:click="minusProgress">
-				打卡
-			</view> -->
-		</view>
 		<view class="addNotes">
-			<view class="addButton" 
+			<!-- <view class="addButton" 
 				v-if="!showNote" 
 				v-on:click="showNote=!showNote"
 				v-model="schedule.note"
@@ -64,7 +53,7 @@
 				v-on:click="showNote=!showNote"
 			>
 				收起备注
-			</view>
+			</view> -->
 			<view>
 				<textarea class="Note" 
 					v-if="showNote" 
@@ -85,17 +74,17 @@
 	export default {
 		data() {
 			return {
-				title:"",
 				showNote:true,
 				schedule:{
+					title:"打卡",
 					type:2,
 					time:{
-						start:10,
-						now:9,
-						end:5,
+						start:55,
+						now:53,
+						end:50,
 					},
-					unit:"",
-					note:"",
+					unit:"kg",
+					note:"减肥",
 				}
 			};
 		},
@@ -129,7 +118,7 @@
 				uni.navigateBack()
 			},
 			done:function(){
-				//uni.clearStorage();
+				uni.clearStorage();
 				let code = addSchedule(this.schedule);
 				console.log(JSON.stringify(code));
 				let data = getAllSchedule();
@@ -145,9 +134,10 @@
 
 <style>
 	.nav-bar-userset{
+		position: sticky;
 		justify-content: space-between;
 		display: flex;
-		background-color: rgb(255,230,206);
+		background-color: rgb(255,255,255);
 		width: 750upx;
 		height: 150upx;
 	}
@@ -259,7 +249,7 @@
 		width: 680upx;
 		height: 200upx;
 		padding: 20upx;
-		margin-top: 0upx;
+		margin-top: 20upx;
 		margin-left: 15upx;
 		border: 1upx solid gray;
 	}
@@ -273,9 +263,12 @@
 		align-content: center;
 		width: 100%;
 		height: 80upx;
-		color: #DD524D;
-		background-color: rgb(255,230,206);
+		color: #FFFFFF;
+		background-color: #DD524D;
+		font-size: 36upx;
+		font-weight: 300;
 		border: hidden;
+		border-radius: 0upx;
 	}
 	.placeHolder{
 		font-size: 36upx;

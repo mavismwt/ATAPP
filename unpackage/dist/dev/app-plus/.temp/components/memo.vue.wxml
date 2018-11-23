@@ -1,0 +1,14 @@
+<template name="48b4b711">
+  <scroll-view class="_scroll-view data-v-56f064e2 memo" scroll-y="true" style=" {{('height:' + scrollHeight + ';')}}">
+    <view class="_view data-v-56f064e2 memo-column">
+      <view class="_view data-v-56f064e2 memo-item" wx:key="index" key="{{index}}" data-id="{{index}}" wx:for="{{memoPropertyFirst}}" wx:for-index="index" wx:for-item="item" style=" {{(  'background-color:' +  item.backgroundColor +  ';' +  'box-shadow:' +  item.boxShadow +  ';')}}">
+        <view class="_view data-v-56f064e2 memo-textarea">{{item.message}}</view>
+      </view>
+    </view>
+    <view class="_view data-v-56f064e2 memo-column">
+      <view class="_view data-v-56f064e2 memo-item" wx:key="index" key="{{index}}" data-id="{{index}}" wx:for="{{memoPropertySecond}}" wx:for-index="index" wx:for-item="item" style=" {{(  'background-color:' +  item.backgroundColor +  ';' +  'box-shadow:' +  item.boxShadow +  ';')}}">
+        <view class="_view data-v-56f064e2 memo-textarea">{{item.message}}</view>
+      </view>
+    </view>
+  </scroll-view>
+</template>
