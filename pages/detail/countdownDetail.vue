@@ -50,7 +50,7 @@
 			<view class="bottomView"></view>
 		</view>
 		<view class="confirm">
-			<button class="confirmButton" v-on:click="done">保存并退出</button>
+			<button class="confirmButton" v-on:click="backToIndex">保存并退出</button>
 		</view>
 	</view>
 </template>
