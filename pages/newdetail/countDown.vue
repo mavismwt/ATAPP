@@ -5,58 +5,80 @@
 			<image src="/static/sub-logo.png" class="nav-bar-userset-sublogo"></image>
 			<view class="nav-bar-userset-add"></view>
 		</view>
-		<view class="titleView">预约倒计时</view>
 		<view class="inputFrame">
-			<view>
-				<input class="inputForm" 
-					placeholder="输入TP名称" 
-					placeholder-class="placeHolder" 
-					maxlength="6"
-					confirm-type="done"/>
-			</view>
-			<view class="time-picker">
-				<picker mode="date" :value="date" :start="startDate" :end="endDate" @change="bindEdateChange">
-					<view class="time-picker-view">{{Edate}}</view>
-				</picker>
-			</view>
-			<view class="page-section">
-				<movable-area>
-					<movable-view 
-						v-for="(bubbleItem, bubbleIndex) in bubbleProperty" 
-						:key="bubbleIndex"
-						:x="bubbleItem.x" :y="bubbleItem.y"
-						v-bind:style="bubbleItem.style"
-						direction="all"
-						scale="true"
-						out-of-bounds
-						inertia
-						>
-						<view class="movableView" :style="bubbleItem.style">
-							text
-						</view>
-					 </movable-view>
-				</movable-area>
-			</view>
-			<!--
-			<view>
-				<view class="bubbleView" 
-				:for="(bubbleItem, bubbleIndex) in bubbleProperty" 
-				:style="{width: bubbleItem}"></view>
-			</view>
-			-->
+			<input class="inputForm" 
+				placeholder="输入TP名称" 
+				placeholder-class="placeHolder" 
+				maxlength="6"
+				confirm-type="done"
+				v-model="schedule.title"/>
 		</view>
-		<view class="submitBottom">提交</view>
+		<picker mode="date" :value="date" :start="startDate" :end="endDate" @change="bindEdateChange">
+			<view class="Edate">{{Edate}}</view>
+		</picker>
+		<view class="time-picker">
+			<picker mode="date" :value="date" :start="startDate" :end="endDate" @change="bindEdateChange">
+				<view class="time-picker-view">设定倒计日</view>
+			</picker>
+			<!-- <picker mode="time" :value="date" :start="startDate" :end="endDate" @change="bindEdate2Change">
+				<view class="time-picker-view">{{Edate2}}</view>
+			</picker> -->
+		</view>
+		<view class="addNotes">
+			<view class="addButton"
+				v-on:click="showNote=!showNote"
+			>
+			添加备注
+			</view>
+			<view>
+				<textarea class="Note" 
+					v-if="showNote"
+					v-model="schedule.note"
+					placeholder="此处输入备注"
+				>
+				</textarea>
+			</view>
+		</view>
+		<view class="confirm">
+			<button class="confirmButton" v-on:click="done">完成</button>
+		</view>
 	</view>
 </template>
 
 <script>
+	import {addSchedule,changeSchedule,deleteSchedule,getAllSchedule,getOneSchedule} from "../../js/schedule.js"
 	export default {
 		data() {
 			const currentDate = this.getDate({
 				format: true
 			});
 			return {
-				Edate: "预定时间",
+				schedule:{
+					type:1,
+					title:"",
+					time:{
+						start:{
+							year:"",
+							month:"",
+							day:"",
+							hour:0,
+							minute:0,
+							second:0,
+						},
+						end:{
+							year:"",
+							month:"",
+							day:"",
+							hour:0,
+							minute:0,
+							second:0,
+						},
+						now:{},
+					},
+					note:"",
+				},
+				showNote:false,
+				Edate:currentDate,
 				startDate: currentDate,
 				endDate: "2019-12-12",
 				bubbleProperty:[
@@ -71,6 +93,16 @@
 					}
 				]
 			};
+		},
+		onLoad() {
+			var dataSplit = this.Edate.split("-")
+			this.Edate = dataSplit[0]+"年"+dataSplit[1]+"月"+dataSplit[2]+"日"
+			this.schedule.time.start.year = dataSplit[0]
+			this.schedule.time.start.month = dataSplit[1]
+			this.schedule.time.start.day = dataSplit[2]
+			this.schedule.time.end.year = dataSplit[0]
+			this.schedule.time.end.month = dataSplit[1]
+			this.schedule.time.end.day = dataSplit[2]
 		},
 		methods:{
 			backToIndex: function(){
@@ -87,6 +119,9 @@
 			bindEdateChange: function(e) {
 				var dataSplit = e.target.value.split("-")
 				this.Edate = dataSplit[0]+"年"+dataSplit[1]+"月"+dataSplit[2]+"日"
+				this.schedule.time.end.year = dataSplit[0]
+				this.schedule.time.end.month = dataSplit[1]
+				this.schedule.time.end.day = dataSplit[2]
 			},
 			bindTimeChange: function(e) {
 				this.time = e.target.value
@@ -96,133 +131,36 @@
 
 				let year = date.getFullYear();
 				let month = date.getMonth() + 1;
-				let day = date.getDate() + 1;
+				let day = date.getDate();
 
 				if (type === 'start') {
 					year = year - 60;
 				} else if (type === 'end') {
 					year = year + 2;
 				}
-				month = month > 9 ? month : '0' + month;;
+				month = month > 9 ? month : '0' + month;
 				day = day > 9 ? day : '0' + day;
 
 				return `${year}-${month}-${day}`;
-			},
-			submitData: function(){
-				var data = {
-					
-				}
+			}, 
+			done: function(){
+				//uni.clearStorage();
+				let code = addSchedule(this.schedule);
+				let data = getAllSchedule();
+				console.log(JSON.stringify(data));
+				uni.navigateTo({
+					url:'/pages/index/index'
+				})
 			}
 		}
 	}
 </script>
 
 <style>
-	.movableView{
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		border-radius: 50upx;
-		height: 200upx;
-		width: 200upx;
-		background-color: #007AFF;
-		color: #fff;
-		
-		font-size: 32upx;
-	}
-
-	movable-area {
-		height: 400rpx;
-		width: 400rpx;
-		margin: 50rpx;
-		background-color: #ccc;
-		overflow: hidden;
-	}
-	
-	.submitBottom{
-		position: fixed;
-		bottom: 0upx;
-		justify-content: center;
-		padding: 40upx;
-		width: 670upx;
-		color: rgb(253,255,255);
-		font-weight: 1000;
-		background-color: rgb(233,185,203);
-	}
-	.titleView{
-		justify-content: center;
-		padding: 20upx;
-		padding-top: 40upx;
-		width: 710upx;
-		background-color: rgb(253,205,223);
-		font-size: 48upx;
-		color: rgb(213,165,183);
-		font-weight: 1000;
-	}
-	.inputFrame{
-		width: 100%;
-		background-color: rgb(253,205,223);
-		flex-direction: column;
-	}
-	.inputForm{
-		text-align: center;
-		justify-content: center;
-		font-size: 36upx;
-		color: #000000;
-		font-weight: 1000;
-		width: 680upx;
-		padding: 20upx;
-		margin: 20upx 15upx;
-		background-color: rgb(243,165,183);
-	}
-	.placeHolder{
-		font-size: 36upx;
-		font-weight: 1000;
-		text-align: center;
-	}
-	.time-picker{
-		width: 750upx;
-	}
-	.time-picker-view{
-		text-align: center;
-		justify-content: center;
-		font-size: 36upx;
-		color: #000000;
-		font-weight: 1000;
-		width: 680upx;
-		padding: 20upx;
-		margin: 20upx 15upx;
-		background-color: rgb(243,165,183);
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	.countDown {
-		position: fixed;
-		display: flex;
-		flex-direction: column;
-		top: var(--status-bar-height);
-		width: 100%;
-	}
-	
 	.nav-bar-userset{
 		justify-content: space-between;
 		display: flex;
-		background-color: rgb(255,230,206);
+		background-color: rgb(255,255,255);
 		width: 750upx;
 		height: 150upx;
 	}
@@ -243,5 +181,114 @@
 		width: 30upx;
 		height: 40upx;
 	}
-
+	.inputTitle{
+		width: 100%;
+		flex-direction: column;
+	}
+	.inputForm{
+		text-align: center;
+		justify-content: center;
+		font-size: 36upx;
+		color: #000000;
+		width: 620upx;
+		padding: 20upx;
+		margin: 20upx 15upx;
+		margin-left: 40upx;
+		border-bottom: 4upx solid gray;
+	}
+	.placeHolder{
+		font-size: 36upx;
+		font-weight: 1000;
+		text-align: center;
+	}
+	.Edate{
+		text-align: center;
+		justify-content: center; 
+		font-size: 36upx;
+		color: #000000;
+		font-weight: 1000;
+		width: 620upx;
+		padding: 40upx 20upx;
+		margin: 20upx 15upx;
+		margin-left: 40upx;
+		border: 2upx solid black;
+	}
+	.time-picker{
+		width: 750upx;
+		flex-direction: column;
+	}
+	.time-picker-view{
+		text-align: center;
+		justify-content: center; 
+		font-size: 36upx;
+		color: #FFFFFF;
+		font-weight: 1000;
+		width: 620upx;
+		padding: 20upx;
+		margin: 20upx 15upx;
+		margin-left: 40upx;
+		background-color: #DD524D;
+		border-radius: 5upx;
+	}
+	.countDown {
+		position: fixed;
+		display: flex;
+		flex-direction: column;
+		top: var(--status-bar-height);
+		width: 100%;
+	}
+	.addNotes{
+		width: 100%;
+		flex-direction: column;
+	}
+	.addButton{
+		text-align: center;
+		justify-content: center;
+		width: 720upx;
+		padding-top: 40upx;
+		padding-bottom: 20upx;
+	}
+	.Note{
+		text-align: left;
+		justify-content: center;
+		color: #000000;
+		width: 640upx;
+		height: 200upx;
+		padding: 20upx;
+		margin: 20upx 40upx 40upx 40upx;
+		border: 1upx solid gray;
+	}
+	.confirm{
+		position: fixed;
+		bottom: 0upx;
+	}
+	.confirmButton{
+		position: fixed;
+		bottom: 0upx;
+		align-content: center;
+		width: 100%;
+		height: 80upx;
+		color: #FFFFFF;
+		background-color: #DD524D;
+		font-size: 36upx;
+		font-weight: 300;
+		border: hidden;
+		border-radius: 0upx;
+	}.confirm{
+		position: fixed;
+		bottom: 0upx;
+	}
+	.confirmButton{
+		position: fixed;
+		bottom: 0upx;
+		align-content: center;
+		width: 100%;
+		height: 80upx;
+		color: #FFFFFF;
+		background-color: #DD524D;
+		font-size: 36upx;
+		font-weight: 300;
+		border: hidden;
+		border-radius: 0upx;
+	}	
 </style>

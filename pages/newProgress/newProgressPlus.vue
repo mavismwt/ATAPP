@@ -26,26 +26,17 @@
 					v-model="item.name"
 					@keyup.enter = "add"
 				/>
-				<view class="addSection" @tap="add">+</view>
-				<!-- <button class="setStatus"
-				    @tap="item.isFinished=!item.isFinished"
-					v-model="item.isFinished"
-				>{{item.isFinished}}</button> -->
+				<view class="addSection">
+					<image src="../../static/add1.png" class="addSectionImg" @tap="add"></image>
+				</view>
 			</view>
 			
 		</view>
 		<view class="addNotes">
-			<view class="addButton" 
-				v-if="!showNote" 
+			<view class="addButton"
 				v-on:click="showNote=!showNote"
 			>
-				显示备注
-			</view>
-			<view class="addButton" 
-				v-if="showNote"
-				v-on:click="showNote=!showNote"
-			>
-				收起备注
+			添加备注
 			</view>
 			<view>
 				<textarea class="Note" 
@@ -68,9 +59,9 @@
 		data() {
 			return {
 				id:0,
-				showNote:true,
+				showNote:false,
 				schedule : {
-					title:"尝试",
+					title:"",
 					type:3,
 					time:{
 						start:0,
@@ -121,11 +112,12 @@
 				uni.navigateBack()
 			},
 			done: function(){
-				uni.clearStorage();
+				//uni.clearStorage();
 				let code = addSchedule(this.schedule);
 				console.log(JSON.stringify(code));
-				let data = getAllSchedule();
-				console.log(JSON.stringify(data));
+				uni.navigateTo({
+					url:'/pages/index/index'
+				})
 			}
 		}
 	}
@@ -133,11 +125,13 @@
 
 <style>
 	.nav-bar-userset{
+		position: sticky;
 		justify-content: space-between;
 		display: flex;
-		background-color: rgb(255,230,206);
+		background-color: rgb(255,255,255);
 		width: 750upx;
 		height: 150upx;
+		top: var(--status-bar-height)
 	}
 	.nav-bar-userset-sublogo{
 		margin-top: 55upx;
@@ -170,53 +164,40 @@
 		justify-content: center;
 		font-size: 36upx;
 		color: #000000;
-		width: 680upx;
+		width: 620upx;
 		padding: 20upx;
 		margin: 20upx 15upx;
+		margin-left: 40upx;
 		border-bottom: 4upx solid gray;
 	}
 	.sectionView{
 		flex-direction: column;
+		margin-top: 40upx;
 	}
-/* 	.addASection{
-		text-align: center;
-		justify-content: center;
-		width: 720upx;
-		padding-top: 40upx;
-		padding-bottom: 20upx;
-	} */
 	.sectionCell{
 		flex-direction: row;
-	}
-	.setStatus{
-		text-align: center;
-		justify-content: center;
-		width: 60upx;
-		height: 80upx;
-		margin-left: 15upx;
-		padding-top: 15upx;
-		padding-left: 10upx;
-		background-color: #FFFFFF;
-		font-size: 20upx;
 	}
 	.addSection{
 		text-align: center;
 		justify-content: center;
-		width: 60upx;
+		width: 50upx;
 		height: 80upx;
-		margin-left: 15upx;
-		padding-top: 15upx;
-		padding-left: 10upx;
+		padding: 5upx;
+		margin-right: 0upx;
 		background-color: #FFFFFF;
 		font-size: 20upx;
+	}
+	.addSectionImg{
+		width: 40upx;
+		height: 40upx;
 	}
 	.inputSectionName{
 		text-align: left;
 		justify-content: center;
 		color: #000000;
 		width: 580upx;
-		padding: 20upx;
-		margin: 0upx 15upx;
+		padding: 5upx;
+		margin-left: 40upx;
 	}
 	.addNotes{
 		width: 100%;
@@ -233,11 +214,10 @@
 		text-align: left;
 		justify-content: center;
 		color: #000000;
-		width: 680upx;
+		width: 640upx;
 		height: 200upx;
 		padding: 20upx;
-		margin-top: 0upx;
-		margin-left: 15upx;
+		margin: 20upx 40upx 40upx 40upx;
 		border: 1upx solid gray;
 	}
 	.confirm{
@@ -250,9 +230,12 @@
 		align-content: center;
 		width: 100%;
 		height: 80upx;
-		color: #DD524D;
-		background-color: rgb(255,230,206);
+		color: #FFFFFF;
+		background-color: #DD524D;
+		font-size: 36upx;
+		font-weight: 300;
 		border: hidden;
+		border-radius: 0upx;
 	}
 	.placeHolder{
 		font-size: 36upx;

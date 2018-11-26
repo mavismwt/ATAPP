@@ -1,106 +1,4 @@
 
-.movableView {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  border-radius: 50rpx;
-  height: 200rpx;
-  width: 200rpx;
-  background-color: #007AFF;
-  color: #fff;
-  font-size: 32rpx;
-}
-movable-area {
-  height: 400rpx;
-  width: 400rpx;
-  margin: 50rpx;
-  background-color: #ccc;
-  overflow: hidden;
-}
-.submitBottom {
-  position: fixed;
-  bottom: 0rpx;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  padding: 40rpx;
-  width: 670rpx;
-  color: rgb(253,255,255);
-  font-weight: 1000;
-  background-color: rgb(233,185,203);
-}
-.titleView {
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  padding: 20rpx;
-  padding-top: 40rpx;
-  width: 710rpx;
-  background-color: rgb(253,205,223);
-  font-size: 48rpx;
-  color: rgb(213,165,183);
-  font-weight: 1000;
-}
-.inputFrame {
-  width: 100%;
-  background-color: rgb(253,205,223);
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-  flex-direction: column;
-}
-.inputForm {
-  text-align: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  font-size: 36rpx;
-  color: #000000;
-  font-weight: 1000;
-  width: 680rpx;
-  padding: 20rpx;
-  margin: 20rpx 15rpx;
-  background-color: rgb(243,165,183);
-}
-.placeHolder {
-  font-size: 36rpx;
-  font-weight: 1000;
-  text-align: center;
-}
-.time-picker {
-  width: 750rpx;
-}
-.time-picker-view {
-  text-align: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  font-size: 36rpx;
-  color: #000000;
-  font-weight: 1000;
-  width: 680rpx;
-  padding: 20rpx;
-  margin: 20rpx 15rpx;
-  background-color: rgb(243,165,183);
-}
-.countDown {
-  position: fixed;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-  flex-direction: column;
-  top: var(--status-bar-height);
-  width: 100%;
-}
 .nav-bar-userset {
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
@@ -108,7 +6,7 @@ movable-area {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
-  background-color: rgb(255,230,206);
+  background-color: rgb(255,255,255);
   width: 750rpx;
   height: 150rpx;
 }
@@ -128,4 +26,141 @@ movable-area {
   margin-right: 50rpx;
   width: 30rpx;
   height: 40rpx;
+}
+.inputTitle {
+  width: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+.inputForm {
+  text-align: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  font-size: 36rpx;
+  color: #000000;
+  width: 620rpx;
+  padding: 20rpx;
+  margin: 20rpx 15rpx;
+  margin-left: 40rpx;
+  border-bottom: 4rpx solid gray;
+}
+.placeHolder {
+  font-size: 36rpx;
+  font-weight: 1000;
+  text-align: center;
+}
+.Edate {
+  text-align: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  font-size: 36rpx;
+  color: #000000;
+  font-weight: 1000;
+  width: 620rpx;
+  padding: 40rpx 20rpx;
+  margin: 20rpx 15rpx;
+  margin-left: 40rpx;
+  border: 2rpx solid black;
+}
+.time-picker {
+  width: 750rpx;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+.time-picker-view {
+  text-align: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  font-size: 36rpx;
+  color: #FFFFFF;
+  font-weight: 1000;
+  width: 620rpx;
+  padding: 20rpx;
+  margin: 20rpx 15rpx;
+  margin-left: 40rpx;
+  background-color: #DD524D;
+  border-radius: 5rpx;
+}
+.countDown {
+  position: fixed;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  top: var(--status-bar-height);
+  width: 100%;
+}
+.addNotes {
+  width: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+.addButton {
+  text-align: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  width: 720rpx;
+  padding-top: 40rpx;
+  padding-bottom: 20rpx;
+}
+.Note {
+  text-align: left;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  color: #000000;
+  width: 640rpx;
+  height: 200rpx;
+  padding: 20rpx;
+  margin: 20rpx 40rpx 40rpx 40rpx;
+  border: 1rpx solid gray;
+}
+.confirm {
+  position: fixed;
+  bottom: 0rpx;
+}
+.confirmButton {
+  position: fixed;
+  bottom: 0rpx;
+  -webkit-align-content: center;
+  align-content: center;
+  width: 100%;
+  height: 80rpx;
+  color: #FFFFFF;
+  background-color: #DD524D;
+  font-size: 36rpx;
+  font-weight: 300;
+  border: hidden;
+  border-radius: 0rpx;
+}
+.confirm {
+  position: fixed;
+  bottom: 0rpx;
+}
+.confirmButton {
+  position: fixed;
+  bottom: 0rpx;
+  -webkit-align-content: center;
+  align-content: center;
+  width: 100%;
+  height: 80rpx;
+  color: #FFFFFF;
+  background-color: #DD524D;
+  font-size: 36rpx;
+  font-weight: 300;
+  border: hidden;
+  border-radius: 0rpx;
 }

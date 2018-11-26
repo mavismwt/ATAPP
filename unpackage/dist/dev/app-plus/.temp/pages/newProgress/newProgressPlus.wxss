@@ -1,14 +1,17 @@
 
 .nav-bar-userset {
+  position: -webkit-sticky;
+  position: sticky;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   justify-content: space-between;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
-  background-color: rgb(255,230,206);
+  background-color: rgb(255,255,255);
   width: 750rpx;
   height: 150rpx;
+  top: var(--status-bar-height);
 }
 .nav-bar-userset-sublogo {
   margin-top: 55rpx;
@@ -49,9 +52,10 @@
   justify-content: center;
   font-size: 36rpx;
   color: #000000;
-  width: 680rpx;
+  width: 620rpx;
   padding: 20rpx;
   margin: 20rpx 15rpx;
+  margin-left: 40rpx;
   border-bottom: 4rpx solid gray;
 }
 .sectionView {
@@ -59,6 +63,7 @@
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
   flex-direction: column;
+  margin-top: 40rpx;
 }
 .sectionCell {
   -webkit-box-orient: horizontal;
@@ -66,31 +71,21 @@
   -webkit-flex-direction: row;
   flex-direction: row;
 }
-.setStatus {
-  text-align: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  width: 60rpx;
-  height: 80rpx;
-  margin-left: 15rpx;
-  padding-top: 15rpx;
-  padding-left: 10rpx;
-  background-color: #FFFFFF;
-  font-size: 20rpx;
-}
 .addSection {
   text-align: center;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  width: 60rpx;
+  width: 50rpx;
   height: 80rpx;
-  margin-left: 15rpx;
-  padding-top: 15rpx;
-  padding-left: 10rpx;
+  padding: 5rpx;
+  margin-right: 0rpx;
   background-color: #FFFFFF;
   font-size: 20rpx;
+}
+.addSectionImg {
+  width: 40rpx;
+  height: 40rpx;
 }
 .inputSectionName {
   text-align: left;
@@ -99,8 +94,8 @@
   justify-content: center;
   color: #000000;
   width: 580rpx;
-  padding: 20rpx;
-  margin: 0rpx 15rpx;
+  padding: 5rpx;
+  margin-left: 40rpx;
 }
 .addNotes {
   width: 100%;
@@ -124,11 +119,10 @@
   -webkit-justify-content: center;
   justify-content: center;
   color: #000000;
-  width: 680rpx;
+  width: 640rpx;
   height: 200rpx;
   padding: 20rpx;
-  margin-top: 0rpx;
-  margin-left: 15rpx;
+  margin: 20rpx 40rpx 40rpx 40rpx;
   border: 1rpx solid gray;
 }
 .confirm {
@@ -142,9 +136,12 @@
   align-content: center;
   width: 100%;
   height: 80rpx;
-  color: #DD524D;
-  background-color: rgb(255,230,206);
+  color: #FFFFFF;
+  background-color: #DD524D;
+  font-size: 36rpx;
+  font-weight: 300;
   border: hidden;
+  border-radius: 0rpx;
 }
 .placeHolder {
   font-size: 36rpx;

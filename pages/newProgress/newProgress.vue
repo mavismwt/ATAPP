@@ -12,6 +12,7 @@
 				maxlength="6"
 				confirm-type="backToIndex"
 				v-model="title"
+				:style="{borderBottomColor:color}"
 			/>
 		</view>
 		<view class="inputProgress">
@@ -38,25 +39,19 @@
 			<input class="unit"
 				placeholder="单位"
 				placeholder-class="placeHolder"
+				v-model="schedule.unit"
 			/>
 		</view>
 		<view class="addNotes">
-			<!-- <view class="addButton" 
-				v-if="!showNote" 
+			<view class="addButton"
 				v-on:click="showNote=!showNote"
-				v-model="schedule.note"
 			>
-				显示备注
+				添加备注
 			</view>
-			<view class="addButton" 
-				v-if="showNote"
-				v-on:click="showNote=!showNote"
-			>
-				收起备注
-			</view> -->
 			<view>
 				<textarea class="Note" 
 					v-if="showNote" 
+					v-model="schedule.note"
 					placeholder="此处输入备注"
 				>
 				</textarea>
@@ -74,21 +69,29 @@
 	export default {
 		data() {
 			return {
-				showNote:true,
+				color:"rgb(140,140,140)",
+				showNote:false,
 				schedule:{
-					title:"打卡",
+					title:"",
 					type:2,
 					time:{
 						start:55,
 						now:53,
 						end:50,
 					},
-					unit:"kg",
-					note:"减肥",
+					unit:"",
+					note:"",
 				}
 			};
 		},
 		methods:{
+			changeBorderColor: function(){
+				var animation = 
+				this.color = "#DD524D"
+			},
+			cancelChangeBorderColor: function(){
+				this.color = "rgb(112,112,112)"
+			},
 			editProgress: function(){
 				let data = this.schedule.time
 				if (data.end>data.start&&data.now<data.end) {
@@ -104,25 +107,12 @@
 				this.schedule.time.now=this.schedule.time.now-1
 			},
 			backToIndex: function(){
-// 				uni.showModal({
-// 					title: '提示',
-// 					content: '您还未保存，确定要退出吗',
-// 					success: function (res) {
-// 						if (res.confirm) {
-// 							uni.navigateBack()
-// 						} else if (res.cancel) {
-// 							console.log('点击取消');
-// 						}
-// 					}
-// 				})
 				uni.navigateBack()
 			},
 			done:function(){
-				uni.clearStorage();
+				//uni.clearStorage();
 				let code = addSchedule(this.schedule);
 				console.log(JSON.stringify(code));
-				let data = getAllSchedule();
-				console.log(JSON.stringify(data))
 				uni.navigateTo({
 					url:'/pages/index/index'
 				})
@@ -140,6 +130,7 @@
 		background-color: rgb(255,255,255);
 		width: 750upx;
 		height: 150upx;
+		top: var(--status-bar-height)
 	}
 	.nav-bar-userset-sublogo{
 		margin-top: 55upx;
@@ -158,52 +149,61 @@
 		width: 30upx;
 		height: 40upx;
 	}
+	.newProgressPlus{
+		flex-direction: column;
+		width: 100%;
+		height: 100%;
+	}
 	.newProgress{
 		flex-direction: column;
+		width: 100%;
 	}
 	.inputTitle{
-		width: 100%;
 		flex-direction: column;
 	}
 	.inputForm{
 		text-align: center;
-		justify-content: center;
 		font-size: 36upx;
 		color: #000000;
-		width: 680upx;
+		width: 620upx;
 		padding: 20upx;
 		margin: 20upx 15upx;
-		border-bottom: 4upx solid gray;
+		margin-left: 40upx;
+		border-bottom: 4upx solid black;
 	}
 	.inputProgress{
 		width: 100%;
 		flex-direction: row;
+		margin-top: 20upx;
+		margin-left: 40upx;
 	}
 	.start{
 		text-align: center;
-		justify-content: center;
 		color: #000000;
-		width: 140upx;
+		width: 132upx;
 		padding: 40upx;
-		margin: 20upx 15upx;
+		margin-top: 20upx;
+		margin-bottom: 15upx;
 		border: 1upx solid black;
 	}
 	.now{
 		text-align: center;
-		justify-content: center;
 		color: #000000;
-		width: 140upx;
+		width: 132upx;
 		padding: 40upx;
-		margin: 20upx 15upx;
+		margin-top: 20upx;
+		margin-left: 15upx;
+		margin-bottom: 15upx;
 		border: 1upx solid black;
 	}
 	.end{
 		text-align: center;
-		justify-content: center;
 		color: #000000;
-		width: 140upx;
+		width: 132upx;
 		padding: 40upx;
-		margin: 20upx 15upx;
+		margin-top: 20upx;
+		margin-left: 15upx;
+		margin-bottom: 15upx;
 		border: 1upx solid black;
 	}
 	.inputUnit{
@@ -212,12 +212,11 @@
 	}
 	.unit{
 		text-align: center;
-		justify-content: center;
 		color: #000000;
-		width: 640upx;
+		width: 585upx;
 		padding: 40upx;
 		mmargin-top: 40upx;
-		margin-left: 15upx;
+		margin-left: 40upx;
 		border: 1upx solid black;
 	}
 	.addNotes{
@@ -227,7 +226,7 @@
 	.addButton{
 		text-align: center;
 		justify-content: center;
-		width: 720upx;
+		width: 100%;
 		padding-top: 40upx;
 		padding-bottom: 20upx;
 	}
@@ -237,21 +236,20 @@
 	}
 	.editProgressButton{
 		text-align: center;
-		justify-content: center;
-		width: 720upx;
+		align-content: center;
+		width: 100%;
 		padding-top: 40upx;
 		padding-bottom: 20upx;
 	}
 	.Note{
 		text-align: left;
-		justify-content: center;
+		align-items: center;
 		color: #000000;
-		width: 680upx;
+		width: 640upx;
 		height: 200upx;
 		padding: 20upx;
-		margin-top: 20upx;
-		margin-left: 15upx;
-		border: 1upx solid gray;
+		margin: 20upx 40upx 40upx 40upx;
+		border: 1upx solid black;
 	}
 	.confirm{
 		position: fixed;

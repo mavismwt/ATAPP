@@ -89,6 +89,10 @@
         {
             "path" : "pages/detail/progress",
             "style" : {}
+        },
+        {
+            "path" : "pages/detail/countdownDetail",
+            "style" : {}
         }
     ],
     "globalStyle" : {

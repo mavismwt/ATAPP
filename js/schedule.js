@@ -48,9 +48,11 @@ function getStatus(aData) {
 		
 			let status = parseInt(present*100/all);
 			let statusCheck = status > 100 ?  100 : status;
-			if(!status) status = 100;
 			
-			return {"status": status, "toEnd": toEnd};
+			if (status === 0) status = 0;
+			else if (!status) status = 100;
+		
+			return {"status": status, "toEnd": toEnd, "now": nowData};
 	}
 	else if (aData["type"] == 2) {
 		// 自定义类型
@@ -72,11 +74,11 @@ function getStatus(aData) {
 			}
 			all += 1;
 		}
-		let toEnd = all - present;
+		let toEnd = all - present
 		let status = parseInt(present*100/all);
 		let statusCheck = status > 100 ?  100 : status;
 		
-		return {"status": status, "toEnd": toEnd};
+		return {"status": status, "toEnd": toEnd, "now": present};
 	}
 	else {
 		return {"status": 100, "toEnd": 0};
@@ -173,7 +175,7 @@ function changeSchedule(id, schedule) {
 		return {"code": "-2", "describe": "该时间表不存在"}
 	}
 	
-	_data = createJson(id, newSchedule, _data); //在json对象中修改数据
+	_data = createJson(id, schedule, _data); //在json对象中修改数据
 	
 	try {
 		uni.setStorageSync('data', _data); //尝试写入数据
@@ -210,7 +212,7 @@ function deleteSchedule(id) {
 		return {"code": "-2", "describe": "该时间表不存在"}
 	}
 	
-	_data = createJson(id, newSchedule, _data) //从json对象中删除数据
+	_data = createJson(id, undefined, _data) //从json对象中删除数据 
 	
 	try {
 		uni.setStorageSync('data', _data); //尝试写入数据

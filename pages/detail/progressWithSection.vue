@@ -5,10 +5,12 @@
 			<image src="/static/sub-logo.png" class="nav-bar-userset-sublogo"></image>
 			<view class="nav-bar-userset-add"></view>
 		</view>
-		<scroll-view class="main-view" scroll-y="true" :style="{ height: scrollHeight }">
 		<view class="time-process-block">
 			<view class="top-line" >
-				<input class="red-point" v-model="schedule.title">
+				<view class="title-line">
+					<input class="red-point" >
+					<input class="title" v-model="schedule.title">
+				</view>
 				<view class="time-name">{{title}}</view>
 				<view class="precess-percent">{{process}}%</view>
 			</view>
@@ -65,9 +67,12 @@
 				</textarea>
 			</view>
 		</view>
-		</scroll-view>
+		<view class="deleteView">
+			<view class="deleteButton" @tap="deleteSchedule">删除任务</view>
+			<view class="bottomView"></view>
+		</view>
 		<view class="confirm">
-			<button class="confirmButton" v-on:click="done">删除</button>
+			<button class="confirmButton" v-on:click="backToIndex">保存并退出</button>
 		</view>
 	</view>
 </template>
@@ -75,6 +80,7 @@
 <script>
 	import {addSchedule,changeSchedule,deleteSchedule,getAllSchedule,getOneSchedule} from "../../js/schedule.js"
 	export default {
+		inject:["reload"],
 		data() {
 			return {
 				id:0,
@@ -82,7 +88,7 @@
 				animationDataProcess:"",
 				animationDataPerson:"",
 				showNote:true,
-				schedule : {
+				schedule: {
 					title:"",
 					type:3,
 					time:{
@@ -102,7 +108,7 @@
 				
 			};
 		},
-		onLoad: function() {//传入
+		onLoad: function(option) {//传入
 			let data = getAllSchedule()
 			for (var item in data) {
 				this.id = item	
@@ -118,9 +124,13 @@
 				timingFunction: 'ease',
 			})
 			this.animationDataProcess = animation.translateX(this.process*1.5)
-														.scaleX(this.process*4.5)
- 														.step()
- 														.export()
+														.scaleX(this.process*3)
+														.step()
+														.export()
+// 			this.animationDataProcess = animation.translateX(this.process*2)
+// 														.scaleX(this.process*6.3)
+//  														.step()
+//  														.export()
 			animation = uni.createAnimation({
 				delay: 300,
 				duration: 500,
@@ -129,8 +139,7 @@
 			this.animationDataPerson = animation.translateX(this.process*3).step().export()
 		},
 		onUnload() {
-			let status = changeSchedule(this.id,this.schedule)
-			console.log(JSON.stringify(status))
+			
 		},
 		methods:{
 			addSection: function(){
@@ -155,16 +164,18 @@
 				this.schedule.sectionData = data
 			},
 			backToIndex: function(){
+				let status = changeSchedule(this.id,this.schedule)
 				uni.navigateBack()
+				this.$bus.$emit('change')
 			},
-			done: function(){
+			deleteSchedule: function(){
+				var that = this
 				uni.showModal({
 					title: '提示',
 					content: '确定删除此任务吗？',
 					success: function (res) {
 						if (res.confirm) {
-							let code = deleteSchedule(this.id);
-							console.log(JSON.stringify(code));
+							let code = deleteSchedule(that.id)
 							uni.navigateTo({
 								url:'/pages/index/index'
 							})
@@ -174,40 +185,16 @@
 						}
 					},
 				})
-				//uni.clearStorage();
 			}
 		}
 	}
 </script>
 
 <style>
-	.nav-bar-userset{
-		position: sticky;
-		justify-content: space-between;
-		display: flex;
-		background-color: rgb(255,255,255);
-		width: 750upx;
-		height: 150upx;
-	}
-	.nav-bar-userset-sublogo{
-		margin-top: 55upx;
-		width: 100upx;
-		height: 45upx;
-	}
-	.nav-bar-userset-back{
-		margin-top: 55upx;
-		margin-left: 50upx;
-		width: 25upx;
-		height: 40upx;
-	}
-	.nav-bar-userset-add{
-		margin-top: 55upx;
-		margin-right: 50upx;
-		width: 30upx;
-		height: 40upx;
-	}
 	.newProgressPlus{
 		flex-direction: column;
+		width: 100%;
+		height: 100%;
 	}
 	.main-view{
 		display: flex;
@@ -219,6 +206,7 @@
 	.time-process-block{
 		z-index: 10;
 		display: flex;
+		/* margin-top: 150upx; */
 		flex-direction: column;
 		background-color: rgb(255,255,255);
 	}
@@ -230,13 +218,26 @@
 		height: 36upx;
 		margin: 30upx 0upx 0upx 30upx;
 	}
+	.top-line .title-line{
+		flex-direction: row;
+	}
 	.top-line .red-point{
+		display: inline-block;
+		align-content: left;
+		width: 10upx;
+		height: 10upx;
+		margin-top: 20upx;
+		margin-left: 40upx;
+		border-radius: 5upx;
+		background-color: rgb(245,0,0);
+	}
+	.top-line .title{
 		display: inline-block;
 		align-content: left;
 		text-align: left;
 		font-size: 36upx;
 		width: 680upx;
-		margin-left: 0upx;
+		margin-left: 20upx;
 		height: 80upx;
 	}
 	.top-line .precess-percent{
@@ -245,7 +246,7 @@
 		color: rgb(10,10,10);
 		display: inline-block;
 		font-size: 80upx;
-		margin: 0upx 0upx 40upx 0upx;
+		margin: 40upx 0upx 0upx 0upx;
 		font-weight: 1000;
 		color: #707070;
 	}
@@ -316,7 +317,6 @@
 		width: 1upx;
 		background-color: rgb(255,0,0);
 	}
-	
 	.sectionView{
 		flex-direction: column;
 		margin-top: 40upx;
@@ -375,6 +375,28 @@
 		margin: 40upx 40upx 40upx 40upx;
 		border: 1upx solid gray;
 	}
+	.deleteView{
+		flex-direction: column;
+	}
+	.deleteButton{
+		text-align: center;
+		justify-content: center; 
+		font-size: 36upx;
+		color: #FFFFFF;
+		font-weight: 1000;
+		width: 640upx;
+		padding: 20upx;
+		margin: 0upx 15upx;
+		margin-left: 40upx;
+		/* margin-bottom: 100upx; */
+		background-color: #DD524D;
+		border-radius: 5upx;
+	}
+	.bottomView{
+		width: 100%;
+		height: 100upx;
+		background-color: #FFFFFF;
+	}
 	.confirm{
 		position: fixed;
 		bottom: 0upx;
@@ -390,6 +412,33 @@
 		font-size: 36upx;
 		font-weight: 300;
 		border: hidden;
+		border-radius: 0upx;
+	}
+	.nav-bar-userset{
+		position: sticky;
+		justify-content: space-between;
+		display: flex;
+		background-color: rgb(255,255,255);
+		width: 750upx;
+		height: 150upx;
+		top: var(--status-bar-height)
+	}
+	.nav-bar-userset-sublogo{
+		margin-top: 55upx;
+		width: 100upx;
+		height: 45upx;
+	}
+	.nav-bar-userset-back{
+		margin-top: 55upx;
+		margin-left: 50upx;
+		width: 25upx;
+		height: 40upx;
+	}
+	.nav-bar-userset-add{
+		margin-top: 55upx;
+		margin-right: 50upx;
+		width: 30upx;
+		height: 40upx;
 	}
 	.placeHolder{
 		font-size: 36upx;

@@ -11,6 +11,7 @@
   background-color: rgb(255,255,255);
   width: 750rpx;
   height: 150rpx;
+  top: var(--status-bar-height);
 }
 .nav-bar-userset-sublogo {
   margin-top: 55rpx;
@@ -29,14 +30,22 @@
   width: 30rpx;
   height: 40rpx;
 }
+.newProgressPlus {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
 .newProgress {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
   flex-direction: column;
+  width: 100%;
 }
 .inputTitle {
-  width: 100%;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
@@ -44,15 +53,13 @@
 }
 .inputForm {
   text-align: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
   font-size: 36rpx;
   color: #000000;
-  width: 680rpx;
+  width: 620rpx;
   padding: 20rpx;
   margin: 20rpx 15rpx;
-  border-bottom: 4rpx solid gray;
+  margin-left: 40rpx;
+  border-bottom: 4rpx solid black;
 }
 .inputProgress {
   width: 100%;
@@ -60,38 +67,36 @@
   -webkit-box-direction: normal;
   -webkit-flex-direction: row;
   flex-direction: row;
+  margin-top: 20rpx;
+  margin-left: 40rpx;
 }
 .start {
   text-align: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
   color: #000000;
-  width: 140rpx;
+  width: 132rpx;
   padding: 40rpx;
-  margin: 20rpx 15rpx;
+  margin-top: 20rpx;
+  margin-bottom: 15rpx;
   border: 1rpx solid black;
 }
 .now {
   text-align: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
   color: #000000;
-  width: 140rpx;
+  width: 132rpx;
   padding: 40rpx;
-  margin: 20rpx 15rpx;
+  margin-top: 20rpx;
+  margin-left: 15rpx;
+  margin-bottom: 15rpx;
   border: 1rpx solid black;
 }
 .end {
   text-align: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
   color: #000000;
-  width: 140rpx;
+  width: 132rpx;
   padding: 40rpx;
-  margin: 20rpx 15rpx;
+  margin-top: 20rpx;
+  margin-left: 15rpx;
+  margin-bottom: 15rpx;
   border: 1rpx solid black;
 }
 .inputUnit {
@@ -103,14 +108,11 @@
 }
 .unit {
   text-align: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
   color: #000000;
-  width: 640rpx;
+  width: 585rpx;
   padding: 40rpx;
   mmargin-top: 40rpx;
-  margin-left: 15rpx;
+  margin-left: 40rpx;
   border: 1rpx solid black;
 }
 .addNotes {
@@ -125,7 +127,7 @@
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  width: 720rpx;
+  width: 100%;
   padding-top: 40rpx;
   padding-bottom: 20rpx;
 }
@@ -138,25 +140,23 @@
 }
 .editProgressButton {
   text-align: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  width: 720rpx;
+  -webkit-align-content: center;
+  align-content: center;
+  width: 100%;
   padding-top: 40rpx;
   padding-bottom: 20rpx;
 }
 .Note {
   text-align: left;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
   color: #000000;
-  width: 680rpx;
+  width: 640rpx;
   height: 200rpx;
   padding: 20rpx;
-  margin-top: 20rpx;
-  margin-left: 15rpx;
-  border: 1rpx solid gray;
+  margin: 20rpx 40rpx 40rpx 40rpx;
+  border: 1rpx solid black;
 }
 .confirm {
   position: fixed;

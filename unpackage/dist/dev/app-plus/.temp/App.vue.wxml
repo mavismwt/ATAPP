@@ -1,0 +1,5 @@
+<template name="33625a7f">
+  <view id="app" class="_view data-v-80410c60">
+    <router-view wx:if="{{isRouterAlive}}" class="_router-view data-v-80410c60"></router-view>
+  </view>
+</template>

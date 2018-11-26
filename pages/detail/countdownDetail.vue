@@ -1,5 +1,5 @@
 <template>
-	<view class="newProgress">
+	<view class="countDown">
 		<view class="nav-bar-userset">
 			<image src="/static/back-arrow.png" class="nav-bar-userset-back" @tap="backToIndex"></image>
 			<image src="/static/sub-logo.png" class="nav-bar-userset-sublogo"></image>
@@ -28,61 +28,25 @@
 				</view>
 			</view>
 		</view>
-		<view class="inputProgress">
-			<view class="sectionInfo">
-				<view class="sectionTag">开始于</view>
-				<input class="time" 
-					v-model="schedule.time.start" 
-					type="number"
-					placeholder="开始"
-					placeholder-class="placeHolder"
-				/>
-				<view class="unitTag">{{schedule.unit}}</view>
-			</view>
-			<view class="sectionInfo">
-				<view class="sectionTag">现处于</view>
-				<input class="time" 
-					v-model="schedule.time.now" 
-					type="number"
-					placeholder="现在"
-					placeholder-class="placeHolder"
-				/>
-				<view class="unitTag">{{schedule.unit}}</view>
-			</view>
-			<view class="sectionInfo">
-				<view class="sectionTag">目标为</view>
-				<input class="time"
-					v-model="schedule.time.end" 
-					type="number"
-					placeholder="结束"
-					placeholder-class="placeHolder"
-				/>
-				<view class="unitTag">{{schedule.unit}}</view>
-			</view>
-		</view>
-		<view class="editProgress">
-			<button class="editProgressButton" 
-				v-on:click="editProgress">
-				打卡
-			</button>
-			<!-- <view class="editProgressButton" 
-				v-if="schedule.time.end<schedule.time.start" 
-				v-on:click="minusProgress">
-				打卡
-			</view> -->
+		<picker mode="date" :value="date" :start="startDate" :end="endDate" @change="bindEdateChange">
+			<view class="Edate">{{Edate}}</view>
+		</picker>
+		<view class="time-picker">
+			<picker mode="date" :value="date" :start="startDate" :end="endDate" @change="bindEdateChange">
+				<view class="time-picker-view">更改倒计日</view>
+			</picker>
 		</view>
 		<view class="addNotes">
 			<view>
 				<textarea class="Note" 
-					v-if="showNote" 
-					placeholder="此处输入备注"
 					v-model="schedule.note"
+					placeholder="此处输入备注"
 				>
 				</textarea>
 			</view>
 		</view>
 		<view class="deleteView">
-			<button class="deleteButton" v-on:click="deleteSchedule">删除任务</button>
+			<view class="deleteButton" @tap="deleteSchedule">删除任务</view>
 			<view class="bottomView"></view>
 		</view>
 		<view class="confirm">
@@ -95,30 +59,62 @@
 	import {addSchedule,changeSchedule,deleteSchedule,getAllSchedule,getOneSchedule} from "../../js/schedule.js"
 	export default {
 		data() {
+			const currentDate = this.getDate({
+				format: true
+			});
 			return {
+				id:0,
 				process:0,
 				animationDataProcess:"",
 				animationDataPerson:"",
-				showNote:true,
 				schedule:{
+					type:1,
 					title:"",
-					type:2,
 					time:{
-						start:10,
-						now:9,
-						end:5,
+						start:{
+							year:"",
+							month:"",
+							day:"",
+							hour:"",
+							minute:"",
+							second:"",
+						},
+						end:{
+							year:"",
+							month:"",
+							day:"",
+							hour:"",
+							minute:"",
+							second:"",
+						},
+						now:{},
 					},
-					unit:"",
 					note:"",
-				}
+				},
+				Edate:"重新设定倒计时",
+				startDate: currentDate,
+				endDate: "2019-12-12",
+				bubbleProperty:[
+					{
+						x: 100,
+						y: 100,
+						style:{
+							height: "300upx",
+							width: "200upx",
+							'border-radius': "50upx",
+						}
+					}
+				]
 			};
 		},
-		onLoad:function(){//传入
+		onLoad() {
 			const scheduleID = sessionStorage.getItem('ID')
 			let item = getOneSchedule(scheduleID)
+			console.log(JSON.stringify(item))
 			this.id = scheduleID
 			this.schedule = item
 			this.process = this.schedule.status.status
+			this.Edate = this.schedule.time.end.year+"年"+this.schedule.time.end.month+"月"+this.schedule.time.end.day+"日"
 		},
 		onReady() {
 			var animation = uni.createAnimation({
@@ -141,28 +137,48 @@
 			})
 			this.animationDataPerson = animation.translateX(this.process*3).step().export()
 		},
-		onUnload() {
-			let status = changeSchedule(this.id,this.schedule)
-			console.log(JSON.stringify(status))
-		},
 		methods:{
-			editProgress: function(){
-				let data = this.schedule.time
-				if (data.end>data.start&&data.now<data.end) {
-					data.now=data.now+1
-				} else if (data.end<data.start&&data.now>data.end){
-					data.now=data.now-1
-				}
-				//schedule.time.now<schedule.time.end?schedule.time.now=schedule.time.now+1:schedule.time.now=schedule.time.now
-				//let code = changeSchedule(,this.schedule)
-				//console.log(JSON.stringify(code))
-			},
 			backToIndex: function(){
 				let status = changeSchedule(this.id,this.schedule)
-				console.log(JSON.stringify(status))
+				//console.log(JSON.stringify(status))
 				uni.navigateBack()
 				this.$bus.$emit('change')
 			},
+			bindPickerChange: function(e) {
+				console.log('picker发送选择改变，携带值为', e.target.value)
+				this.index = e.target.value
+			},
+			bindSdateChange: function(e) {
+				this.Sdate = e.target.value
+				this.isDisabled = false
+			},
+			bindEdateChange: function(e) {
+				var dataSplit = e.target.value.split("-")
+				this.Edate = dataSplit[0]+"年"+dataSplit[1]+"月"+dataSplit[2]+"日"
+				this.schedule.time.end.year = dataSplit[0]
+				this.schedule.time.end.month = dataSplit[1]
+				this.schedule.time.end.day = dataSplit[2]
+			},
+			bindTimeChange: function(e) {
+				this.time = e.target.value
+			},
+			getDate(type) {
+				const date = new Date();
+
+				let year = date.getFullYear();
+				let month = date.getMonth() + 1;
+				let day = date.getDate();
+
+				if (type === 'start') {
+					year = year - 60;
+				} else if (type === 'end') {
+					year = year + 2;
+				}
+				month = month > 9 ? month : '0' + month;
+				day = day > 9 ? day : '0' + day;
+
+				return `${year}-${month}-${day}`;
+			}, 
 			deleteSchedule: function(){
 				var that = this
 				uni.showModal({
@@ -170,8 +186,7 @@
 					content: '确定删除此任务吗？',
 					success: function (res) {
 						if (res.confirm) {
-							let code = deleteSchedule(that.id);
-							console.log(JSON.stringify(code));
+							let code = deleteSchedule(that.id)
 							uni.navigateTo({
 								url:'/pages/index/index'
 							})
@@ -181,22 +196,20 @@
 						}
 					},
 				})
-				//uni.clearStorage();
 			}
 		}
 	}
-	
 </script>
 
 <style>
 	.nav-bar-userset{
-		position: sticky;
+		position:sticky;
+		top: 0upx;
 		justify-content: space-between;
 		display: flex;
 		background-color: rgb(255,255,255);
 		width: 750upx;
 		height: 150upx;
-		top: var(--status-bar-height)
 	}
 	.nav-bar-userset-sublogo{
 		margin-top: 55upx;
@@ -214,11 +227,6 @@
 		margin-right: 50upx;
 		width: 30upx;
 		height: 40upx;
-	}
-	.newProgress{
-		flex-direction: column;
-		width: 100%;
-		height: 100%;
 	}
 	.time-process-block{
 		z-index: 10;
@@ -262,7 +270,7 @@
 		color: rgb(10,10,10);
 		display: inline-block;
 		font-size: 80upx;
-		margin: 0upx 0upx 40upx 0upx;
+		margin: 40upx 0upx 0upx 0upx;
 		font-weight: 1000;
 		color: #707070;
 	}
@@ -333,49 +341,60 @@
 		width: 1upx;
 		background-color: rgb(255,0,0);
 	}
-	.inputProgress{
+	.inputTitle{
 		width: 100%;
 		flex-direction: column;
-		margin-top: 40upx;
 	}
-	.sectionInfo{
-		align-items: center;
-		flex-direction: row;
-	}
-	.sectionTag{
-		padding: 20upx;
-		margin-left: 90upx;
-		margin-top: 10upx;
-	}
-	.time{
+	.inputForm{
 		text-align: center;
 		justify-content: center;
+		font-size: 36upx;
 		color: #000000;
-		width: 300upx;
+		width: 620upx;
 		padding: 20upx;
-		margin: 10upx 5upx 20upx 0upx;
-		border: 1upx solid black;
+		margin: 20upx 15upx;
+		margin-left: 40upx;
+		border-bottom: 4upx solid gray;
 	}
-	.unitTag{
-		padding: 20upx;
-		margin-left: 20upx;
-		margin-top: 10upx;
+	.placeHolder{
+		font-size: 36upx;
+		font-weight: 1000;
+		text-align: center;
 	}
-	.editProgress{
-		width: 100%;
+	.Edate{
+		text-align: center;
+		justify-content: center; 
+		font-size: 36upx;
+		color: #000000;
+		font-weight: 1000;
+		width: 620upx;
+		padding: 40upx 20upx;
+		margin: 20upx 15upx;
+		margin-left: 40upx;
+		border: 2upx solid black;
+	}
+	.time-picker{
+		width: 750upx;
 		flex-direction: column;
 	}
-	.editProgressButton{
-		align-content: center;
-		width: 640upx;
-		height: 80upx;
-		margin-top: 40upx;
-		color: #FFFFFF;
-		background-color: #DD524D;
+	.time-picker-view{
+		text-align: center;
+		justify-content: center; 
 		font-size: 36upx;
-		font-weight: 300;
-		border: hidden;
-		border-radius: 10upx;
+		color: #FFFFFF;
+		font-weight: 1000;
+		width: 620upx;
+		padding: 20upx;
+		margin: 20upx 15upx;
+		margin-left: 40upx;
+		background-color: #DD524D;
+		border-radius: 5upx;
+	}
+	.countDown {
+		display: flex;
+		flex-direction: column;
+		top: var(--status-bar-height);
+		width: 100%;
 	}
 	.addNotes{
 		width: 100%;
@@ -395,25 +414,25 @@
 		width: 640upx;
 		height: 200upx;
 		padding: 20upx;
-		margin: 40upx 40upx 40upx 40upx;
+		margin: 20upx 40upx 40upx 40upx;
 		border: 1upx solid gray;
 	}
 	.deleteView{
-		width: 100%;
 		flex-direction: column;
 	}
 	.deleteButton{
 		text-align: center;
-		align-content: center;
-		width: 640upx;
-		height: 80upx;
-		margin-top: 40upx;
-		color: #FFFFFF;
-		background-color: #DD524D;
+		justify-content: center; 
 		font-size: 36upx;
-		font-weight: 300;
-		border: hidden;
-		border-radius: 10upx;
+		color: #FFFFFF;
+		font-weight: 1000;
+		width: 640upx;
+		padding: 20upx;
+		margin: 0upx 15upx;
+		margin-left: 40upx;
+		/* margin-bottom: 100upx; */
+		background-color: #DD524D;
+		border-radius: 8upx;
 	}
 	.bottomView{
 		width: 100%;
@@ -436,9 +455,21 @@
 		font-weight: 300;
 		border: hidden;
 		border-radius: 0upx;
+	}.confirm{
+		position: fixed;
+		bottom: 0upx;
 	}
-	.placeHolder{
+	.confirmButton{
+		position: fixed;
+		bottom: 0upx;
+		align-content: center;
+		width: 100%;
+		height: 80upx;
+		color: #FFFFFF;
+		background-color: #DD524D;
 		font-size: 36upx;
-		text-align: center;
-	}
+		font-weight: 300;
+		border: hidden;
+		border-radius: 0upx;
+	}	
 </style>

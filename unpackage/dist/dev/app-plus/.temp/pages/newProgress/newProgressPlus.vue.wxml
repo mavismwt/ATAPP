@@ -1,7 +1,7 @@
 <template name="6b2ffeb8">
   <view class="_view data-v-e6578b6e newProgressPlus">
     <view class="_view data-v-e6578b6e nav-bar-userset">
-      <image src="/static/back-arrow.png" class="_image data-v-e6578b6e nav-bar-userset-back" bindtap="handleProxy" data-eventid="{{'7Ff-0'}}" data-comkey="{{$k}}"></image>
+      <image src="/static/back-arrow.png" class="_image data-v-e6578b6e nav-bar-userset-back" bindtap="handleProxy" data-eventid="{{'uaJ-0'}}" data-comkey="{{$k}}"></image>
       <image src="/static/sub-logo.png" class="_image data-v-e6578b6e nav-bar-userset-sublogo"></image>
       <view class="_view data-v-e6578b6e nav-bar-userset-add"></view>
     </view>
@@ -9,22 +9,23 @@
       <input class="_input data-v-e6578b6e inputForm" placeholder="输入TP名称" placeholder-class="placeHolder" maxlength="6" confirm-type="done" />
     </view>
     <view class="_view data-v-e6578b6e sectionView">
-      <view class="_view data-v-e6578b6e sectionCell" wx:key="item.index" key="{{item.index}}" bindlongpress="handleProxy" data-id="{{item.index}}" data-eventid="{{'RTc-3-'+index}}" data-comkey="{{$k}}" wx:for="{{schedule.sectionData}}" wx:for-index="index"
+      <view class="_view data-v-e6578b6e sectionCell" wx:key="item.index" key="{{item.index}}" bindlongpress="handleProxy" data-id="{{item.index}}" data-eventid="{{'QSM-3-'+index}}" data-comkey="{{$k}}" wx:for="{{schedule.sectionData}}" wx:for-index="index"
         wx:for-item="item">
-        <input class="_input data-v-e6578b6e inputSectionName" placeholder="输入阶段名称" placeholder-style="placeHolder" confirm-type="Next" value="{{item.name}}" bindinput="handleProxy" bindkeyup="handleProxy" data-eventid="{{'Oip-1-'+index}}" data-comkey="{{$k}}"
+        <input class="_input data-v-e6578b6e inputSectionName" placeholder="输入阶段名称" placeholder-style="placeHolder" confirm-type="Next" value="{{item.name}}" bindinput="handleProxy" bindkeyup="handleProxy" data-eventid="{{'4iZ-1-'+index}}" data-comkey="{{$k}}"
         />
-        <view class="_view data-v-e6578b6e addSection" bindtap="handleProxy" data-eventid="{{'NvF-2-'+index}}" data-comkey="{{$k}}">+</view>
+        <view class="_view data-v-e6578b6e addSection">
+          <image src="../../static/add1.png" class="_image data-v-e6578b6e addSectionImg" bindtap="handleProxy" data-eventid="{{'S7b-2-'+index}}" data-comkey="{{$k}}"></image>
+        </view>
       </view>
     </view>
     <view class="_view data-v-e6578b6e addNotes">
-      <view class="_view data-v-e6578b6e addButton" wx:if="{{!showNote}}" bindtap="handleProxy" data-eventid="{{'X8m-4'}}" data-comkey="{{$k}}"> 显示备注 </view>
-      <view class="_view data-v-e6578b6e addButton" wx:if="{{showNote}}" bindtap="handleProxy" data-eventid="{{'qes-5'}}" data-comkey="{{$k}}"> 收起备注 </view>
+      <view class="_view data-v-e6578b6e addButton" bindtap="handleProxy" data-eventid="{{'GhC-4'}}" data-comkey="{{$k}}"> 添加备注 </view>
       <view class="_view data-v-e6578b6e">
-        <textarea class="_textarea data-v-e6578b6e Note" wx:if="{{showNote}}" value="{{schedule.note}}" bindinput="handleProxy" placeholder="此处输入备注" data-eventid="{{'vqT-6'}}" data-comkey="{{$k}}" />
+        <textarea class="_textarea data-v-e6578b6e Note" wx:if="{{showNote}}" value="{{schedule.note}}" bindinput="handleProxy" placeholder="此处输入备注" data-eventid="{{'way-5'}}" data-comkey="{{$k}}" />
       </view>
     </view>
     <view class="_view data-v-e6578b6e confirm">
-      <button class="_button data-v-e6578b6e confirmButton" bindtap="handleProxy" data-eventid="{{'CaL-7'}}" data-comkey="{{$k}}">完成</button>
+      <button class="_button data-v-e6578b6e confirmButton" bindtap="handleProxy" data-eventid="{{'dW4-6'}}" data-comkey="{{$k}}">完成</button>
     </view>
   </view>
 </template>

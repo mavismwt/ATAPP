@@ -4,19 +4,19 @@
     <view class="_view data-v-00ad3699 nav-bar-userset">
       <view class="_view data-v-00ad3699 nav-bar-userset-add"></view>
       <image src="/static/logo.png" class="_image data-v-00ad3699 nav-bar-userset-logo"></image>
-      <image src="/static/add.png" class="_image data-v-00ad3699 nav-bar-userset-add" bindtap="handleProxy" data-eventid="{{'6N3-0'}}" data-comkey="{{$k}}"></image>
+      <image src="/static/add.png" class="_image data-v-00ad3699 nav-bar-userset-add" bindtap="handleProxy" data-eventid="{{'mCX-0'}}" data-comkey="{{$k}}"></image>
     </view>
     <swiper indicator-dots="{{swiper.indicatorDots}}" duration="{{swiper.duration}}" class="_swiper data-v-00ad3699" style=" {{('height:' + scrollHeight + ';')}}">
       <swiper-item class="_swiper-item data-v-00ad3699">
         <scroll-view class="_scroll-view data-v-00ad3699 main-view" scroll-y="true" style=" {{('height:' + scrollHeight + ';')}}">
           <view class="_view data-v-00ad3699 date-view" wx:key="index" key="{{index}}" wx:for="{{itemProperty}}" wx:for-index="index" wx:for-item="item">
             <view class="_view data-v-00ad3699 time-process-block" style=" {{('background-color:' + item.backgroundColor + ';')}}">
-              <view class="_view data-v-00ad3699 top-line" bindtap="handleProxy" data-id="{{index}}" data-eventid="{{'Uat-1-'+index}}" data-comkey="{{$k}}">
+              <view class="_view data-v-00ad3699 top-line" bindtap="handleProxy" data-id="{{index}}" data-eventid="{{'0kN-1-'+index}}" data-comkey="{{$k}}">
                 <view class="_view data-v-00ad3699 red-point"></view>
                 <view class="_view data-v-00ad3699 time-name">{{item.title}}</view>
                 <view class="_view data-v-00ad3699 precess-percent">{{ item.process }}%</view>
               </view>
-              <view class="_view data-v-00ad3699 all-process" bindtap="handleProxy" data-id="{{index}}" data-eventid="{{'K70-2-'+index}}" data-comkey="{{$k}}">
+              <view class="_view data-v-00ad3699 all-process" bindtap="handleProxy" data-id="{{index}}" data-eventid="{{'3Ej-2-'+index}}" data-comkey="{{$k}}">
                 <view class="_view data-v-00ad3699 little-person" animation="{{item.animationDataPerson}}">
                   <view class="_view data-v-00ad3699 chat-frame">
                     <view class="_view data-v-00ad3699 .chat-frame-content">{{item.now}}</view>
@@ -39,7 +39,7 @@
         </scroll-view>
       </swiper-item>
       <swiper-item class="_swiper-item data-v-00ad3699">
-        <template data="{{...$root['0'], ...$root[$kk+'HIs-1'],$root}}" is="48b4b711"></template>
+        <template data="{{...$root['0'], ...$root[$kk+'9RJ-1'],$root}}" is="48b4b711"></template>
       </swiper-item>
     </swiper>
   </view>

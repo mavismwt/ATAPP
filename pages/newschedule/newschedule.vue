@@ -27,7 +27,7 @@
 				itemProperty:[
 					{
 						id: "countDown",
-						title: "倒计时",
+						title: "倒计日",
 						describe: "重要的时间一定要记录下来！",
 						backgroundColor: "rgb(171,216,200)",
 						fontColor: "rgb(131,176,160)"

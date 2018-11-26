@@ -85,6 +85,7 @@
 		},
 		data() {
 			return {
+				shouldRefresh:false,
 				swiper:{
 					indicatorDots: false,
 					autoplay: false,
@@ -126,42 +127,7 @@
 		onLoad() {
 			this.scrollHeight = uni.getSystemInfoSync().windowHeight + 10 + "px";
 			this.pixelRatio = uni.getSystemInfoSync().pixelRatio;
-			let data = this.get();
-			//console.log(JSON.stringify(data))
-			let temp = {
-				backgroundColor: "rgb(171,216,200)",
-				animationDataProcess: "",
-				animationDataPerson: "",
-				tagColor: "rgb(151,196,180)",
-// 				itemDetail: false,
-// 				tagAnimation: "",
-// 				showAnimation: "",
-// 				detailNote: "暂无备忘内容",
-// 				tagItems:[
-// 					{
-// 						name: "大学物理学",
-// 						weight: 10,
-// 						nowTagColor: "",
-// 						fontColor: ""
-// 					},
-// 					
-// 				]
-			}
-			let _index = 0;
-			for (var item in data) {
-				this.itemProperty[_index] = {};
-				this.itemProperty[_index].title = data[item].title;
-				this.itemProperty[_index].process = data[item].status.status;
-				this.itemProperty[_index].start = data[item].time.start;
-				this.itemProperty[_index].end = data[item].time.end;
-				this.itemProperty[_index].now = data[item].time.now;
-				this.itemProperty[_index].backgroundColor = "rgb(171,216,200)";
-				this.itemProperty[_index].animationDataProcess = "";
-				this.itemProperty[_index].animationDataPerson = "";
-				this.itemProperty[_index].tagColor = "rgb(151,196,180)";
-				_index += 1;
-			}
-			
+			this.getData()
 		},
 		onReady() {
 			var animation = uni.createAnimation({
@@ -170,10 +136,14 @@
 				timingFunction: 'ease',
 			})
 			for (var i = 0; i < this.itemProperty.length ;  i++) {
-				this.itemProperty[i].animationDataProcess = animation.translateX(this.itemProperty[i].process*1.5)
-														.scaleX(this.itemProperty[i].process*4.5)
-														.step()
-														.export()
+				this.animationDataProcess = animation.translateX(this.process*1.5)
+																		.scaleX(this.process*3)
+																		.step()
+																		.export()
+// 				this.itemProperty[i].animationDataProcess = animation.translateX(this.itemProperty[i].process*1.5)
+// 														.scaleX(this.itemProperty[i].process*4.5)
+// 														.step()
+// 														.export()
 			}
 			animation = uni.createAnimation({
 				delay: 300,
@@ -184,6 +154,13 @@
 				this.itemProperty[i].animationDataPerson = animation.translateX(this.itemProperty[i].process*3).step().export()
 			}
 		},
+		onShow() {	
+			this.$bus.$on('change', ()=> {
+				uni.reLaunch({
+					url:'/pages/index/index'
+				})
+			})
+		},
 		onHide() {
 			for (var i = 0; i < this.itemProperty.length ;  i++) {
 				this.itemProperty[i].animationDataProcess = ""
@@ -193,11 +170,51 @@
 			}
 		},
 		methods:{
-			get: function(){
+			getData: function(){
 				let data = getAllSchedule()
-				//console.log("kkk",JSON.stringify(data))
+				//console.log(JSON.stringify(data))
+				let temp = {
+					backgroundColor: "rgb(171,216,200)",
+					animationDataProcess: "",
+					animationDataPerson: "",
+					tagColor: "rgb(151,196,180)",
+				// 	itemDetail: false,
+				// 	tagAnimation: "",
+				// 	showAnimation: "",
+				// 	detailNote: "暂无备忘内容",
+				// 	tagItems:[
+				// 	{
+				// 		name: "大学物理学",
+				// 		weight: 10,
+				// 		nowTagColor: "",
+				// 		fontColor: ""
+				// 	},
+				// 					
+				// 	]
+				}
+				let _index = 0;
+				for (var item in data) {
+					this.itemProperty[_index] = {};
+					this.itemProperty[_index].id = item
+					this.itemProperty[_index].title = data[item].title;
+					this.itemProperty[_index].process = data[item].status.status;
+					this.itemProperty[_index].backgroundColor = "rgb(171,216,200)";
+					this.itemProperty[_index].animationDataProcess = "";
+					this.itemProperty[_index].animationDataPerson = "";
+					this.itemProperty[_index].tagColor = "rgb(151,196,180)";
+					if (data[item].type != 1){
+						this.itemProperty[_index].start = data[item].time.start;
+						this.itemProperty[_index].end = data[item].time.end;
+						this.itemProperty[_index].now = data[item].time.now;
+					}else {
+						//this.itemProperty[_index].start = data[item].time.start.month+'.'+data[item].time.start.day;
+						this.itemProperty[_index].end = data[item].time.end.year+"\n"+data[item].time.end.month+'.'+data[item].time.end.day;
+						this.itemProperty[_index].now = data[item].status.now.year+'.'+data[item].status.now.month+'.'+data[item].status.now.day;
+						this.itemProperty[_index].start = data[item].time.start.year+'\n'+data[item].time.start.month+'.'+data[item].time.start.day;
+					}
+					_index += 1;
+				}
 				return data;
-				
 			},
 			addNewSchedule: function(){
 				uni.navigateTo({
@@ -231,14 +248,37 @@
             },
 			changeDetailShow: function(e){
 				var that = this
-				if(this.itemProperty[parseInt(e.currentTarget.dataset.id)].itemDetail == false){
-					this.itemProperty[parseInt(e.currentTarget.dataset.id)].itemDetail = true
-					this.itemProperty[parseInt(e.currentTarget.dataset.id)].showAnimation = "down 0.2s"
+				const orderData = this.itemProperty[parseInt(e.currentTarget.dataset.id)].id
+				sessionStorage.setItem('ID', orderData)
+				let data = getOneSchedule(this.itemProperty[parseInt(e.currentTarget.dataset.id)].id)
+				switch (data.type){
+					case 1:
+						uni.navigateTo({
+							url:'/pages/detail/countdownDetail'
+						})
+						break;
+					case 2:
+						uni.navigateTo({
+							url:'/pages/detail/progress'
+						})
+						break;
+					case 3:
+						uni.navigateTo({
+							url:'/pages/detail/progressWithSection'
+						})
+						break;
+					default:
+						break;
 				}
-				else{
-					this.itemProperty[parseInt(e.currentTarget.dataset.id)].showAnimation = "up 0.2s"
-					that.itemProperty[parseInt(e.currentTarget.dataset.id)].itemDetail = false
-				}
+// 				var that = this
+// 				if(this.itemProperty[parseInt(e.currentTarget.dataset.id)].itemDetail == false){
+// 					this.itemProperty[parseInt(e.currentTarget.dataset.id)].itemDetail = true
+// 					this.itemProperty[parseInt(e.currentTarget.dataset.id)].showAnimation = "down 0.2s"
+// 				}
+// 				else{
+// 					this.itemProperty[parseInt(e.currentTarget.dataset.id)].showAnimation = "up 0.2s"
+// 					that.itemProperty[parseInt(e.currentTarget.dataset.id)].itemDetail = false
+// 				}
 			},
 		}
 	}
