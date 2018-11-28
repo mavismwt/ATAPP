@@ -194,6 +194,9 @@ to {
   color: rgb(255,255,255);
   font-size: 30rpx;
   font-weight: 1000;
+  width: 350rpx;
+  height: 36rpx;
+  overflow: hidden;
 }
 .top-line .precess-percent {
   color: rgb(255,255,255);

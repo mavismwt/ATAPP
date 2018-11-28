@@ -9,6 +9,7 @@
   background-color: rgb(255,255,255);
   width: 750rpx;
   height: 150rpx;
+  top: var(--status-bar-height);
 }
 .nav-bar-userset-sublogo {
   margin-top: 55rpx;
@@ -127,24 +128,6 @@
   padding: 20rpx;
   margin: 20rpx 40rpx 40rpx 40rpx;
   border: 1rpx solid gray;
-}
-.confirm {
-  position: fixed;
-  bottom: 0rpx;
-}
-.confirmButton {
-  position: fixed;
-  bottom: 0rpx;
-  -webkit-align-content: center;
-  align-content: center;
-  width: 100%;
-  height: 80rpx;
-  color: #FFFFFF;
-  background-color: #DD524D;
-  font-size: 36rpx;
-  font-weight: 300;
-  border: hidden;
-  border-radius: 0rpx;
 }
 .confirm {
   position: fixed;

@@ -147,10 +147,13 @@
 				//uni.clearStorage();
 				let code = addSchedule(this.schedule);
 				let data = getAllSchedule();
-				console.log(JSON.stringify(data));
 				uni.navigateTo({
 					url:'/pages/index/index'
 				})
+				uni.showToast({
+					title: '新建成功',
+					duration: 1500
+				});
 			}
 		}
 	}
@@ -163,6 +166,7 @@
 		background-color: rgb(255,255,255);
 		width: 750upx;
 		height: 150upx;
+		top: var(--status-bar-height);
 	}
 	.nav-bar-userset-sublogo{
 		margin-top: 55upx;
@@ -259,22 +263,6 @@
 		border: 1upx solid gray;
 	}
 	.confirm{
-		position: fixed;
-		bottom: 0upx;
-	}
-	.confirmButton{
-		position: fixed;
-		bottom: 0upx;
-		align-content: center;
-		width: 100%;
-		height: 80upx;
-		color: #FFFFFF;
-		background-color: #DD524D;
-		font-size: 36upx;
-		font-weight: 300;
-		border: hidden;
-		border-radius: 0upx;
-	}.confirm{
 		position: fixed;
 		bottom: 0upx;
 	}

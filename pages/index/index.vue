@@ -136,14 +136,14 @@
 				timingFunction: 'ease',
 			})
 			for (var i = 0; i < this.itemProperty.length ;  i++) {
-				this.animationDataProcess = animation.translateX(this.process*1.5)
-																		.scaleX(this.process*3)
-																		.step()
-																		.export()
 // 				this.itemProperty[i].animationDataProcess = animation.translateX(this.itemProperty[i].process*1.5)
 // 														.scaleX(this.itemProperty[i].process*4.5)
 // 														.step()
 // 														.export()
+				this.itemProperty[i].animationDataProcess = animation.translateX(this.itemProperty[i].process*1.5)
+														.scaleX(this.itemProperty[i].process*3)
+														.step()
+														.export()
 			}
 			animation = uni.createAnimation({
 				delay: 300,
@@ -171,37 +171,38 @@
 		},
 		methods:{
 			getData: function(){
+				let backgroundColorlist = ["rgb(171,216,200)","rgb(254,225,160)","rgb(235,235,190)","rgb(200,220,200)"];
+				let tagColorlist = ["rgb(151,196,180)","rgb(234,205,140)","rgb(215,215,170)","rgb(180,200,180)"];
 				let data = getAllSchedule()
-				//console.log(JSON.stringify(data))
-				let temp = {
-					backgroundColor: "rgb(171,216,200)",
-					animationDataProcess: "",
-					animationDataPerson: "",
-					tagColor: "rgb(151,196,180)",
-				// 	itemDetail: false,
-				// 	tagAnimation: "",
-				// 	showAnimation: "",
-				// 	detailNote: "暂无备忘内容",
-				// 	tagItems:[
-				// 	{
-				// 		name: "大学物理学",
-				// 		weight: 10,
-				// 		nowTagColor: "",
-				// 		fontColor: ""
-				// 	},
-				// 					
-				// 	]
-				}
+// 				let temp = {
+// 					backgroundColor: "rgb(171,216,200)",
+// 					animationDataProcess: "",
+// 					animationDataPerson: "",
+// 					tagColor: "rgb(151,196,180)",
+// 				// 	itemDetail: false,
+// 				// 	tagAnimation: "",
+// 				// 	showAnimation: "",
+// 				// 	detailNote: "暂无备忘内容",
+// 				// 	tagItems:[
+// 				// 	{
+// 				// 		name: "大学物理学",
+// 				// 		weight: 10,
+// 				// 		nowTagColor: "",
+// 				// 		fontColor: ""
+// 				// 	},
+// 				// 					
+// 				// 	]
+// 				}
 				let _index = 0;
 				for (var item in data) {
 					this.itemProperty[_index] = {};
 					this.itemProperty[_index].id = item
 					this.itemProperty[_index].title = data[item].title;
 					this.itemProperty[_index].process = data[item].status.status;
-					this.itemProperty[_index].backgroundColor = "rgb(171,216,200)";
+					this.itemProperty[_index].backgroundColor = backgroundColorlist[_index%4];
 					this.itemProperty[_index].animationDataProcess = "";
 					this.itemProperty[_index].animationDataPerson = "";
-					this.itemProperty[_index].tagColor = "rgb(151,196,180)";
+					this.itemProperty[_index].tagColor = tagColorlist[_index%4];
 					if (data[item].type != 1){
 						this.itemProperty[_index].start = data[item].time.start;
 						this.itemProperty[_index].end = data[item].time.end;
@@ -411,6 +412,9 @@
 		color: rgb(255,255,255);
 		font-size:30upx;
 		font-weight: 1000;
+		width: 350upx;
+		height: 36upx;
+		overflow: hidden;
 	}
 	.top-line .precess-percent{
 		color: rgb(255,255,255);
@@ -419,8 +423,6 @@
 		margin-left: 550upx;
 		font-weight: 1000;
 	}
-	
-	
 	.all-process{
 		z-index: 10;
 		display: flex;

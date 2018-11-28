@@ -1,9 +1,9 @@
 <template>
 	<view class="newProgress">
 		<view class="nav-bar-userset">
-			<image src="/static/back-arrow.png" class="nav-bar-userset-back" @tap="backToIndex"></image>
+			<image src="/static/back-arrow.png" class="nav-bar-userset-back" @tap="navBack"></image>
 			<image src="/static/sub-logo.png" class="nav-bar-userset-sublogo"></image>
-			<view class="nav-bar-userset-add"></view>
+			<image src="/static/tick.png" class="nav-bar-userset-tick" @tap="backToIndex"></image>
 		</view>
 		<view class="time-process-block">
 			<view class="top-line" >
@@ -18,7 +18,7 @@
 				<view class="little-person" :animation="animationDataPerson">
 					<view class="chat-frame">
 						<view class=".chat-frame-content">{{schedule.status.toEnd}}</view>
-						<image src="/static/chat-frame.png" class="chat-frame-image"></image>
+						<image src="../../static/chat-gray.png" class="chat-frame-image"></image>
 					</view>
 					<image src="/static/little-person.png" class="little-person-image"/>
 				</view>
@@ -85,9 +85,9 @@
 			<button class="deleteButton" v-on:click="deleteSchedule">删除任务</button>
 			<view class="bottomView"></view>
 		</view>
-		<view class="confirm">
+		<!-- <view class="confirm">
 			<button class="confirmButton" v-on:click="backToIndex">保存并退出</button>
-		</view>
+		</view> -->
 	</view>
 </template>
 
@@ -157,11 +157,29 @@
 				//let code = changeSchedule(,this.schedule)
 				//console.log(JSON.stringify(code))
 			},
+			navBack: function(){
+				uni.showModal({
+					title: '提示',
+					content: '您还未保存，确定要退出吗？',
+					success: function (res) {
+						if (res.confirm) {
+							uni.navigateBack()
+							//console.log('点击确定')
+						} else if (res.cancel) {
+							//console.log('点击取消');
+						}
+					},
+				})
+			},
 			backToIndex: function(){
 				let status = changeSchedule(this.id,this.schedule)
-				console.log(JSON.stringify(status))
+				//console.log(JSON.stringify(status))
 				uni.navigateBack()
 				this.$bus.$emit('change')
+				uni.showToast({
+					title: '保存成功',
+					duration: 1500
+				});
 			},
 			deleteSchedule: function(){
 				var that = this
@@ -196,7 +214,7 @@
 		background-color: rgb(255,255,255);
 		width: 750upx;
 		height: 150upx;
-		top: var(--status-bar-height)
+		top: var(--status-bar-height);
 	}
 	.nav-bar-userset-sublogo{
 		margin-top: 55upx;
@@ -209,10 +227,10 @@
 		width: 25upx;
 		height: 40upx;
 	}
-	.nav-bar-userset-add{
+	.nav-bar-userset-tick{
 		margin-top: 55upx;
 		margin-right: 50upx;
-		width: 30upx;
+		width: 40upx;
 		height: 40upx;
 	}
 	.newProgress{
@@ -262,7 +280,7 @@
 		color: rgb(10,10,10);
 		display: inline-block;
 		font-size: 80upx;
-		margin: 0upx 0upx 40upx 0upx;
+		margin: 80upx 0upx 40upx 0upx;
 		font-weight: 1000;
 		color: #707070;
 	}

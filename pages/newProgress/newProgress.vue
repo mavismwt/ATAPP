@@ -11,7 +11,7 @@
 				placeholder-class="placeHolder" 
 				maxlength="6"
 				confirm-type="backToIndex"
-				v-model="title"
+				v-model="schedule.title"
 				:style="{borderBottomColor:color}"
 			/>
 		</view>
@@ -75,9 +75,9 @@
 					title:"",
 					type:2,
 					time:{
-						start:55,
-						now:53,
-						end:50,
+						start:"",
+						now:"",
+						end:"",
 					},
 					unit:"",
 					note:"",
@@ -116,6 +116,10 @@
 				uni.navigateTo({
 					url:'/pages/index/index'
 				})
+				uni.showToast({
+					title: '新建成功',
+					duration: 1500
+				});
 			}
 		}
 }

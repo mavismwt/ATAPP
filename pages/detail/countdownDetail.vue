@@ -1,10 +1,11 @@
 <template>
 	<view class="countDown">
 		<view class="nav-bar-userset">
-			<image src="/static/back-arrow.png" class="nav-bar-userset-back" @tap="backToIndex"></image>
+			<image src="/static/back-arrow.png" class="nav-bar-userset-back" @tap="navBack"></image>
 			<image src="/static/sub-logo.png" class="nav-bar-userset-sublogo"></image>
-			<view class="nav-bar-userset-add"></view>
+			<image src="/static/tick.png" class="nav-bar-userset-tick" @tap="backToIndex"></image>
 		</view>
+		<scroll-view class="main-view" scroll-y="true" :style="{ height: scrollHeight }">
 		<view class="time-process-block">
 			<view class="top-line" >
 				<view class="title-line">
@@ -17,8 +18,8 @@
 			<view class="all-process" >
 				<view class="little-person" :animation="animationDataPerson">
 					<view class="chat-frame">
-						<view class=".chat-frame-content">{{schedule.status.toEnd}}</view>
-						<image src="/static/chat-frame.png" class="chat-frame-image"></image>
+						<view class=".chat-frame-content">{{Ndate}}</view>
+						<image src="../../static/chat-gray.png" class="chat-frame-image"></image>
 					</view>
 					<image src="/static/little-person.png" class="little-person-image"/>
 				</view>
@@ -49,9 +50,10 @@
 			<view class="deleteButton" @tap="deleteSchedule">删除任务</view>
 			<view class="bottomView"></view>
 		</view>
-		<view class="confirm">
+		<!-- <view class="confirm">
 			<button class="confirmButton" v-on:click="backToIndex">保存并退出</button>
-		</view>
+		</view> -->
+				</scroll-view>
 	</view>
 </template>
 
@@ -67,6 +69,7 @@
 				process:0,
 				animationDataProcess:"",
 				animationDataPerson:"",
+				scrollHeight: "",
 				schedule:{
 					type:1,
 					title:"",
@@ -91,8 +94,9 @@
 					},
 					note:"",
 				},
-				Edate:"重新设定倒计时",
-				startDate: currentDate,
+				Edate:"",
+				Ndate:"",
+				startDate: "",
 				endDate: "2019-12-12",
 				bubbleProperty:[
 					{
@@ -110,11 +114,12 @@
 		onLoad() {
 			const scheduleID = sessionStorage.getItem('ID')
 			let item = getOneSchedule(scheduleID)
-			console.log(JSON.stringify(item))
+			//console.log(JSON.stringify(item))
 			this.id = scheduleID
 			this.schedule = item
 			this.process = this.schedule.status.status
 			this.Edate = this.schedule.time.end.year+"年"+this.schedule.time.end.month+"月"+this.schedule.time.end.day+"日"
+			this.Ndate = this.schedule.status.now.year+"."+this.schedule.status.now.month+"."+this.schedule.status.now.day
 		},
 		onReady() {
 			var animation = uni.createAnimation({
@@ -138,10 +143,28 @@
 			this.animationDataPerson = animation.translateX(this.process*3).step().export()
 		},
 		methods:{
+			navBack: function(){
+				uni.showModal({
+					title: '提示',
+					content: '您还未保存，确定要退出吗？',
+					success: function (res) {
+						if (res.confirm) {
+							uni.navigateBack()
+							//console.log('点击确定')
+						} else if (res.cancel) {
+							//console.log('点击取消');
+						}
+					},
+				})
+			},
 			backToIndex: function(){
 				let status = changeSchedule(this.id,this.schedule)
 				//console.log(JSON.stringify(status))
 				uni.navigateBack()
+				uni.showToast({
+					title: '保存成功',
+					duration: 1500
+				});
 				this.$bus.$emit('change')
 			},
 			bindPickerChange: function(e) {
@@ -210,6 +233,7 @@
 		background-color: rgb(255,255,255);
 		width: 750upx;
 		height: 150upx;
+		top: var(--status-bar-height);
 	}
 	.nav-bar-userset-sublogo{
 		margin-top: 55upx;
@@ -222,11 +246,18 @@
 		width: 25upx;
 		height: 40upx;
 	}
-	.nav-bar-userset-add{
+	.nav-bar-userset-tick{
 		margin-top: 55upx;
 		margin-right: 50upx;
-		width: 30upx;
+		width:40upx;
 		height: 40upx;
+	}
+	.main-view{
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		display: flex;
+		width: 750upx;
 	}
 	.time-process-block{
 		z-index: 10;
@@ -270,7 +301,7 @@
 		color: rgb(10,10,10);
 		display: inline-block;
 		font-size: 80upx;
-		margin: 40upx 0upx 0upx 0upx;
+		margin: 80upx 0upx 0upx 0upx;
 		font-weight: 1000;
 		color: #707070;
 	}
@@ -436,40 +467,7 @@
 	}
 	.bottomView{
 		width: 100%;
-		height: 100upx;
+		height: 0upx;
 		background-color: #FFFFFF;
 	}
-	.confirm{
-		position: fixed;
-		bottom: 0upx;
-	}
-	.confirmButton{
-		position: fixed;
-		bottom: 0upx;
-		align-content: center;
-		width: 100%;
-		height: 80upx;
-		color: #FFFFFF;
-		background-color: #DD524D;
-		font-size: 36upx;
-		font-weight: 300;
-		border: hidden;
-		border-radius: 0upx;
-	}.confirm{
-		position: fixed;
-		bottom: 0upx;
-	}
-	.confirmButton{
-		position: fixed;
-		bottom: 0upx;
-		align-content: center;
-		width: 100%;
-		height: 80upx;
-		color: #FFFFFF;
-		background-color: #DD524D;
-		font-size: 36upx;
-		font-weight: 300;
-		border: hidden;
-		border-radius: 0upx;
-	}	
 </style>

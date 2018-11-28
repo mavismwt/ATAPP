@@ -11,6 +11,7 @@
 				placeholder-class="placeHolder" 
 				maxlength="6"
 				confirm-type="done"
+				v-model="schedule.title"
 			/>
 		</view>
 		<view class="sectionView">
@@ -61,7 +62,7 @@
 				id:0,
 				showNote:false,
 				schedule : {
-					title:"",
+					title:"很长很长很长的名字",
 					type:3,
 					time:{
 						start:0,
@@ -69,17 +70,21 @@
 						end:1,
 					},
 					sectionData:[
+// 						{
+// 							index:0,
+// 							name:"阶段一",
+// 							isFinished:true,
+// 						},
+// 						{
+// 							index:1,
+// 							name:"阶段二",
+// 							isFinished:false,
+// 						},
 						{
 							index:0,
-							name:"阶段一",
-							isFinished:true,
-						},
-						{
-							index:1,
-							name:"阶段二",
+							name:"",
 							isFinished:false,
 						},
-						
 					],
 					note:"",
 				}
@@ -118,6 +123,10 @@
 				uni.navigateTo({
 					url:'/pages/index/index'
 				})
+				uni.showToast({
+					title: '新建成功',
+					duration: 1500
+				});
 			}
 		}
 	}

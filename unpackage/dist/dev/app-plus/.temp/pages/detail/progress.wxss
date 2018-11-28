@@ -24,10 +24,10 @@
   width: 25rpx;
   height: 40rpx;
 }
-.nav-bar-userset-add {
+.nav-bar-userset-tick {
   margin-top: 55rpx;
   margin-right: 50rpx;
-  width: 30rpx;
+  width: 40rpx;
   height: 40rpx;
 }
 .newProgress {
@@ -97,7 +97,7 @@
   color: rgb(10,10,10);
   display: inline-block;
   font-size: 80rpx;
-  margin: 0rpx 0rpx 40rpx 0rpx;
+  margin: 80rpx 0rpx 40rpx 0rpx;
   font-weight: 1000;
   color: #707070;
 }

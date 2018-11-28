@@ -1,9 +1,9 @@
 <template>
 	<view class="newProgressPlus">
 		<view class="nav-bar-userset">
-			<image src="/static/back-arrow.png" class="nav-bar-userset-back" @tap="backToIndex"></image>
+			<image src="/static/back-arrow.png" class="nav-bar-userset-back" @tap="navBack"></image>
 			<image src="/static/sub-logo.png" class="nav-bar-userset-sublogo"></image>
-			<view class="nav-bar-userset-add"></view>
+			<image src="/static/tick.png" class="nav-bar-userset-tick" @tap="backToIndex"></image>
 		</view>
 		<view class="time-process-block">
 			<view class="top-line" >
@@ -18,7 +18,7 @@
 				<view class="little-person" :animation="animationDataPerson">
 					<view class="chat-frame">
 						<view class=".chat-frame-content">{{schedule.status.toEnd}}</view>
-						<image src="/static/chat-frame.png" class="chat-frame-image"></image>
+						<image src="../../static/chat-gray.png" class="chat-frame-image"></image>
 					</view>
 					<image src="/static/little-person.png" class="little-person-image"/>
 				</view>
@@ -45,13 +45,13 @@
 					<image class="showStatus1"
 						v-if="item.isFinished"
 						src="../../static/wancheng-copy.png"
-						@tap="item.isFinished=!item.isFinished"
+						@tap="item.isFinished=!item.isFinished,isChanged=true"
 						v-model="item.isFinished"
 					></image>
 					<image class="showStatus0"
 						v-if="!item.isFinished"
 						src="../../static/yuanhuan.png"
-						@tap="item.isFinished=!item.isFinished"
+						@tap="item.isFinished=!item.isFinished,isChanged=true"
 						v-model="item.isFinished"
 					></image>
 				</view>
@@ -71,9 +71,9 @@
 			<view class="deleteButton" @tap="deleteSchedule">删除任务</view>
 			<view class="bottomView"></view>
 		</view>
-		<view class="confirm">
+		<!-- <view class="confirm">
 			<button class="confirmButton" v-on:click="backToIndex">保存并退出</button>
-		</view>
+		</view> -->
 	</view>
 </template>
 
@@ -88,6 +88,7 @@
 				animationDataProcess:"",
 				animationDataPerson:"",
 				showNote:true,
+				isChanged:false,
 				schedule: {
 					title:"",
 					type:3,
@@ -163,10 +164,28 @@
 				})
 				this.schedule.sectionData = data
 			},
+			navBack: function(){
+				uni.showModal({
+					title: '提示',
+					content: '您还未保存，确定要退出吗？',
+					success: function (res) {
+						if (res.confirm) {
+							uni.navigateBack()
+							//console.log('点击确定')
+						} else if (res.cancel) {
+							//console.log('点击取消');
+						}
+					},
+				})
+			},
 			backToIndex: function(){
 				let status = changeSchedule(this.id,this.schedule)
 				uni.navigateBack()
 				this.$bus.$emit('change')
+				uni.showToast({
+					title: '保存成功',
+					duration: 1500
+				});
 			},
 			deleteSchedule: function(){
 				var that = this
@@ -180,6 +199,10 @@
 								url:'/pages/index/index'
 							})
 							//console.log('点击确定')
+							uni.showToast({
+								title:'删除成功',
+								duration:1000,
+							})
 						} else if (res.cancel) {
 							//console.log('点击取消');
 						}
@@ -246,7 +269,7 @@
 		color: rgb(10,10,10);
 		display: inline-block;
 		font-size: 80upx;
-		margin: 40upx 0upx 0upx 0upx;
+		margin: 80upx 0upx 0upx 0upx;
 		font-weight: 1000;
 		color: #707070;
 	}
@@ -434,10 +457,10 @@
 		width: 25upx;
 		height: 40upx;
 	}
-	.nav-bar-userset-add{
+	.nav-bar-userset-tick{
 		margin-top: 55upx;
 		margin-right: 50upx;
-		width: 30upx;
+		width: 40upx;
 		height: 40upx;
 	}
 	.placeHolder{
