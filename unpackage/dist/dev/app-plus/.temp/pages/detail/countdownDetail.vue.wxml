@@ -1,16 +1,16 @@
 <template name="c6e4037e">
   <view class="_view data-v-0d850c10 countDown">
     <view class="_view data-v-0d850c10 nav-bar-userset">
-      <image src="/static/back-arrow.png" class="_image data-v-0d850c10 nav-bar-userset-back" bindtap="handleProxy" data-eventid="{{'Wht-0'}}" data-comkey="{{$k}}"></image>
+      <image src="/static/back-arrow.png" class="_image data-v-0d850c10 nav-bar-userset-back" bindtap="handleProxy" data-eventid="{{'OD7-0'}}" data-comkey="{{$k}}"></image>
       <image src="/static/sub-logo.png" class="_image data-v-0d850c10 nav-bar-userset-sublogo"></image>
-      <image src="/static/tick.png" class="_image data-v-0d850c10 nav-bar-userset-tick" bindtap="handleProxy" data-eventid="{{'gGJ-1'}}" data-comkey="{{$k}}"></image>
+      <image src="/static/tick.png" class="_image data-v-0d850c10 nav-bar-userset-tick" bindtap="handleProxy" data-eventid="{{'5df-1'}}" data-comkey="{{$k}}"></image>
     </view>
     <scroll-view class="_scroll-view data-v-0d850c10 main-view" scroll-y="true" style=" {{('height:' + scrollHeight + ';')}}">
       <view class="_view data-v-0d850c10 time-process-block">
         <view class="_view data-v-0d850c10 top-line">
           <view class="_view data-v-0d850c10 title-line">
             <input class="_input data-v-0d850c10 red-point" />
-            <input class="_input data-v-0d850c10 title" value="{{schedule.title}}" bindinput="handleProxy" data-eventid="{{'i5J-2'}}" data-comkey="{{$k}}" />
+            <input class="_input data-v-0d850c10 title" value="{{schedule.title}}" bindinput="handleProxy" maxlength="6" data-eventid="{{'UYE-2'}}" data-comkey="{{$k}}" />
           </view>
           <view class="_view data-v-0d850c10 time-name">{{title}}</view>
           <view class="_view data-v-0d850c10 precess-percent">{{process}}%</view>
@@ -29,21 +29,21 @@
           </view>
         </view>
       </view>
-      <picker mode="date" value="{{date}}" start="{{startDate}}" end="{{endDate}}" bindchange="handleProxy" data-eventid="{{'MD3-3'}}" data-comkey="{{$k}}" class="_picker data-v-0d850c10">
+      <picker mode="date" value="{{date}}" start="{{startDate}}" end="{{endDate}}" bindchange="handleProxy" data-eventid="{{'1uK-3'}}" data-comkey="{{$k}}" class="_picker data-v-0d850c10">
         <view class="_view data-v-0d850c10 Edate">{{Edate}}</view>
       </picker>
       <view class="_view data-v-0d850c10 time-picker">
-        <picker mode="date" value="{{date}}" start="{{startDate}}" end="{{endDate}}" bindchange="handleProxy" data-eventid="{{'wCG-4'}}" data-comkey="{{$k}}" class="_picker data-v-0d850c10">
+        <picker mode="date" value="{{date}}" start="{{startDate}}" end="{{endDate}}" bindchange="handleProxy" data-eventid="{{'9ej-4'}}" data-comkey="{{$k}}" class="_picker data-v-0d850c10">
           <view class="_view data-v-0d850c10 time-picker-view">更改倒计日</view>
         </picker>
       </view>
       <view class="_view data-v-0d850c10 addNotes">
         <view class="_view data-v-0d850c10">
-          <textarea class="_textarea data-v-0d850c10 Note" value="{{schedule.note}}" bindinput="handleProxy" placeholder="此处输入备注" data-eventid="{{'cZ2-5'}}" data-comkey="{{$k}}" />
+          <textarea class="_textarea data-v-0d850c10 Note" value="{{schedule.note}}" bindinput="handleProxy" placeholder="此处输入备注" data-eventid="{{'x16-5'}}" data-comkey="{{$k}}" />
         </view>
       </view>
       <view class="_view data-v-0d850c10 deleteView">
-        <view class="_view data-v-0d850c10 deleteButton" bindtap="handleProxy" data-eventid="{{'wR8-6'}}" data-comkey="{{$k}}">删除任务</view>
+        <view class="_view data-v-0d850c10 deleteButton" bindtap="handleProxy" data-eventid="{{'JQX-6'}}" data-comkey="{{$k}}">删除任务</view>
         <view class="_view data-v-0d850c10 bottomView"></view>
       </view>
     </scroll-view>

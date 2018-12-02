@@ -1,31 +1,31 @@
 <template name="6ad50cfe">
   <view class="_view data-v-18bfb90f newProgress">
     <view class="_view data-v-18bfb90f nav-bar-userset">
-      <image src="/static/back-arrow.png" class="_image data-v-18bfb90f nav-bar-userset-back" bindtap="handleProxy" data-eventid="{{'cju-0'}}" data-comkey="{{$k}}"></image>
+      <image src="/static/back-arrow.png" class="_image data-v-18bfb90f nav-bar-userset-back" bindtap="handleProxy" data-eventid="{{'lun-0'}}" data-comkey="{{$k}}"></image>
       <image src="/static/sub-logo.png" class="_image data-v-18bfb90f nav-bar-userset-sublogo"></image>
       <view class="_view data-v-18bfb90f nav-bar-userset-add"></view>
     </view>
     <view class="_view data-v-18bfb90f inputTitle">
-      <input class="_input data-v-18bfb90f inputForm" placeholder="输入TP名称" placeholder-class="placeHolder" maxlength="6" confirm-type="backToIndex" value="{{schedule.title}}" bindinput="handleProxy" data-eventid="{{'3m4-1'}}" data-comkey="{{$k}}" style=" {{('border-bottom-color:' + color + ';')}}"
+      <input class="_input data-v-18bfb90f inputForm" placeholder="输入TP名称" placeholder-class="placeHolder" maxlength="6" confirm-type="backToIndex" value="{{schedule.title}}" bindinput="handleProxy" data-eventid="{{'P5b-1'}}" data-comkey="{{$k}}" style=" {{('border-bottom-color:' + color + ';')}}"
       />
     </view>
     <view class="_view data-v-18bfb90f inputProgress">
-      <input class="_input data-v-18bfb90f start" value="{{schedule.time.start}}" bindinput="handleProxy" type="number" placeholder="开始" placeholder-class="placeHolder" data-eventid="{{'CFI-2'}}" data-comkey="{{$k}}" />
-      <input class="_input data-v-18bfb90f now" value="{{schedule.time.now}}" bindinput="handleProxy" type="number" placeholder="现在" placeholder-class="placeHolder" data-eventid="{{'iCi-3'}}" data-comkey="{{$k}}" />
-      <input class="_input data-v-18bfb90f end" value="{{schedule.time.end}}" bindinput="handleProxy" type="number" placeholder="结束" placeholder-class="placeHolder" data-eventid="{{'l2Y-4'}}" data-comkey="{{$k}}" />
+      <input class="_input data-v-18bfb90f start" value="{{schedule.time.start}}" bindinput="handleProxy" type="number" placeholder="开始" placeholder-class="placeHolder" data-eventid="{{'AwJ-2'}}" data-comkey="{{$k}}" />
+      <input class="_input data-v-18bfb90f now" value="{{schedule.time.now}}" bindinput="handleProxy" type="number" placeholder="现在" placeholder-class="placeHolder" data-eventid="{{'WIk-3'}}" data-comkey="{{$k}}" />
+      <input class="_input data-v-18bfb90f end" value="{{schedule.time.end}}" bindinput="handleProxy" type="number" placeholder="结束" placeholder-class="placeHolder" data-eventid="{{'6Rs-4'}}" data-comkey="{{$k}}" />
     </view>
     <view class="_view data-v-18bfb90f inputUnit">
-      <input class="_input data-v-18bfb90f unit" placeholder="单位" placeholder-class="placeHolder" value="{{schedule.unit}}" bindinput="handleProxy" data-eventid="{{'9N1-5'}}" data-comkey="{{$k}}" />
+      <input class="_input data-v-18bfb90f unit" placeholder="单位" placeholder-class="placeHolder" value="{{schedule.unit}}" bindinput="handleProxy" data-eventid="{{'acA-5'}}" data-comkey="{{$k}}" />
     </view>
     <view class="_view data-v-18bfb90f addNotes">
-      <view class="_view data-v-18bfb90f addButton" bindtap="handleProxy" data-eventid="{{'IHB-6'}}" data-comkey="{{$k}}"> 添加备注 </view>
+      <view class="_view data-v-18bfb90f addButton" bindtap="handleProxy" data-eventid="{{'Ml8-6'}}" data-comkey="{{$k}}"> 添加备注 </view>
       <view class="_view data-v-18bfb90f">
-        <textarea class="_textarea data-v-18bfb90f Note" wx:if="{{showNote}}" value="{{schedule.note}}" bindinput="handleProxy" placeholder="此处输入备注" data-eventid="{{'wB3-7'}}" data-comkey="{{$k}}" />
+        <textarea class="_textarea data-v-18bfb90f Note" wx:if="{{showNote}}" value="{{schedule.note}}" bindinput="handleProxy" placeholder="此处输入备注" data-eventid="{{'y23-7'}}" data-comkey="{{$k}}" />
       </view>
     </view>
     <view class="_view data-v-18bfb90f"></view>
     <view class="_view data-v-18bfb90f confirm">
-      <button class="_button data-v-18bfb90f confirmButton" bindtap="handleProxy" data-eventid="{{'uxy-8'}}" data-comkey="{{$k}}">完成</button>
+      <button class="_button data-v-18bfb90f confirmButton" bindtap="handleProxy" data-eventid="{{'YCP-8'}}" data-comkey="{{$k}}">完成</button>
     </view>
   </view>
 </template>

@@ -9,7 +9,7 @@
 			<view class="top-line" >
 				<view class="title-line">
 					<input class="red-point" >
-					<input class="title" v-model="schedule.title">
+					<input class="title" v-model="schedule.title" maxlength="6">
 				</view>
 				<view class="time-name">{{title}}</view>
 				<view class="precess-percent">{{process}}%</view>
@@ -126,20 +126,20 @@
 				duration: 500,
 				timingFunction: 'ease',
 			})
-			this.animationDataProcess = animation.translateX(this.process*1.5)
-																	.scaleX(this.process*3)
+			this.animationDataProcess = animation.translateX(this.process*1.4)
+																	.scaleX(this.process*2.8)
 																	.step()
 																	.export()
-			// 			this.animationDataProcess = animation.translateX(this.process*2)
-			// 														.scaleX(this.process*6.3)
-			//  														.step()
-			//  														.export()
+// 						this.animationDataProcess = animation.translateX(this.process*2)
+// 																	.scaleX(this.process*6.3)
+// 			 														.step()
+// 			 														.export()
 			animation = uni.createAnimation({
 				delay: 300,
 				duration: 500,
 				timingFunction: 'ease',
 			})
-			this.animationDataPerson = animation.translateX(this.process*3).step().export()
+			this.animationDataPerson = animation.translateX(this.process*2.8).step().export()
 		},
 		onUnload() {
 			let status = changeSchedule(this.id,this.schedule)
@@ -149,7 +149,7 @@
 			editProgress: function(){
 				let data = this.schedule.time
 				if (data.end>data.start&&data.now<data.end) {
-					data.now=data.now+1
+					data.now=parseInt(data.now)+parseInt(1)
 				} else if (data.end<data.start&&data.now>data.end){
 					data.now=data.now-1
 				}

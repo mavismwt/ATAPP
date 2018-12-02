@@ -13,12 +13,14 @@
 							:key="index" 
 							>
 						<view class="time-process-block" :style="{ backgroundColor: item.backgroundColor }">
-							<view class="top-line" @tap="changeDetailShow" :data-id="index">
-								<view class="red-point"></view>
-								<view class="time-name">{{item.title}}</view>
+							<view class="top-line" @tap="changeDetailShow" :data-id="index" @longpress="deleteSchedule">
+								<view class="line-view">
+									<view class="red-point"></view>
+									<view class="time-name" style="width: 6rem;">{{item.title}}</view>
+								</view>
 								<view class="precess-percent">{{ item.process }}%</view>
 							</view>
-							<view class="all-process" @tap="changeDetailShow" :data-id="index">
+							<view class="all-process" @tap="changeDetailShow" :data-id="index" @longpress="deleteSchedule">
 								<view class="little-person" :animation="item.animationDataPerson">
 									<view class="chat-frame">
 										<view class=".chat-frame-content">{{item.now}}</view>
@@ -67,11 +69,13 @@
 							</view>
 						</view>
 					</view>
+					<view class="bottomView">
+					</view>
 				</scroll-view>
 			</swiper-item>
-			<swiper-item>
+			<!-- <swiper-item>
 				<memo></memo>
-			</swiper-item>
+			</swiper-item> -->
 		</swiper>
 	</view>
 </template>
@@ -91,7 +95,6 @@
 					autoplay: false,
 					duration: 300
 				},
-				
 				unit: "upx",
 				scrollHeight: "",
 				itemProperty:[
@@ -136,14 +139,14 @@
 				timingFunction: 'ease',
 			})
 			for (var i = 0; i < this.itemProperty.length ;  i++) {
-// 				this.itemProperty[i].animationDataProcess = animation.translateX(this.itemProperty[i].process*1.5)
-// 														.scaleX(this.itemProperty[i].process*4.5)
-// 														.step()
-// 														.export()
 				this.itemProperty[i].animationDataProcess = animation.translateX(this.itemProperty[i].process*1.5)
-														.scaleX(this.itemProperty[i].process*3)
+														.scaleX(this.itemProperty[i].process*4.5)
 														.step()
 														.export()
+// 				this.itemProperty[i].animationDataProcess = animation.translateX(this.itemProperty[i].process*1.4)
+// 														.scaleX(this.itemProperty[i].process*2.8)
+// 														.step()
+// 														.export()
 			}
 			animation = uni.createAnimation({
 				delay: 300,
@@ -203,16 +206,39 @@
 					this.itemProperty[_index].animationDataProcess = "";
 					this.itemProperty[_index].animationDataPerson = "";
 					this.itemProperty[_index].tagColor = tagColorlist[_index%4];
-					if (data[item].type != 1){
+					if(data[item].type == 1){
+						this.itemProperty[_index].end = data[item].time.end.month+'.'+data[item].time.end.day;
+						this.itemProperty[_index].now = data[item].status.now.month+'.'+data[item].status.now.day;
+						this.itemProperty[_index].start = data[item].time.start.month+'.'+data[item].time.start.day;
+					} else if(data[item].type == 2){
 						this.itemProperty[_index].start = data[item].time.start;
 						this.itemProperty[_index].end = data[item].time.end;
 						this.itemProperty[_index].now = data[item].time.now;
-					}else {
-						//this.itemProperty[_index].start = data[item].time.start.month+'.'+data[item].time.start.day;
-						this.itemProperty[_index].end = data[item].time.end.year+"\n"+data[item].time.end.month+'.'+data[item].time.end.day;
-						this.itemProperty[_index].now = data[item].status.now.year+'.'+data[item].status.now.month+'.'+data[item].status.now.day;
-						this.itemProperty[_index].start = data[item].time.start.year+'\n'+data[item].time.start.month+'.'+data[item].time.start.day;
+					} else if(data[item].type == 3){
+						this.itemProperty[_index].start = data[item].time.start;
+						this.itemProperty[_index].end = data[item].time.end;
+						this.itemProperty[_index].now = data[item].time.end-data[item].status.toEnd;
 					}
+// 					switch (data[item].type){
+// 						case 1:
+// 							//this.itemProperty[_index].start = data[item].time.start.month+'.'+data[item].time.start.day;
+// 							this.itemProperty[_index].end = data[item].time.end.month+'.'+data[item].time.end.day;
+// 							this.itemProperty[_index].now = data[item].status.now.month+'.'+data[item].status.now.day;
+// 							this.itemProperty[_index].start = data[item].time.start.month+'.'+data[item].time.start.day;
+// 							break;
+// 						case 2:
+// 							this.itemProperty[_index].start = data[item].time.start;
+// 							this.itemProperty[_index].end = data[item].time.end;
+// 							this.itemProperty[_index].now = data[item].time.now;
+// 							break;
+// 						case 3:
+// 							this.itemProperty[_index].start = data[item].time.start;
+// 							this.itemProperty[_index].end = data[item].time.end;
+// 							this.itemProperty[_index].now = data[item].time.end-data[item].status.toEnd;
+// 							break;
+// 						default:
+// 							break;
+//					}
 					_index += 1;
 				}
 				return data;
@@ -252,24 +278,24 @@
 				const orderData = this.itemProperty[parseInt(e.currentTarget.dataset.id)].id
 				sessionStorage.setItem('ID', orderData)
 				let data = getOneSchedule(this.itemProperty[parseInt(e.currentTarget.dataset.id)].id)
-				switch (data.type){
-					case 1:
+				if (data.type == 1) {
+					if (data.isUserDefined) {
+						uni.navigateTo({
+							url:'/pages/detail/userDefinedDetail'
+						})
+					} else{
 						uni.navigateTo({
 							url:'/pages/detail/countdownDetail'
 						})
-						break;
-					case 2:
-						uni.navigateTo({
-							url:'/pages/detail/progress'
-						})
-						break;
-					case 3:
-						uni.navigateTo({
-							url:'/pages/detail/progressWithSection'
-						})
-						break;
-					default:
-						break;
+					}
+				} else if (data.type == 2){
+					uni.navigateTo({
+						url:'/pages/detail/progress'
+					})
+				} else if (data.type == 3){
+					uni.navigateTo({
+						url:'/pages/detail/progressWithSection'
+					})
 				}
 // 				var that = this
 // 				if(this.itemProperty[parseInt(e.currentTarget.dataset.id)].itemDetail == false){
@@ -281,6 +307,10 @@
 // 					that.itemProperty[parseInt(e.currentTarget.dataset.id)].itemDetail = false
 // 				}
 			},
+			deleteSchedule: function(e){
+				let code = deleteSchedule(e.currentTarget.dataset.id)
+				console.log(JSON.stringify(code))
+			}
 		}
 	}
 </script>
@@ -395,12 +425,14 @@
 	.top-line{
 		z-index: 10;
 		display: flex;
-		align-items: center;
+		justify-content: space-between;
+		align-items: left;
 		height: 36upx;
 		margin: 35upx 0upx 0upx 30upx;
 	}
 	.top-line .red-point{
 		display: inline-block;
+		margin-top: 15upx;
 		width: 10upx;
 		height: 10upx;
 		border-radius: 5upx;
@@ -408,11 +440,11 @@
 	}
 	.top-line .time-name{
 		display: inline-block;
-		margin-left: 15upx;
+		margin-left: 15upx; 
 		color: rgb(255,255,255);
 		font-size:30upx;
 		font-weight: 1000;
-		width: 350upx;
+		width: 300upx;
 		height: 36upx;
 		overflow: hidden;
 	}
@@ -420,7 +452,6 @@
 		color: rgb(255,255,255);
 		display: inline-block;
 		font-size:30upx;
-		margin-left: 550upx;
 		font-weight: 1000;
 	}
 	.all-process{
@@ -442,6 +473,7 @@
 		align-items: center;
 		flex-direction: column;
 		width: 100upx;
+		/* margin: 0upx 0upx 0upx 35upx; */
 		margin: 0upx 0upx 0upx 45upx;
 	}
 	.little-person .little-person-image{
@@ -493,16 +525,19 @@
 	}
 	.process-bar .blank-bar{
 		display: inline-block;
-		margin: 0upx 20upx 0upx 25upx;
+		/* argin: 0upx 10upx 0upx 10upx; */
+		margin: 0upx 10upx 0upx 25upx;
 		height: 18upx;
-		width: 535upx;
+		width: 580upx;
+		/* 545 */
 		background-color: rgb(255,255,255);
 	}
 	.process-bar .finish-bar{
 		flex-wrap: nowrap;
 		align-items: flex-start;
 		position: relative;
-		right: 615upx;
+		right: 638upx;
+		/* 615 */
 		margin: 0upx 0upx 0upx 0upx;
 		height: 18upx;
 		width: 1upx;
@@ -566,5 +601,10 @@
 		align-items: flex-start;
 		flex-direction: row;
 		flex-wrap: nowrap;
+	}
+	.bottomView{
+		width: 100%;
+		height: 120upx;
+		background-color: rgb(255,240,240);
 	}
 </style>

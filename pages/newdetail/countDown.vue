@@ -5,6 +5,7 @@
 			<image src="/static/sub-logo.png" class="nav-bar-userset-sublogo"></image>
 			<view class="nav-bar-userset-add"></view>
 		</view>
+		<view class="main-view">
 		<view class="inputFrame">
 			<input class="inputForm" 
 				placeholder="输入TP名称" 
@@ -39,6 +40,7 @@
 				</textarea>
 			</view>
 		</view>
+		</view>
 		<view class="confirm">
 			<button class="confirmButton" v-on:click="done">完成</button>
 		</view>
@@ -55,6 +57,7 @@
 			return {
 				schedule:{
 					type:1,
+					isUserDefined:false,
 					title:"",
 					time:{
 						start:{
@@ -161,6 +164,7 @@
 
 <style>
 	.nav-bar-userset{
+		position: sticky;
 		justify-content: space-between;
 		display: flex;
 		background-color: rgb(255,255,255);
@@ -188,6 +192,7 @@
 	.inputTitle{
 		width: 100%;
 		flex-direction: column;
+		margin-top: 80upx;
 	}
 	.inputForm{
 		text-align: center;
@@ -235,7 +240,6 @@
 		border-radius: 5upx;
 	}
 	.countDown {
-		position: fixed;
 		display: flex;
 		flex-direction: column;
 		top: var(--status-bar-height);
@@ -279,4 +283,13 @@
 		border: hidden;
 		border-radius: 0upx;
 	}	
+	.main-view{
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		display: flex;
+		width: 750upx;
+		height: 1080upx;
+		/* background-color: rgb(255,240,240,0.8); */
+	}
 </style>

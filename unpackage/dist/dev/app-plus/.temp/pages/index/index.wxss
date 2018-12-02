@@ -175,14 +175,18 @@ to {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-box-align: left;
+  -webkit-align-items: left;
+  align-items: left;
   height: 36rpx;
   margin: 35rpx 0rpx 0rpx 30rpx;
 }
 .top-line .red-point {
   display: inline-block;
+  margin-top: 15rpx;
   width: 10rpx;
   height: 10rpx;
   border-radius: 5rpx;
@@ -194,7 +198,7 @@ to {
   color: rgb(255,255,255);
   font-size: 30rpx;
   font-weight: 1000;
-  width: 350rpx;
+  width: 300rpx;
   height: 36rpx;
   overflow: hidden;
 }
@@ -202,7 +206,6 @@ to {
   color: rgb(255,255,255);
   display: inline-block;
   font-size: 30rpx;
-  margin-left: 550rpx;
   font-weight: 1000;
 }
 .all-process {
@@ -297,9 +300,9 @@ to {
 }
 .process-bar .blank-bar {
   display: inline-block;
-  margin: 0rpx 20rpx 0rpx 25rpx;
+  margin: 0rpx 10rpx 0rpx 25rpx;
   height: 18rpx;
-  width: 535rpx;
+  width: 580rpx;
   background-color: rgb(255,255,255);
 }
 .process-bar .finish-bar {
@@ -309,7 +312,7 @@ to {
   -webkit-align-items: flex-start;
   align-items: flex-start;
   position: relative;
-  right: 615rpx;
+  right: 638rpx;
   margin: 0rpx 0rpx 0rpx 0rpx;
   height: 18rpx;
   width: 1rpx;
@@ -387,6 +390,11 @@ to {
   flex-direction: row;
   -webkit-flex-wrap: nowrap;
   flex-wrap: nowrap;
+}
+.bottomView {
+  width: 100%;
+  height: 120rpx;
+  background-color: rgb(255,240,240);
 }
 .memo {
   width: 100%;

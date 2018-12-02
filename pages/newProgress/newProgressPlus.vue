@@ -15,7 +15,7 @@
 			/>
 		</view>
 		<view class="sectionView">
-			<!-- <view class="addASection" @tap="add">添加阶段+</view> -->
+			<view class="addASection" @tap="add">添加阶段</view>
 			<view class="sectionCell" 
 			v-for="item in schedule.sectionData"
 			:key="item.index"
@@ -60,9 +60,10 @@
 		data() {
 			return {
 				id:0,
+				number:0,
 				showNote:false,
 				schedule : {
-					title:"很长很长很长的名字",
+					title:"",
 					type:3,
 					time:{
 						start:0,
@@ -93,25 +94,27 @@
 		},
 		methods:{
 			add: function(){
+				this.number = this.number+1
 				this.schedule.time.end = this.schedule.time.end+1
-				this.schedule.sectionData.push({index:this.schedule.time.end,name:"",isFinished:false})
+				this.schedule.sectionData.push({index:this.number,name:"",isFinished:false})
 				//console.log(JSON.stringify(this.sectionData))
 			},
 			deleteSection: function(e){
-				let data = this.schedule.sectionData
+				var that = this
 				uni.showModal({
 					title: '提示',
 					content: '确定要删除该阶段吗？',
 					success: function (res) {
 						if (res.confirm) {
-							data.splice(e.currentTarget.dataset.id,1)
-							//console.log('点击确定')
+							that.schedule.sectionData.splice(e.currentTarget.dataset.id,1)
+							//data.splice(e.currentTarget.dataset.id,1)
+							that.schedule.time.end = that.schedule.time.end-1
+							console.log(that.schedule.time.end)
 						} else if (res.cancel) {
 							//console.log('点击取消');
 						}
 					},
 				})
-				this.schedule.sectionData = data
 			},
 			backToIndex: function(){
 				uni.navigateBack()
@@ -137,7 +140,7 @@
 		position: sticky;
 		justify-content: space-between;
 		display: flex;
-		background-color: rgb(255,255,255);
+		background-color: rgb(250,255,255);
 		width: 750upx;
 		height: 150upx;
 		top: var(--status-bar-height)
@@ -163,6 +166,7 @@
 		flex-direction: column;
 		width: 100%;
 		height: 100%;
+		/* background-color: rgb(250,240,240); */
 	}
 	.inputTitle{
 		width: 100%;
@@ -183,8 +187,13 @@
 		flex-direction: column;
 		margin-top: 40upx;
 	}
+	.addASection{
+		margin-left: 300upx;
+		margin-bottom: 40upx;
+	}
 	.sectionCell{
 		flex-direction: row;
+		height: 80upx;
 	}
 	.addSection{
 		text-align: center;

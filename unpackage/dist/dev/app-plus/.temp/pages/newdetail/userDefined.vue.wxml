@@ -1,37 +1,39 @@
 <template name="44d02913">
   <view class="_view data-v-16e8a564 userDefined">
     <view class="_view data-v-16e8a564 nav-bar-userset">
-      <image src="/static/back-arrow.png" class="_image data-v-16e8a564 nav-bar-userset-back" bindtap="handleProxy" data-eventid="{{'j2k-0'}}" data-comkey="{{$k}}"></image>
+      <image src="/static/back-arrow.png" class="_image data-v-16e8a564 nav-bar-userset-back" bindtap="handleProxy" data-eventid="{{'v7e-0'}}" data-comkey="{{$k}}"></image>
       <image src="/static/sub-logo.png" class="_image data-v-16e8a564 nav-bar-userset-sublogo"></image>
       <view class="_view data-v-16e8a564 nav-bar-userset-add"></view>
     </view>
     <view class="_view data-v-16e8a564 inputFrame">
-      <view class="_view data-v-16e8a564">
-        <input class="_input data-v-16e8a564 inputForm" placeholder="输入TP名称" placeholder-class="placeHolder" maxlength="6" confirm-type="done" value="{{title}}" bindinput="handleProxy" data-eventid="{{'ZRX-1'}}" data-comkey="{{$k}}" />
-      </view>
-      <view class="_view data-v-16e8a564 time-picker">
-        <picker mode="date" value="{{date}}" start="{{schedule.startDate}}" end="{{schedule.endDate}}" bindchange="handleProxy" data-eventid="{{'qg8-2'}}" data-comkey="{{$k}}" class="_picker data-v-16e8a564">
-          <view class="_view data-v-16e8a564 time-picker-view">{{Sdate}}</view>
-        </picker>
-        <picker mode="date" value="{{date}}" start="{{Sdate}}" end="{{endDate}}" bindchange="handleProxy" disabled="{{isDisabled}}" data-eventid="{{'2Hf-3'}}" data-comkey="{{$k}}" class="_picker data-v-16e8a564">
-          <view class="_view data-v-16e8a564 time-picker-view">{{Edate}}</view>
-        </picker>
-      </view>
+      <input class="_input data-v-16e8a564 inputForm" placeholder="输入TP名称" placeholder-class="placeHolder" maxlength="6" confirm-type="done" value="{{schedule.title}}" bindinput="handleProxy" data-eventid="{{'mWZ-1'}}" data-comkey="{{$k}}" />
+    </view>
+    <picker mode="date" value="{{date}}" start="{{startDate}}" end="{{endDate}}" bindchange="handleProxy" data-eventid="{{'VUh-2'}}" data-comkey="{{$k}}" class="_picker data-v-16e8a564">
+      <view class="_view data-v-16e8a564 Edate">{{Edate}}</view>
+    </picker>
+    <view class="_view data-v-16e8a564 time-picker">
+      <picker mode="date" value="{{date}}" start="{{startDate}}" end="{{endDate}}" bindchange="handleProxy" data-eventid="{{'gh8-3'}}" data-comkey="{{$k}}" class="_picker data-v-16e8a564">
+        <view class="_view data-v-16e8a564 time-picker-view">设定倒计日</view>
+      </picker>
     </view>
     <view class="_view data-v-16e8a564 sectionView">
-      <view class="_view data-v-16e8a564 addASection" bindtap="handleProxy" data-eventid="{{'lml-4'}}" data-comkey="{{$k}}">添加阶段+</view>
-      <view class="_view data-v-16e8a564 sectionCell" wx:key="item.index" key="{{item.index}}" wx:for="{{schedule.sectionData}}" wx:for-index="index" wx:for-item="item">
-        <input class="_input data-v-16e8a564 inputSectionName" placeholder="输入阶段名称" placeholder-style="placeHolder" confirm-type="Next" value="{{item.name}}" bindinput="handleProxy" bindkeyup="handleProxy" data-eventid="{{'bDF-5-'+index}}" data-comkey="{{$k}}"
+      <view class="_view data-v-16e8a564 sectionCell" wx:key="item.index" key="{{item.index}}" bindlongpress="handleProxy" data-id="{{item.index}}" data-eventid="{{'N2p-6-'+index}}" data-comkey="{{$k}}" wx:for="{{schedule.sectionData}}" wx:for-index="index"
+        wx:for-item="item">
+        <input class="_input data-v-16e8a564 inputSectionName" placeholder="输入阶段名称" placeholder-style="placeHolder" confirm-type="Next" value="{{item.name}}" bindinput="handleProxy" bindkeyup="handleProxy" data-eventid="{{'a72-4-'+index}}" data-comkey="{{$k}}"
         />
-        <button class="_button data-v-16e8a564 setStatus" bindtap="handleProxy" value="{{item.isFinished}}" bindchange="handleProxy" data-eventid="{{'Zfj-6-'+index}}" data-comkey="{{$k}}">{{item.isFinished}}</button>
+        <view class="_view data-v-16e8a564 addSection">
+          <image src="../../static/add1.png" class="_image data-v-16e8a564 addSectionImg" bindtap="handleProxy" data-eventid="{{'uBM-5-'+index}}" data-comkey="{{$k}}"></image>
+        </view>
       </view>
     </view>
     <view class="_view data-v-16e8a564 addNotes">
-      <view class="_view data-v-16e8a564 addButton" wx:if="{{!showNote}}" bindtap="handleProxy" value="{{schedule.note}}" bindchange="handleProxy" data-eventid="{{'gJQ-7'}}" data-comkey="{{$k}}"> 显示备注 </view>
-      <view class="_view data-v-16e8a564 addButton" wx:if="{{showNote}}" bindtap="handleProxy" data-eventid="{{'PQs-8'}}" data-comkey="{{$k}}"> 收起备注 </view>
+      <view class="_view data-v-16e8a564 addButton" bindtap="handleProxy" data-eventid="{{'olA-7'}}" data-comkey="{{$k}}"> 添加备注 </view>
       <view class="_view data-v-16e8a564">
-        <textarea class="_textarea data-v-16e8a564 Note" wx:if="{{showNote}}" placeholder="此处输入备注" />
+        <textarea class="_textarea data-v-16e8a564 Note" wx:if="{{showNote}}" value="{{schedule.note}}" bindinput="handleProxy" placeholder="此处输入备注" data-eventid="{{'CaY-8'}}" data-comkey="{{$k}}" />
       </view>
+    </view>
+    <view class="_view data-v-16e8a564 confirm">
+      <button class="_button data-v-16e8a564 confirmButton" bindtap="handleProxy" data-eventid="{{'L3G-9'}}" data-comkey="{{$k}}">完成</button>
     </view>
   </view>
 </template>

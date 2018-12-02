@@ -8,7 +8,7 @@
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
-  background-color: rgb(255,255,255);
+  background-color: rgb(250,255,255);
   width: 750rpx;
   height: 150rpx;
   top: var(--status-bar-height);
@@ -65,11 +65,16 @@
   flex-direction: column;
   margin-top: 40rpx;
 }
+.addASection {
+  margin-left: 300rpx;
+  margin-bottom: 40rpx;
+}
 .sectionCell {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
   -webkit-flex-direction: row;
   flex-direction: row;
+  height: 80rpx;
 }
 .addSection {
   text-align: center;

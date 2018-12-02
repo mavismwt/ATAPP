@@ -9,7 +9,7 @@
 			<view class="top-line" >
 				<view class="title-line">
 					<input class="red-point" >
-					<input class="title" v-model="schedule.title">
+					<input class="title" v-model="schedule.title" maxlength="6">
 				</view>
 				<view class="time-name">{{title}}</view>
 				<view class="precess-percent">{{process}}%</view>
@@ -110,13 +110,11 @@
 			};
 		},
 		onLoad: function(option) {//传入
-			let data = getAllSchedule()
-			for (var item in data) {
-				this.id = item	
-				this.schedule = getOneSchedule(item)
-				this.process = this.schedule.status.status
-			}
-			
+			const scheduleID = sessionStorage.getItem('ID')
+			let item = getOneSchedule(scheduleID)
+			this.id = scheduleID
+			this.schedule = item
+			this.process = this.schedule.status.status
 		},
 		onReady() {
 			var animation = uni.createAnimation({
@@ -124,8 +122,8 @@
 				duration: 500,
 				timingFunction: 'ease',
 			})
-			this.animationDataProcess = animation.translateX(this.process*1.5)
-														.scaleX(this.process*3)
+			this.animationDataProcess = animation.translateX(this.process*1.4)
+														.scaleX(this.process*2.8)
 														.step()
 														.export()
 // 			this.animationDataProcess = animation.translateX(this.process*2)
@@ -137,7 +135,7 @@
 				duration: 500,
 				timingFunction: 'ease',
 			})
-			this.animationDataPerson = animation.translateX(this.process*3).step().export()
+			this.animationDataPerson = animation.translateX(this.process*2.8).step().export()
 		},
 		onUnload() {
 			
@@ -149,20 +147,21 @@
 				//console.log(JSON.stringify(this.sectionData))
 			},
 			deleteSection: function(e){
-				let data = this.schedule.sectionData
+				var that = this
 				uni.showModal({
 					title: '提示',
 					content: '确定要删除该阶段吗？',
 					success: function (res) {
 						if (res.confirm) {
-							data.splice(e.currentTarget.dataset.id,1)
-							//console.log('点击确定')
+							that.schedule.sectionData.splice(e.currentTarget.dataset.id,1)
+							//data.splice(e.currentTarget.dataset.id,1)
+							that.schedule.time.end = that.schedule.time.end-1
+							console.log(that.schedule.time.end)
 						} else if (res.cancel) {
 							//console.log('点击取消');
 						}
 					},
 				})
-				this.schedule.sectionData = data
 			},
 			navBack: function(){
 				uni.showModal({
@@ -231,7 +230,7 @@
 		display: flex;
 		/* margin-top: 150upx; */
 		flex-direction: column;
-		background-color: rgb(255,255,255);
+		/* background-color: rgb(250,240,240); */
 	}
 	.top-line{
 		z-index: 10;

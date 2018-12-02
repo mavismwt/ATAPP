@@ -1,15 +1,15 @@
 <template name="4902289e">
   <view class="_view data-v-88e70c00 newProgressPlus">
     <view class="_view data-v-88e70c00 nav-bar-userset">
-      <image src="/static/back-arrow.png" class="_image data-v-88e70c00 nav-bar-userset-back" bindtap="handleProxy" data-eventid="{{'7dF-0'}}" data-comkey="{{$k}}"></image>
+      <image src="/static/back-arrow.png" class="_image data-v-88e70c00 nav-bar-userset-back" bindtap="handleProxy" data-eventid="{{'g02-0'}}" data-comkey="{{$k}}"></image>
       <image src="/static/sub-logo.png" class="_image data-v-88e70c00 nav-bar-userset-sublogo"></image>
-      <image src="/static/tick.png" class="_image data-v-88e70c00 nav-bar-userset-tick" bindtap="handleProxy" data-eventid="{{'IH4-1'}}" data-comkey="{{$k}}"></image>
+      <image src="/static/tick.png" class="_image data-v-88e70c00 nav-bar-userset-tick" bindtap="handleProxy" data-eventid="{{'npI-1'}}" data-comkey="{{$k}}"></image>
     </view>
     <view class="_view data-v-88e70c00 time-process-block">
       <view class="_view data-v-88e70c00 top-line">
         <view class="_view data-v-88e70c00 title-line">
           <input class="_input data-v-88e70c00 red-point" />
-          <input class="_input data-v-88e70c00 title" value="{{schedule.title}}" bindinput="handleProxy" data-eventid="{{'MC1-2'}}" data-comkey="{{$k}}" />
+          <input class="_input data-v-88e70c00 title" value="{{schedule.title}}" bindinput="handleProxy" maxlength="6" data-eventid="{{'f8r-2'}}" data-comkey="{{$k}}" />
         </view>
         <view class="_view data-v-88e70c00 time-name">{{title}}</view>
         <view class="_view data-v-88e70c00 precess-percent">{{process}}%</view>
@@ -29,24 +29,24 @@
       </view>
     </view>
     <view class="_view data-v-88e70c00 sectionView">
-      <view class="_view data-v-88e70c00 addASection" bindtap="handleProxy" data-eventid="{{'f7H-3'}}" data-comkey="{{$k}}">添加阶段</view>
-      <view class="_view data-v-88e70c00 sectionCell" wx:key="item.index" key="{{item.index}}" bindlongpress="handleProxy" data-id="{{item.index}}" data-eventid="{{'WmA-7-'+index}}" data-comkey="{{$k}}" wx:for="{{schedule.sectionData}}" wx:for-index="index"
+      <view class="_view data-v-88e70c00 addASection" bindtap="handleProxy" data-eventid="{{'zGI-3'}}" data-comkey="{{$k}}">添加阶段</view>
+      <view class="_view data-v-88e70c00 sectionCell" wx:key="item.index" key="{{item.index}}" bindlongpress="handleProxy" data-id="{{item.index}}" data-eventid="{{'oV3-7-'+index}}" data-comkey="{{$k}}" wx:for="{{schedule.sectionData}}" wx:for-index="index"
         wx:for-item="item">
-        <input class="_input data-v-88e70c00 inputSectionName" placeholder="输入阶段名称" placeholder-style="placeHolder" confirm-type="Next" value="{{item.name}}" bindinput="handleProxy" bindkeyup="handleProxy" data-eventid="{{'Dlj-4-'+index}}" data-comkey="{{$k}}"
+        <input class="_input data-v-88e70c00 inputSectionName" placeholder="输入阶段名称" placeholder-style="placeHolder" confirm-type="Next" value="{{item.name}}" bindinput="handleProxy" bindkeyup="handleProxy" data-eventid="{{'ikY-4-'+index}}" data-comkey="{{$k}}"
         />
         <view class="_view data-v-88e70c00 setStatus">
-          <image class="_image data-v-88e70c00 showStatus1" wx:if="{{item.isFinished}}" src="../../static/wancheng-copy.png" bindtap="handleProxy" value="{{item.isFinished}}" bindchange="handleProxy" data-eventid="{{'2wF-5-'+index}}" data-comkey="{{$k}}"></image>
-          <image class="_image data-v-88e70c00 showStatus0" wx:if="{{!item.isFinished}}" src="../../static/yuanhuan.png" bindtap="handleProxy" value="{{item.isFinished}}" bindchange="handleProxy" data-eventid="{{'Fw0-6-'+index}}" data-comkey="{{$k}}"></image>
+          <image class="_image data-v-88e70c00 showStatus1" wx:if="{{item.isFinished}}" src="../../static/wancheng-copy.png" bindtap="handleProxy" value="{{item.isFinished}}" bindchange="handleProxy" data-eventid="{{'B8n-5-'+index}}" data-comkey="{{$k}}"></image>
+          <image class="_image data-v-88e70c00 showStatus0" wx:if="{{!item.isFinished}}" src="../../static/yuanhuan.png" bindtap="handleProxy" value="{{item.isFinished}}" bindchange="handleProxy" data-eventid="{{'vR6-6-'+index}}" data-comkey="{{$k}}"></image>
         </view>
       </view>
     </view>
     <view class="_view data-v-88e70c00 addNotes">
       <view class="_view data-v-88e70c00">
-        <textarea class="_textarea data-v-88e70c00 Note" wx:if="{{showNote}}" value="{{schedule.note}}" bindinput="handleProxy" placeholder="此处输入备注" data-eventid="{{'dnL-8'}}" data-comkey="{{$k}}" />
+        <textarea class="_textarea data-v-88e70c00 Note" wx:if="{{showNote}}" value="{{schedule.note}}" bindinput="handleProxy" placeholder="此处输入备注" data-eventid="{{'UU3-8'}}" data-comkey="{{$k}}" />
       </view>
     </view>
     <view class="_view data-v-88e70c00 deleteView">
-      <view class="_view data-v-88e70c00 deleteButton" bindtap="handleProxy" data-eventid="{{'OLD-9'}}" data-comkey="{{$k}}">删除任务</view>
+      <view class="_view data-v-88e70c00 deleteButton" bindtap="handleProxy" data-eventid="{{'2fI-9'}}" data-comkey="{{$k}}">删除任务</view>
       <view class="_view data-v-88e70c00 bottomView"></view>
     </view>
   </view>

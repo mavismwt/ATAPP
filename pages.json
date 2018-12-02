@@ -93,6 +93,10 @@
         {
             "path" : "pages/detail/countdownDetail",
             "style" : {}
+        },
+        {
+            "path" : "pages/detail/userDefinedDetail",
+            "style" : {}
         }
     ],
     "globalStyle" : {

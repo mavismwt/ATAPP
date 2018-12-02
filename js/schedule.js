@@ -49,10 +49,10 @@ function getStatus(aData) {
 			let status = parseInt(present*100/all);
 			let statusCheck = status > 100 ?  100 : status;
 			
-			if (status === 0) status = 0;
-			else if (!status) status = 100;
+			if (statusCheck === 0) status = 0;
+			else if (!statusCheck) statusCheck = 100;
 		
-			return {"status": status, "toEnd": toEnd, "now": nowData};
+			return {"status": statusCheck, "toEnd": toEnd, "now": nowData};
 	}
 	else if (aData["type"] == 2) {
 		// 自定义类型
@@ -78,7 +78,7 @@ function getStatus(aData) {
 		let status = parseInt(present*100/all);
 		let statusCheck = status > 100 ?  100 : status;
 		
-		return {"status": status, "toEnd": toEnd, "now": present};
+		return {"status": statusCheck, "toEnd": toEnd, "now": present};
 	}
 	else {
 		return {"status": 100, "toEnd": 0};

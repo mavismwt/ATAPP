@@ -1,5 +1,7 @@
 
 .nav-bar-userset {
+  position: -webkit-sticky;
+  position: sticky;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   justify-content: space-between;
@@ -34,6 +36,7 @@
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
   flex-direction: column;
+  margin-top: 80rpx;
 }
 .inputForm {
   text-align: center;
@@ -90,7 +93,6 @@
   border-radius: 5rpx;
 }
 .countDown {
-  position: fixed;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -146,4 +148,19 @@
   font-weight: 300;
   border: hidden;
   border-radius: 0rpx;
+}
+.main-view {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  display: flex;
+  width: 750rpx;
+  height: 1080rpx;
 }

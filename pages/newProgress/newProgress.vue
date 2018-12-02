@@ -86,8 +86,7 @@
 		},
 		methods:{
 			changeBorderColor: function(){
-				var animation = 
-				this.color = "#DD524D"
+				this.color = "#000000"
 			},
 			cancelChangeBorderColor: function(){
 				this.color = "rgb(112,112,112)"
@@ -95,7 +94,7 @@
 			editProgress: function(){
 				let data = this.schedule.time
 				if (data.end>data.start&&data.now<data.end) {
-					data.now=data.now+1
+					data.now=parseInt(data.now)+parseInt(1)
 				} else if (data.end<data.start&&data.now>data.end){
 					data.now=data.now-1
 				}
@@ -173,7 +172,7 @@
 		padding: 20upx;
 		margin: 20upx 15upx;
 		margin-left: 40upx;
-		border-bottom: 4upx solid black;
+		border-bottom: 5upx solid black;
 	}
 	.inputProgress{
 		width: 100%;

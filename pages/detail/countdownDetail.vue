@@ -10,7 +10,7 @@
 			<view class="top-line" >
 				<view class="title-line">
 					<input class="red-point" >
-					<input class="title" v-model="schedule.title">
+					<input class="title" v-model="schedule.title" maxlength="6">
 				</view>
 				<view class="time-name">{{title}}</view>
 				<view class="precess-percent">{{process}}%</view>
@@ -53,7 +53,7 @@
 		<!-- <view class="confirm">
 			<button class="confirmButton" v-on:click="backToIndex">保存并退出</button>
 		</view> -->
-				</scroll-view>
+		</scroll-view>
 	</view>
 </template>
 
@@ -97,7 +97,7 @@
 				Edate:"",
 				Ndate:"",
 				startDate: "",
-				endDate: "2019-12-12",
+				endDate: "2022-12-12",
 				bubbleProperty:[
 					{
 						x: 100,
@@ -127,20 +127,20 @@
 				duration: 500,
 				timingFunction: 'ease',
 			})
-			this.animationDataProcess = animation.translateX(this.process*1.5)
-																	.scaleX(this.process*3)
+			this.animationDataProcess = animation.translateX(this.process*1.4)
+																	.scaleX(this.process*2.8)
 																	.step()
 																	.export()
-			// 			this.animationDataProcess = animation.translateX(this.process*2)
-			// 														.scaleX(this.process*6.3)
-			//  														.step()
-			//  														.export()
+// 						this.animationDataProcess = animation.translateX(this.process*2)
+// 																	.scaleX(this.process*6.3)
+// 			 														.step()
+// 			 														.export()
 			animation = uni.createAnimation({
 				delay: 300,
 				duration: 500,
 				timingFunction: 'ease',
 			})
-			this.animationDataPerson = animation.translateX(this.process*3).step().export()
+			this.animationDataPerson = animation.translateX(this.process*2.8).step().export()
 		},
 		methods:{
 			navBack: function(){

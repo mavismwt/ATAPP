@@ -6,27 +6,31 @@
 			<view class="nav-bar-userset-add"></view>
 		</view>
 		<view class="inputFrame">
-			<view>
-				<input class="inputForm" 
-					placeholder="输入TP名称" 
-					placeholder-class="placeHolder" 
-					maxlength="6"
-					confirm-type="done"
-					v-model="title"/>
-			</view>
-			<view class="time-picker">
-				<picker mode="date" :value="date" :start="schedule.startDate" :end="schedule.endDate" @change="bindSdateChange">
-					<view class="time-picker-view">{{Sdate}}</view>
-				</picker>
-				<picker mode="date" :value="date" :start="Sdate" :end="endDate" @change="bindEdateChange" :disabled="isDisabled">
-					<view class="time-picker-view">{{Edate}}</view>
-				</picker>
-			</view>
+			<input class="inputForm" 
+				placeholder="输入TP名称" 
+				placeholder-class="placeHolder" 
+				maxlength="6"
+				confirm-type="done"
+				v-model="schedule.title"/>
 		</view>
+		<picker mode="date" :value="date" :start="startDate" :end="endDate" @change="bindEdateChange">
+			<view class="Edate">{{Edate}}</view>
+		</picker>
+		<view class="time-picker">
+			<picker mode="date" :value="date" :start="startDate" :end="endDate" @change="bindEdateChange">
+				<view class="time-picker-view">设定倒计日</view>
+			</picker>
+			<!-- <picker mode="time" :value="date" :start="startDate" :end="endDate" @change="bindEdate2Change">
+				<view class="time-picker-view">{{Edate2}}</view>
+			</picker> -->
+		</view>
+		
 		<view class="sectionView">
-			<view class="addASection" @tap="add">添加阶段+</view>
-			<view class="sectionCell" v-for="item in schedule.sectionData"
-				:key="item.index">
+			<!-- <view class="addASection" @tap="add">添加阶段+</view> -->
+			<view class="sectionCell" 
+			v-for="item in schedule.sectionData"
+			:key="item.index"
+			@longpress="deleteSection" :data-id="item.index" >
 				<input class="inputSectionName"
 					placeholder="输入阶段名称"
 					placeholder-style="placeHolder"
@@ -34,39 +38,35 @@
 					v-model="item.name"
 					@keyup.enter = "add"
 				/>
-				<button class="setStatus"
-					@tap="item.isFinished=!item.isFinished"
-					v-model="item.isFinished"
-				>{{item.isFinished}}</button>
+				<view class="addSection">
+					<image src="../../static/add1.png" class="addSectionImg" @tap="add"></image>
+				</view>
 			</view>
 			
 		</view>
 		<view class="addNotes">
-			<view class="addButton" 
-				v-if="!showNote" 
-				v-on:click="showNote=!showNote"
-				v-model="schedule.note"
-			>
-				显示备注
-			</view>
-			<view class="addButton" 
-				v-if="showNote"
+			<view class="addButton"
 				v-on:click="showNote=!showNote"
 			>
-				收起备注
+			添加备注
 			</view>
 			<view>
 				<textarea class="Note" 
-					v-if="showNote" 
+					v-if="showNote"
+					v-model="schedule.note"
 					placeholder="此处输入备注"
 				>
 				</textarea>
 			</view>
 		</view>
+		<view class="confirm">
+			<button class="confirmButton" v-on:click="done">完成</button>
+		</view>
 	</view>
 </template>
 
 <script>
+	import {addSchedule,changeSchedule,deleteSchedule,getAllSchedule,getOneSchedule} from "../../js/schedule.js"
 	export default {
 		data() {
 			const currentDate = this.getDate({
@@ -75,16 +75,29 @@
 			return {
 				showNote:true,
 				schedule:{
-					type:"3",
+					type:"1",
+					isUserDefined:true,
 					title:"",
-					startDate: currentDate,
-					endDate: "2019-12-12",
 					time:{
-						start:0,
-						now:0,
-						end:0,
+						start:{
+							year:"",
+							month:"",
+							day:"",
+							hour:0,
+							minute:0,
+							second:0,
+						},
+						end:{
+							year:"",
+							month:"",
+							day:"",
+							hour:0,
+							minute:0,
+							second:0,
+						},
+						now:{},
+						sectionNumber:1,
 					},
-					name:"",
 					sectionData:[
 						{
 							name:"",
@@ -92,23 +105,38 @@
 						},
 					],
 					note:"",
-					
 				},
 				isDisabled: true,
 				Sdate: "开始时间",
-				Edate: "结束时间",
-// 				startDate: currentDate,
-// 				endDate: "2019-12-12"
+				Edate: currentDate,
+				startDate: currentDate,
+				endDate: "2019-12-12",
+				bubbleProperty:[
+					{
+						x: 100,
+						y: 100,
+						style:{
+							height: "300upx",
+							width: "200upx",
+							'border-radius': "50upx",
+						}
+					}
+				]
 			};
 		},
+		onLoad() {
+			var dataSplit = this.Edate.split("-")
+			this.Edate = dataSplit[0]+"年"+dataSplit[1]+"月"+dataSplit[2]+"日"
+			this.schedule.time.start.year = dataSplit[0]
+			this.schedule.time.start.month = dataSplit[1]
+			this.schedule.time.start.day = dataSplit[2]
+			this.schedule.time.end.year = dataSplit[0]
+			this.schedule.time.end.month = dataSplit[1]
+			this.schedule.time.end.day = dataSplit[2]
+		},
 		methods:{
-			add: function(){
-				this.schedule.time.end = this.schedule.time.end+1
-				this.schedule.sectionData.push({index:this.schedule.time.end,name:"",isFinished:false})
-				//console.log(JSON.stringify(this.sectionData))
-			},
 			backToIndex: function(){
-				uni.navigateBack();
+				uni.navigateBack()
 			},
 			bindPickerChange: function(e) {
 				console.log('picker发送选择改变，携带值为', e.target.value)
@@ -119,27 +147,64 @@
 				this.isDisabled = false
 			},
 			bindEdateChange: function(e) {
-				this.Edate = e.target.value
+				var dataSplit = e.target.value.split("-")
+				this.Edate = dataSplit[0]+"年"+dataSplit[1]+"月"+dataSplit[2]+"日"
+				this.schedule.time.end.year = dataSplit[0]
+				this.schedule.time.end.month = dataSplit[1]
+				this.schedule.time.end.day = dataSplit[2]
 			},
 			bindTimeChange: function(e) {
 				this.time = e.target.value
 			},
+			add: function(){
+				this.schedule.time.sectionNumber = this.schedule.sectionNumber+1
+				this.schedule.sectionData.push({index:this.schedule.time.sectionNumber,name:"",isFinished:false})
+				//console.log(JSON.stringify(this.sectionData))
+			},
+			deleteSection: function(e){
+				let data = this.schedule.sectionData
+				uni.showModal({
+					title: '提示',
+					content: '确定要删除该阶段吗？',
+					success: function (res) {
+						if (res.confirm) {
+							data.splice(e.currentTarget.dataset.id,1)
+							//console.log('点击确定')
+						} else if (res.cancel) {
+							//console.log('点击取消');
+						}
+					},
+				})
+				this.schedule.sectionData = data
+			},
 			getDate(type) {
 				const date = new Date();
-
 				let year = date.getFullYear();
 				let month = date.getMonth() + 1;
 				let day = date.getDate();
-
+			
 				if (type === 'start') {
 					year = year - 60;
 				} else if (type === 'end') {
 					year = year + 2;
 				}
-				month = month > 9 ? month : '0' + month;;
-				day = day > 9 ? day : '0' + day;
-
-				return `${year}-${month}-${day}`;
+					month = month > 9 ? month : '0' + month;
+					day = day > 9 ? day : '0' + day;
+			
+					return `${year}-${month}-${day}`;
+				}, 
+			done: function(){
+				//uni.clearStorage();
+				let code = addSchedule(this.schedule);
+				let data = getAllSchedule();
+				console.log(JSON.stringify(data))
+				uni.navigateTo({
+					url:'/pages/index/index',
+				})
+				uni.showToast({
+					title: '新建成功',
+					duration: 1500
+				});
 			}
 		}
 	}
@@ -147,11 +212,13 @@
 
 <style>
 	.nav-bar-userset{
+		position: sticky;
 		justify-content: space-between;
 		display: flex;
-		background-color: rgb(255,230,206);
+		background-color: rgb(255,255,255);
 		width: 750upx;
 		height: 150upx;
+		top: var(--status-bar-height)
 	}
 	.nav-bar-userset-sublogo{
 		margin-top: 55upx;
@@ -170,57 +237,49 @@
 		width: 30upx;
 		height: 40upx;
 	}
-	.inputFrame{
+	.inputTitle{
 		width: 100%;
-		background-color: rgb(253,205,223);
 		flex-direction: column;
 	}
 	.inputForm{
-		justify-content: center;
 		text-align: center;
+		justify-content: center;
 		font-size: 36upx;
 		color: #000000;
-		font-weight: 1000;
-		width: 680upx;
+		width: 620upx;
 		padding: 20upx;
-		padding-right: 60upx;
 		margin: 20upx 15upx;
-		background-color: rgb(243,165,183);
+		margin-left: 40upx;
+		border-bottom: 4upx solid gray;
 	}
 	.sectionView{
 		flex-direction: column;
-		background-color: rgb(255,234,226);
-	}
-	.addASection{
-		text-align: center;
-		justify-content: center;
-		width: 700upx;
-		padding-top: 40upx;
-		padding-bottom: 20upx;
-		margin: 20upx;
-		background-color: rgb(255,246,232) ;
+		margin-top: 40upx;
 	}
 	.sectionCell{
 		flex-direction: row;
+	}
+	.addSection{
+		text-align: center;
+		justify-content: center;
+		width: 50upx;
+		height: 80upx;
+		padding: 5upx;
+		margin-right: 0upx;
+		background-color: #FFFFFF;
+		font-size: 20upx;
+	}
+	.addSectionImg{
+		width: 40upx;
+		height: 40upx;
 	}
 	.inputSectionName{
 		text-align: left;
 		justify-content: center;
 		color: #000000;
 		width: 580upx;
-		padding: 20upx;
-		margin: 0upx 15upx;
-	}
-	.setStatus{
-		text-align: center;
-		justify-content: center;
-		width: 60upx;
-		height: 80upx;
-		margin-left: 15upx;
-		padding-top: 15upx;
-		padding-left: 10upx;
-		background-color: #FFFFFF;
-		font-size: 20upx;
+		padding: 5upx;
+		margin-left: 40upx;
 	}
 	.addNotes{
 		width: 100%;
@@ -237,11 +296,10 @@
 		text-align: left;
 		justify-content: center;
 		color: #000000;
-		width: 680upx;
+		width: 640upx;
 		height: 200upx;
 		padding: 20upx;
-		margin-top: 0upx;
-		margin-left: 15upx;
+		margin: 20upx 40upx 40upx 40upx;
 		border: 1upx solid gray;
 	}
 	.placeHolder{
@@ -249,18 +307,34 @@
 		font-weight: 1000;
 		text-align: center;
 	}
-	.time-picker{
-		width: 750upx;
-	}
-	.time-picker-view{
+	.Edate{
+		text-align: center;
+		justify-content: center; 
 		font-size: 36upx;
-		justify-content: center;
 		color: #000000;
 		font-weight: 1000;
-		width: 312upx;
+		width: 620upx;
+		padding: 40upx 20upx;
+		margin: 20upx 15upx;
+		margin-left: 40upx;
+		border: 2upx solid black;
+	}
+	.time-picker{
+		width: 750upx;
+		flex-direction: column;
+	}
+	.time-picker-view{
+		text-align: center;
+		justify-content: center; 
+		font-size: 36upx;
+		color: #FFFFFF;
+		font-weight: 1000;
+		width: 620upx;
 		padding: 20upx;
-		margin: 0upx 15upx 15upx 15upx;
-		background-color: rgb(243,165,183);
+		margin: 20upx 15upx;
+		margin-left: 40upx;
+		background-color: #DD524D;
+		border-radius: 5upx;
 	}
 	.confirm{
 		position: fixed;
@@ -272,14 +346,13 @@
 		align-content: center;
 		width: 100%;
 		height: 80upx;
-		color: #DD524D;
-		background-color: rgb(255,230,206);
+		color: #FFFFFF;
+		background-color: #DD524D;
+		font-size: 36upx;
+		font-weight: 300;
 		border: hidden;
+		border-radius: 0upx;
 	}
-	
-
-	
-	
 	.userDefined {
 		position: fixed;
 		display: flex;
@@ -287,30 +360,5 @@
 		top: var(--status-bar-height);
 		width: 100%;
 	}
-	
-/* 	.nav-bar-userset{
-		justify-content: space-between;
-		display: flex;
-		background-color: rgb(255,230,206);
-		width: 750upx;
-		height: 150upx;
-	}
-	.nav-bar-userset-sublogo{
-		margin-top: 55upx;
-		width: 100upx;
-		height: 45upx;
-	}
-	.nav-bar-userset-back{
-		margin-top: 55upx;
-		margin-left: 50upx;
-		width: 25upx;
-		height: 40upx;
-	}
-	.nav-bar-userset-add{
-		margin-top: 55upx;
-		margin-right: 50upx;
-		width: 30upx;
-		height: 40upx;
-	} */
 
 </style>
