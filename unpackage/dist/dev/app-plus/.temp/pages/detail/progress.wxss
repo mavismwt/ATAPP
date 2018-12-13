@@ -11,21 +11,20 @@
   background-color: rgb(255,255,255);
   width: 750rpx;
   height: 150rpx;
-  top: var(--status-bar-height);
 }
 .nav-bar-userset-sublogo {
-  margin-top: 55rpx;
+  margin-top: 65rpx;
   width: 100rpx;
   height: 45rpx;
 }
 .nav-bar-userset-back {
-  margin-top: 55rpx;
+  margin-top: 65rpx;
   margin-left: 50rpx;
   width: 25rpx;
   height: 40rpx;
 }
 .nav-bar-userset-tick {
-  margin-top: 55rpx;
+  margin-top: 65rpx;
   margin-right: 50rpx;
   width: 40rpx;
   height: 40rpx;

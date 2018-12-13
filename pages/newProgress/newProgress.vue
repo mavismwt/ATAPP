@@ -133,21 +133,21 @@
 		background-color: rgb(255,255,255);
 		width: 750upx;
 		height: 150upx;
-		top: var(--status-bar-height)
+		/* top: var(--status-bar-height) */
 	}
 	.nav-bar-userset-sublogo{
-		margin-top: 55upx;
+		margin-top: 65upx;
 		width: 100upx;
 		height: 45upx;
 	}
 	.nav-bar-userset-back{
-		margin-top: 55upx;
+		margin-top: 65upx;
 		margin-left: 50upx;
 		width: 25upx;
 		height: 40upx;
 	}
 	.nav-bar-userset-add{
-		margin-top: 55upx;
+		margin-top: 65upx;
 		margin-right: 50upx;
 		width: 30upx;
 		height: 40upx;
@@ -160,6 +160,7 @@
 	.newProgress{
 		flex-direction: column;
 		width: 100%;
+		position: fixed;
 	}
 	.inputTitle{
 		flex-direction: column;

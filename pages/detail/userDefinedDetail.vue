@@ -172,10 +172,10 @@
 														.scaleX(this.process*2.8)
 														.step()
 														.export()
-// 			this.animationDataProcess = animation.translateX(this.process*2)
-// 														.scaleX(this.process*6.3)
-//  														.step()
-//  														.export()
+// 			this.animationDataProcess = animation.translateX(this.process*1.5)
+// 														.scaleX(this.process*4.5)
+// 														.step()
+// 														.export()
 			animation = uni.createAnimation({
 				delay: 300,
 				duration: 500,
@@ -211,6 +211,7 @@
 				return `${year}-${month}-${day}`;
 			}, 
 			deleteSection: function(e){
+				var that = this
 				let data = this.schedule.sectionData
 				uni.showModal({
 					title: '提示',
@@ -219,6 +220,8 @@
 						if (res.confirm) {
 							data.splice(e.currentTarget.dataset.id,1)
 							//console.log('点击确定')
+							that.schedule.time.end = that.schedule.time.end-1
+							console.log(that.schedule.time.end)
 						} else if (res.cancel) {
 							//console.log('点击取消');
 						}
@@ -535,21 +538,21 @@
 		background-color: rgb(255,255,255);
 		width: 750upx;
 		height: 150upx;
-		top: var(--status-bar-height)
+		/* top: var(--status-bar-height) */
 	}
 	.nav-bar-userset-sublogo{
-		margin-top: 55upx;
+		margin-top: 65upx;
 		width: 100upx;
 		height: 45upx;
 	}
 	.nav-bar-userset-back{
-		margin-top: 55upx;
+		margin-top: 65upx;
 		margin-left: 50upx;
 		width: 25upx;
 		height: 40upx;
 	}
 	.nav-bar-userset-tick{
-		margin-top: 55upx;
+		margin-top: 65upx;
 		margin-right: 50upx;
 		width: 40upx;
 		height: 40upx;

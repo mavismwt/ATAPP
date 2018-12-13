@@ -162,6 +162,7 @@
 				//console.log(JSON.stringify(this.sectionData))
 			},
 			deleteSection: function(e){
+				var taht = this
 				let data = this.schedule.sectionData
 				uni.showModal({
 					title: '提示',
@@ -170,6 +171,8 @@
 						if (res.confirm) {
 							data.splice(e.currentTarget.dataset.id,1)
 							//console.log('点击确定')
+							that.schedule.time.end = that.schedule.time.end-1
+							console.log(that.schedule.time.end)
 						} else if (res.cancel) {
 							//console.log('点击取消');
 						}
@@ -196,8 +199,9 @@
 			done: function(){
 				//uni.clearStorage();
 				let code = addSchedule(this.schedule);
-				let data = getAllSchedule();
-				console.log(JSON.stringify(data))
+				console.log(code)
+// 				let data = getAllSchedule();
+// 				console.log(JSON.stringify(data))
 				uni.navigateTo({
 					url:'/pages/index/index',
 				})
@@ -218,21 +222,21 @@
 		background-color: rgb(255,255,255);
 		width: 750upx;
 		height: 150upx;
-		top: var(--status-bar-height)
+		/* top: var(--status-bar-height) */
 	}
 	.nav-bar-userset-sublogo{
-		margin-top: 55upx;
+		margin-top: 65upx;
 		width: 100upx;
 		height: 45upx;
 	}
 	.nav-bar-userset-back{
-		margin-top: 55upx;
+		margin-top: 65upx;
 		margin-left: 50upx;
 		width: 25upx;
 		height: 40upx;
 	}
 	.nav-bar-userset-add{
-		margin-top: 55upx;
+		margin-top: 65upx;
 		margin-right: 50upx;
 		width: 30upx;
 		height: 40upx;
@@ -357,7 +361,7 @@
 		position: fixed;
 		display: flex;
 		flex-direction: column;
-		top: var(--status-bar-height);
+		/* top: var(--status-bar-height); */
 		width: 100%;
 	}
 

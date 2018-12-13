@@ -61,7 +61,6 @@ to {
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
   flex-direction: column;
-  top: var(--status-bar-height);
   width: 100%;
 }
 .nav-bar-userset {
@@ -76,14 +75,14 @@ to {
   height: 150rpx;
 }
 .nav-bar-userset-logo {
-  margin-top: 42rpx;
+  margin-top: 52rpx;
   margin-left: 20rpx;
   width: 110rpx;
   height: 65rpx;
 }
 .nav-bar-userset-add {
   margin-right: 45rpx;
-  margin-top: 53rpx;
+  margin-top: 63rpx;
   width: 40rpx;
   height: 40rpx;
 }
@@ -239,7 +238,7 @@ to {
   -webkit-flex-direction: column;
   flex-direction: column;
   width: 100rpx;
-  margin: 0rpx 0rpx 0rpx 45rpx;
+  margin: 0rpx 0rpx 0rpx 35rpx;
 }
 .little-person .little-person-image {
   display: inline-block;

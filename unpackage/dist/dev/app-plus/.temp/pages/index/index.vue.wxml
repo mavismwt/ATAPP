@@ -1,43 +1,43 @@
-<template name="dab48df0">
-  <view class="_view data-v-00ad3699 index">
-    <view class="_view data-v-00ad3699 nav-bar-userset">
-      <view class="_view data-v-00ad3699 nav-bar-userset-add"></view>
-      <image src="/static/logo.png" class="_image data-v-00ad3699 nav-bar-userset-logo"></image>
-      <image src="/static/add.png" class="_image data-v-00ad3699 nav-bar-userset-add" bindtap="handleProxy" data-eventid="{{'JzR-0'}}" data-comkey="{{$k}}"></image>
+<template name="6d1c862e">
+  <view class="_view data-v-29d40f0c index">
+    <view class="_view data-v-29d40f0c nav-bar-userset">
+      <view class="_view data-v-29d40f0c nav-bar-userset-add"></view>
+      <image src="/static/logo.png" class="_image data-v-29d40f0c nav-bar-userset-logo"></image>
+      <image src="/static/add.png" class="_image data-v-29d40f0c nav-bar-userset-add" bindtap="handleProxy" data-eventid="{{'j5R-0'}}" data-comkey="{{$k}}"></image>
     </view>
-    <swiper indicator-dots="{{swiper.indicatorDots}}" duration="{{swiper.duration}}" class="_swiper data-v-00ad3699" style=" {{('height:' + scrollHeight + ';')}}">
-      <swiper-item class="_swiper-item data-v-00ad3699">
-        <scroll-view class="_scroll-view data-v-00ad3699 main-view" scroll-y="true" style=" {{('height:' + scrollHeight + ';')}}">
-          <view class="_view data-v-00ad3699 date-view" wx:key="index" key="{{index}}" wx:for="{{itemProperty}}" wx:for-index="index" wx:for-item="item">
-            <view class="_view data-v-00ad3699 time-process-block" style=" {{('background-color:' + item.backgroundColor + ';')}}">
-              <view class="_view data-v-00ad3699 top-line" bindtap="handleProxy" data-id="{{index}}" bindlongpress="handleProxy" data-eventid="{{'SGR-1-'+index}}" data-comkey="{{$k}}">
-                <view class="_view data-v-00ad3699 line-view">
-                  <view class="_view data-v-00ad3699 red-point"></view>
-                  <view class="_view data-v-00ad3699 time-name" style="width: 6rem;">{{item.title}}</view>
+    <swiper indicator-dots="{{swiper.indicatorDots}}" duration="{{swiper.duration}}" class="_swiper data-v-29d40f0c" style=" {{('height:' + scrollHeight + ';')}}">
+      <swiper-item class="_swiper-item data-v-29d40f0c">
+        <scroll-view class="_scroll-view data-v-29d40f0c main-view" scroll-y="true" style=" {{('height:' + scrollHeight + ';')}}">
+          <view class="_view data-v-29d40f0c date-view" wx:key="index" key="{{index}}" wx:for="{{itemProperty}}" wx:for-index="index" wx:for-item="item">
+            <view class="_view data-v-29d40f0c time-process-block" style=" {{('background-color:' + item.backgroundColor + ';')}}">
+              <view class="_view data-v-29d40f0c top-line" bindtap="handleProxy" data-id="{{index}}" bindlongpress="handleProxy" data-eventid="{{'20L-1-'+index}}" data-comkey="{{$k}}">
+                <view class="_view data-v-29d40f0c line-view">
+                  <view class="_view data-v-29d40f0c red-point"></view>
+                  <view class="_view data-v-29d40f0c time-name" style="width: 6rem;">{{item.title}}</view>
                 </view>
-                <view class="_view data-v-00ad3699 precess-percent">{{ item.process }}%</view>
+                <view class="_view data-v-29d40f0c precess-percent">{{ item.process }}%</view>
               </view>
-              <view class="_view data-v-00ad3699 all-process" bindtap="handleProxy" data-id="{{index}}" bindlongpress="handleProxy" data-eventid="{{'NgK-2-'+index}}" data-comkey="{{$k}}">
-                <view class="_view data-v-00ad3699 little-person" animation="{{item.animationDataPerson}}">
-                  <view class="_view data-v-00ad3699 chat-frame">
-                    <view class="_view data-v-00ad3699 .chat-frame-content">{{item.now}}</view>
-                    <image src="/static/chat-frame.png" class="_image data-v-00ad3699 chat-frame-image"></image>
+              <view class="_view data-v-29d40f0c all-process" bindtap="handleProxy" data-id="{{index}}" bindlongpress="handleProxy" data-eventid="{{'ZtY-2-'+index}}" data-comkey="{{$k}}">
+                <view class="_view data-v-29d40f0c little-person" animation="{{item.animationDataPerson}}">
+                  <view class="_view data-v-29d40f0c chat-frame">
+                    <view class="_view data-v-29d40f0c .chat-frame-content">{{item.now}}</view>
+                    <image src="/static/chat-frame.png" class="_image data-v-29d40f0c chat-frame-image"></image>
                   </view>
-                  <image src="/static/little-person.png" class="_image data-v-00ad3699 little-person-image"></image>
+                  <image src="/static/little-person.png" class="_image data-v-29d40f0c little-person-image"></image>
                 </view>
-                <view class="_view data-v-00ad3699 process-bar">
-                  <view class="_view data-v-00ad3699 start-text">{{item.start}}</view>
-                  <view class="_view data-v-00ad3699 blank-bar"></view>
-                  <view class="_view data-v-00ad3699 end-text">{{item.end}}</view>
-                  <view class="_view data-v-00ad3699 finish-bar" animation="{{item.animationDataProcess}}"></view>
+                <view class="_view data-v-29d40f0c process-bar">
+                  <view class="_view data-v-29d40f0c start-text">{{item.start}}</view>
+                  <view class="_view data-v-29d40f0c blank-bar"></view>
+                  <view class="_view data-v-29d40f0c end-text">{{item.end}}</view>
+                  <view class="_view data-v-29d40f0c finish-bar" animation="{{item.animationDataProcess}}"></view>
                 </view>
               </view>
             </view>
-            <view ref="scheduleDetail" scroll-y="true" class="_view data-v-00ad3699 {{[  item.itemDetail ? 'schedule-detail-show' : '',  !item.itemDetail ? 'schedule-detail-hidden' : '']}}" style=" {{(  'background-color:' +  item.backgroundColor +  ';' +  'animation:' +  item.showAnimation +  ';')}}">
-              <view class="_view data-v-00ad3699 detail-contain"></view>
+            <view ref="scheduleDetail" scroll-y="true" class="_view data-v-29d40f0c {{[  item.itemDetail ? 'schedule-detail-show' : '',  !item.itemDetail ? 'schedule-detail-hidden' : '']}}" style=" {{(  'background-color:' +  item.backgroundColor +  ';' +  'animation:' +  item.showAnimation +  ';')}}">
+              <view class="_view data-v-29d40f0c detail-contain"></view>
             </view>
           </view>
-          <view class="_view data-v-00ad3699 bottomView"></view>
+          <view class="_view data-v-29d40f0c bottomView"></view>
         </scroll-view>
       </swiper-item>
     </swiper>

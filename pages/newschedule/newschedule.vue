@@ -28,21 +28,21 @@
 					{
 						id: "countDown",
 						title: "倒计日",
-						describe: "重要的时间一定要记录下来！",
+						describe: "重要的时间一定要记录下来",
 						backgroundColor: "rgb(171,216,200)",
 						fontColor: "rgb(131,176,160)"
 					},
 					{
 						id: "progress",
 						title: "进度记录",
-						describe: "追剧、任务进度不遗忘！",
+						describe: "追剧、任务进度不遗忘",
 						backgroundColor: "rgb(254,225,168)",
 						fontColor: "rgb(214,185,128)"
 					},
 					{
 						id: "check",
 						title: "打卡计划",
-						describe: "来养成好习惯吧！",
+						describe: "来养成好习惯吧",
 						backgroundColor: "rgb(244,185,146)",
 						fontColor: "rgb(204,145,106)"
 					},
@@ -99,7 +99,7 @@
 		position: fixed;
 		display: flex;
 		flex-direction: column;
-		top: var(--status-bar-height);
+		/* top: var(--status-bar-height); */
 		width: 100%;
 	}
 	
@@ -111,18 +111,18 @@
 		height: 150upx;
 	}
 	.nav-bar-userset-sublogo{
-		margin-top: 55upx;
+		margin-top: 65upx;
 		width: 100upx;
 		height: 45upx;
 	}
 	.nav-bar-userset-back{
-		margin-top: 55upx;
+		margin-top: 65upx;
 		margin-left: 50upx;
 		width: 25upx;
 		height: 40upx;
 	}
 	.nav-bar-userset-add{
-		margin-top: 55upx;
+		margin-top: 65upx;
 		margin-right: 50upx;
 		width: 30upx;
 		height: 40upx;

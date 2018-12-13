@@ -1,1 +1,1 @@
-<import src="/pages/newdetail/countDown.vue.wxml" /><template is="11e47d66" data="{{ ...$root['0'], $root }}"/>
+<import src="/pages/newdetail/countDown.vue.wxml" /><template is="4bb9df72" data="{{ ...$root['0'], $root }}"/>

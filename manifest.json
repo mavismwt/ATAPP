@@ -43,7 +43,7 @@
             "sdkConfigs" : {},
             "icons" : {
                 "ios" : {
-                    "appstore" : "/Users/apple/Downloads/pocket.png",
+                    "appstore" : "/Users/apple/Downloads/TimePocket/截图/pocket图标.png",
                     "ipad" : {
                         "app" : "unpackage/res/icons/76x76.png",
                         "app@2x" : "unpackage/res/icons/152x152.png",

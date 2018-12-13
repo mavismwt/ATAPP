@@ -1,61 +1,61 @@
-<template name="29e985ce">
-  <view class="_view data-v-39545bdd newProgressPlus">
-    <view class="_view data-v-39545bdd nav-bar-userset">
-      <image src="/static/back-arrow.png" class="_image data-v-39545bdd nav-bar-userset-back" bindtap="handleProxy" data-eventid="{{'WCg-0'}}" data-comkey="{{$k}}"></image>
-      <image src="/static/sub-logo.png" class="_image data-v-39545bdd nav-bar-userset-sublogo"></image>
-      <image src="/static/tick.png" class="_image data-v-39545bdd nav-bar-userset-tick" bindtap="handleProxy" data-eventid="{{'1Hh-1'}}" data-comkey="{{$k}}"></image>
+<template name="7be8978d">
+  <view class="_view data-v-30db6f9c newProgressPlus">
+    <view class="_view data-v-30db6f9c nav-bar-userset">
+      <image src="/static/back-arrow.png" class="_image data-v-30db6f9c nav-bar-userset-back" bindtap="handleProxy" data-eventid="{{'B9Q-0'}}" data-comkey="{{$k}}"></image>
+      <image src="/static/sub-logo.png" class="_image data-v-30db6f9c nav-bar-userset-sublogo"></image>
+      <image src="/static/tick.png" class="_image data-v-30db6f9c nav-bar-userset-tick" bindtap="handleProxy" data-eventid="{{'0fB-1'}}" data-comkey="{{$k}}"></image>
     </view>
-    <view class="_view data-v-39545bdd time-process-block">
-      <view class="_view data-v-39545bdd top-line">
-        <view class="_view data-v-39545bdd title-line">
-          <input class="_input data-v-39545bdd red-point" />
-          <input class="_input data-v-39545bdd title" value="{{schedule.title}}" bindinput="handleProxy" maxlength="6" data-eventid="{{'oRq-2'}}" data-comkey="{{$k}}" />
+    <view class="_view data-v-30db6f9c time-process-block">
+      <view class="_view data-v-30db6f9c top-line">
+        <view class="_view data-v-30db6f9c title-line">
+          <input class="_input data-v-30db6f9c red-point" />
+          <input class="_input data-v-30db6f9c title" value="{{schedule.title}}" bindinput="handleProxy" maxlength="6" data-eventid="{{'CLG-2'}}" data-comkey="{{$k}}" />
         </view>
-        <view class="_view data-v-39545bdd time-name">{{title}}</view>
-        <view class="_view data-v-39545bdd precess-percent">{{process}}%</view>
+        <view class="_view data-v-30db6f9c time-name">{{title}}</view>
+        <view class="_view data-v-30db6f9c precess-percent">{{process}}%</view>
       </view>
-      <view class="_view data-v-39545bdd all-process">
-        <view class="_view data-v-39545bdd little-person" animation="{{animationDataPerson}}">
-          <view class="_view data-v-39545bdd chat-frame">
-            <view class="_view data-v-39545bdd .chat-frame-content">{{Ndate}}</view>
-            <image src="../../static/chat-gray.png" class="_image data-v-39545bdd chat-frame-image"></image>
+      <view class="_view data-v-30db6f9c all-process">
+        <view class="_view data-v-30db6f9c little-person" animation="{{animationDataPerson}}">
+          <view class="_view data-v-30db6f9c chat-frame">
+            <view class="_view data-v-30db6f9c .chat-frame-content">{{Ndate}}</view>
+            <image src="../../static/chat-gray.png" class="_image data-v-30db6f9c chat-frame-image"></image>
           </view>
-          <image src="/static/little-person.png" class="_image data-v-39545bdd little-person-image"></image>
+          <image src="/static/little-person.png" class="_image data-v-30db6f9c little-person-image"></image>
         </view>
-        <view class="_view data-v-39545bdd process-bar">
-          <view class="_view data-v-39545bdd blank-bar"></view>
-          <view class="_view data-v-39545bdd finish-bar" animation="{{animationDataProcess}}"></view>
+        <view class="_view data-v-30db6f9c process-bar">
+          <view class="_view data-v-30db6f9c blank-bar"></view>
+          <view class="_view data-v-30db6f9c finish-bar" animation="{{animationDataProcess}}"></view>
         </view>
       </view>
     </view>
-    <picker mode="date" value="{{date}}" start="{{startDate}}" end="{{endDate}}" bindchange="handleProxy" data-eventid="{{'2DV-3'}}" data-comkey="{{$k}}" class="_picker data-v-39545bdd">
-      <view class="_view data-v-39545bdd Edate">{{Edate}}</view>
+    <picker mode="date" value="{{date}}" start="{{startDate}}" end="{{endDate}}" bindchange="handleProxy" data-eventid="{{'jSi-3'}}" data-comkey="{{$k}}" class="_picker data-v-30db6f9c">
+      <view class="_view data-v-30db6f9c Edate">{{Edate}}</view>
     </picker>
-    <view class="_view data-v-39545bdd time-picker">
-      <picker mode="date" value="{{date}}" start="{{startDate}}" end="{{endDate}}" bindchange="handleProxy" data-eventid="{{'SfJ-4'}}" data-comkey="{{$k}}" class="_picker data-v-39545bdd">
-        <view class="_view data-v-39545bdd time-picker-view">更改倒计日</view>
+    <view class="_view data-v-30db6f9c time-picker">
+      <picker mode="date" value="{{date}}" start="{{startDate}}" end="{{endDate}}" bindchange="handleProxy" data-eventid="{{'grl-4'}}" data-comkey="{{$k}}" class="_picker data-v-30db6f9c">
+        <view class="_view data-v-30db6f9c time-picker-view">更改倒计日</view>
       </picker>
     </view>
-    <view class="_view data-v-39545bdd sectionView">
-      <view class="_view data-v-39545bdd addASection" bindtap="handleProxy" data-eventid="{{'62P-5'}}" data-comkey="{{$k}}">添加阶段</view>
-      <view class="_view data-v-39545bdd sectionCell" wx:key="item.index" key="{{item.index}}" bindlongpress="handleProxy" data-id="{{item.index}}" data-eventid="{{'Pci-9-'+index}}" data-comkey="{{$k}}" wx:for="{{schedule.sectionData}}" wx:for-index="index"
+    <view class="_view data-v-30db6f9c sectionView">
+      <view class="_view data-v-30db6f9c addASection" bindtap="handleProxy" data-eventid="{{'e1r-5'}}" data-comkey="{{$k}}">添加阶段</view>
+      <view class="_view data-v-30db6f9c sectionCell" wx:key="item.index" key="{{item.index}}" bindlongpress="handleProxy" data-id="{{item.index}}" data-eventid="{{'Y6M-9-'+index}}" data-comkey="{{$k}}" wx:for="{{schedule.sectionData}}" wx:for-index="index"
         wx:for-item="item">
-        <input class="_input data-v-39545bdd inputSectionName" placeholder="输入阶段名称" placeholder-style="placeHolder" confirm-type="Next" value="{{item.name}}" bindinput="handleProxy" bindkeyup="handleProxy" data-eventid="{{'9br-6-'+index}}" data-comkey="{{$k}}"
+        <input class="_input data-v-30db6f9c inputSectionName" placeholder="输入阶段名称" placeholder-style="placeHolder" confirm-type="Next" value="{{item.name}}" bindinput="handleProxy" bindkeyup="handleProxy" data-eventid="{{'V3M-6-'+index}}" data-comkey="{{$k}}"
         />
-        <view class="_view data-v-39545bdd setStatus">
-          <image class="_image data-v-39545bdd showStatus1" wx:if="{{item.isFinished}}" src="../../static/wancheng-copy.png" bindtap="handleProxy" value="{{item.isFinished}}" bindchange="handleProxy" data-eventid="{{'t3U-7-'+index}}" data-comkey="{{$k}}"></image>
-          <image class="_image data-v-39545bdd showStatus0" wx:if="{{!item.isFinished}}" src="../../static/yuanhuan.png" bindtap="handleProxy" value="{{item.isFinished}}" bindchange="handleProxy" data-eventid="{{'5x8-8-'+index}}" data-comkey="{{$k}}"></image>
+        <view class="_view data-v-30db6f9c setStatus">
+          <image class="_image data-v-30db6f9c showStatus1" wx:if="{{item.isFinished}}" src="../../static/wancheng-copy.png" bindtap="handleProxy" value="{{item.isFinished}}" bindchange="handleProxy" data-eventid="{{'0Sn-7-'+index}}" data-comkey="{{$k}}"></image>
+          <image class="_image data-v-30db6f9c showStatus0" wx:if="{{!item.isFinished}}" src="../../static/yuanhuan.png" bindtap="handleProxy" value="{{item.isFinished}}" bindchange="handleProxy" data-eventid="{{'lXT-8-'+index}}" data-comkey="{{$k}}"></image>
         </view>
       </view>
     </view>
-    <view class="_view data-v-39545bdd addNotes">
-      <view class="_view data-v-39545bdd">
-        <textarea class="_textarea data-v-39545bdd Note" wx:if="{{showNote}}" value="{{schedule.note}}" bindinput="handleProxy" placeholder="此处输入备注" data-eventid="{{'d2k-10'}}" data-comkey="{{$k}}" />
+    <view class="_view data-v-30db6f9c addNotes">
+      <view class="_view data-v-30db6f9c">
+        <textarea class="_textarea data-v-30db6f9c Note" wx:if="{{showNote}}" value="{{schedule.note}}" bindinput="handleProxy" placeholder="此处输入备注" data-eventid="{{'sOX-10'}}" data-comkey="{{$k}}" />
       </view>
     </view>
-    <view class="_view data-v-39545bdd deleteView">
-      <view class="_view data-v-39545bdd deleteButton" bindtap="handleProxy" data-eventid="{{'PKA-11'}}" data-comkey="{{$k}}">删除任务</view>
-      <view class="_view data-v-39545bdd bottomView"></view>
+    <view class="_view data-v-30db6f9c deleteView">
+      <view class="_view data-v-30db6f9c deleteButton" bindtap="handleProxy" data-eventid="{{'RMz-11'}}" data-comkey="{{$k}}">删除任务</view>
+      <view class="_view data-v-30db6f9c bottomView"></view>
     </view>
   </view>
 </template>
